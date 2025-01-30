@@ -62,6 +62,7 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "LiveStats");
 	float CurrentRightThrust;
+	
 
 	
 };

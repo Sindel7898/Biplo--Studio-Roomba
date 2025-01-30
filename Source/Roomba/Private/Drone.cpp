@@ -63,7 +63,7 @@ float ADrone::GetDirectionSpeedMethod(float DeltaTime, float InputAxisValue, flo
 
 FVector ADrone::GetMovementVelocityMethod(float DeltaTime)
 {
-	const float MoveRight = InputComponent->GetAxisValue("MoveRight");
+	const float MoveRight = InputComponent->GetAxisValue("MoveRight1");
 	const float MoveForward = InputComponent->GetAxisValue("MoveForward");
 	
 	const float ForwardSpeed = GetDirectionSpeedMethod(DeltaTime, MoveForward, CurrentForwardThrust);
