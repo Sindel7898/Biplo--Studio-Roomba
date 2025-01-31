@@ -3,6 +3,9 @@
 
 #include "Drone.h"
 
+#include "EnhancedInputComponent.h"
+#include "EnhancedInputSubsystems.h"
+
 
 // Sets default values
 ADrone::ADrone()
@@ -50,6 +53,28 @@ void ADrone::BeginPlay()
 	
 }
 
+void ADrone::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+{
+	// Add Input Mapping Context
+	if (APlayerController* PlayerController = Cast<APlayerController>(GetController()))
+	{
+		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
+		{
+			Subsystem->AddMappingContext(DefaultMappingContext, 0);
+		}
+	}
+	
+	// Set up action bindings
+	if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent)) {
+
+		// Moving
+		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ADrone::Move);
+		
+	}
+	
+}
+
+
 float ADrone::GetDirectionSpeedMethod(float DeltaTime, float InputAxisValue, float CurrentSpeed)
 {
 	const float Alpha = (InputAxisValue + 1.0f) / 2.0f;
@@ -61,39 +86,34 @@ float ADrone::GetDirectionSpeedMethod(float DeltaTime, float InputAxisValue, flo
 }
 
 
-FVector ADrone::GetMovementVelocityMethod(float DeltaTime)
+void ADrone::Move(const FInputActionValue& InputActionValue)
 {
-	const float MoveRight = InputComponent->GetAxisValue("MoveRight1");
-	const float MoveForward = InputComponent->GetAxisValue("MoveForward");
+	FVector2D MovementVector = InputActionValue.Get<FVector2D>();
+
+	float DeltaTime = GetWorld()->GetDeltaSeconds();
 	
-	const float ForwardSpeed = GetDirectionSpeedMethod(DeltaTime, MoveForward, CurrentForwardThrust);
-	const float RightSpeed = GetDirectionSpeedMethod(DeltaTime, MoveRight, CurrentRightThrust);
+	if (Controller)
+	{
+		const float MoveRight    = MovementVector.X;
+		const float MoveForward  = MovementVector.Y;
+		const float ForwardSpeed = GetDirectionSpeedMethod(DeltaTime, MoveForward, CurrentForwardThrust);
+		const float RightSpeed   = GetDirectionSpeedMethod(DeltaTime, MoveRight, CurrentRightThrust);
 
-	CurrentRightThrust = RightSpeed;
-	CurrentForwardThrust = ForwardSpeed;
+		CurrentRightThrust = RightSpeed;
+		CurrentForwardThrust = ForwardSpeed;
 
-	const FVector ForwardVector = DroneRootCube->GetForwardVector() * CurrentForwardThrust;
-	const FVector RightVector = DroneRootCube->GetRightVector() * CurrentRightThrust;
+		const FVector ForwardVector = DroneRootCube->GetForwardVector() * CurrentForwardThrust;
+		const FVector RightVector = DroneRootCube->GetRightVector() * CurrentRightThrust;
 
-	return ForwardVector + RightVector;
+		 MoveResult = ForwardVector + RightVector;
+	}
 }
-
 
 // Called every frame
 void ADrone::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
-	FVector NewVelocity = GetMovementVelocityMethod(DeltaTime);
-	DroneRootCube->SetPhysicsLinearVelocity(NewVelocity);
-}
-
-// Called to bind functionality to input
-void ADrone::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
-{
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
 	
-
+	DroneRootCube->SetPhysicsLinearVelocity(MoveResult);
 }
 

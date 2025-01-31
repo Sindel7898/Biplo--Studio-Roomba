@@ -3,11 +3,15 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "InputActionValue.h"
 #include "GameFramework/Pawn.h"
 #include "Components/SceneComponent.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Drone.generated.h"
+
+class UInputAction;
+class UInputMappingContext;
 
 UCLASS()
 class ROOMBA_API ADrone : public APawn
@@ -22,13 +26,20 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	// TODO DESCRIPTION
-	FVector GetMovementVelocityMethod(float DeltaTime);
+	/*// TODO DESCRIPTION
+	FVector GetMovementVelocityMethod(float DeltaTime);*/
 
 	// TODO DESCRIPTION
 	float GetDirectionSpeedMethod(float DeltaTime, float InputAxisValue, float CurrentSpeed);
 
-	
+	 UPROPERTY(EditAnywhere,Category = Input)
+	 UInputMappingContext* DefaultMappingContext;
+
+	 UPROPERTY(EditAnywhere,Category = Input)
+	 UInputAction* MoveAction;
+
+	void Move(const FInputActionValue& InputActionValue);
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -63,6 +74,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "LiveStats");
 	float CurrentRightThrust;
 	
-
+private:
+	FVector MoveResult;
 	
 };
