@@ -46,7 +46,7 @@ void ALightDetection::Tick(float DeltaTime)
 		FString BrightnessBoolString = FString::Printf(TEXT(" Past Light Thresh = %d"),IsPlayerInLight);
 		GEngine->AddOnScreenDebugMessage(4,1,FColor::Red,BrightnessBoolString);
 		
-		if (Brightness > 40.0f)
+		if (Brightness > 60.0f)
 		{
 			IsPlayerInLight = true;
 		}
