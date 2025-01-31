@@ -30,6 +30,7 @@ void ASunLight::Tick(float DeltaTime)
 
 	if (SunState == SunLightTransionStates::TOSPECIFICPOSITION)
 	{
+		// interpolation to next sun rotation 
 		FRotator NewRotation = FMath::RInterpTo(DirectionalLightComponent->GetComponentRotation(), TargetPosition, DeltaTime, InterpolationSpeed);
 		DirectionalLightComponent->SetRelativeRotation(NewRotation);
 	}
