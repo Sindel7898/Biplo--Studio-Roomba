@@ -25,6 +25,7 @@ void ALightDetection::BeginPlay()
 		int32 TextureHeight = DetectorTextureTop->SizeY;
 		PixelStorage.Reserve(TextureWidth * TextureHeight); // Pre-allocate memory
 	}
+	
 }
 
 int FrameCount = 0;
@@ -40,13 +41,15 @@ void ALightDetection::Tick(float DeltaTime)
 	{
 		Brightness = CalculateBrightness();
 
+		//Debug
 		FString BrightnessString = FString::Printf(TEXT("Brightness = %f"),Brightness);
 		GEngine->AddOnScreenDebugMessage(3,1,FColor::Yellow,BrightnessString);
 
 		FString BrightnessBoolString = FString::Printf(TEXT(" Past Light Thresh = %d"),IsPlayerInLight);
 		GEngine->AddOnScreenDebugMessage(4,1,FColor::Red,BrightnessBoolString);
+		///////////////////////////////////////////////////////////////////////////////////////////
 		
-		if (Brightness > 40.0f)
+		if (Brightness > 60.0f)
 		{
 			IsPlayerInLight = true;
 		}
@@ -73,6 +76,7 @@ float ALightDetection::CalculateBrightness()
 	ProcessRenderTexture(DetectorTextureTop);
 
 
+	//Average the brightness of all the pixel
 	if (TotalPixelCount > 0)
 	{
 		return TotalBrightness / static_cast<float>(TotalPixelCount);

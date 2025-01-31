@@ -22,6 +22,7 @@ void UBatteryMeter::BeginPlay()
 	Super::BeginPlay();
 	BatteryLevel = 100;
 
+	// search through all the actors in the scene to fidn the light detection actor
 	TArray<AActor*> FoundActors;
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(),LightBPClass,FoundActors);
 
@@ -34,7 +35,7 @@ void UBatteryMeter::BeginPlay()
 			break;
 		}
 	}
-	
+	// slowly increase the battery 
 	GetWorld()->GetTimerManager().SetTimer(StaminaIncreaseHandle, this, &UBatteryMeter::IncreaseStamina, IncreaseRate, true);
 
 }
@@ -63,18 +64,22 @@ void UBatteryMeter::TickComponent(float DeltaTime, ELevelTick TickType, FActorCo
 		}
 	}
 	
-
+    ///Debug logs///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	FString BatteryData = FString::Printf(TEXT("Battery = %f"),BatteryLevel);
 	GEngine->AddOnScreenDebugMessage(1,1,FColor::Green,BatteryData);
 
 	FString Batteryincreasestring = FString::Printf(TEXT("Battery Increase Speed = %f"),GetWorld()->GetTimerManager().GetTimerRate(StaminaIncreaseHandle));
 	GEngine->AddOnScreenDebugMessage(2,1,FColor::Green,Batteryincreasestring);
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 }
+
 
 void UBatteryMeter::IncreaseStamina() 
 {
 	BatteryLevel++;
-	
+
+	// cap battery level to 100
 	if (BatteryLevel >= 100)
 	{
 		BatteryLevel = 100;
@@ -84,7 +89,7 @@ void UBatteryMeter::IncreaseStamina()
 void UBatteryMeter::NegateStamina( float NegateAmount) 
 {
 	BatteryLevel +=NegateAmount;
-	
+	// cap battery level to 0
 	if (BatteryLevel <=  0)
 	{
 		BatteryLevel = 0;
