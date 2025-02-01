@@ -8,19 +8,20 @@
 #include "Components/SceneComponent.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
-#include "Drone.generated.h"
+#include "DronePawn.generated.h"
 
 class UInputAction;
 class UInputMappingContext;
+class UBatteryMeterComponent;
 
 UCLASS()
-class ROOMBA_API ADrone : public APawn
+class ROOMBA_API ADronePawn : public APawn
 {
 	GENERATED_BODY()
 
 public:
 	// Sets default values for this pawn's properties
-	ADrone();
+	ADronePawn();
 
 protected:
 	// Called when the game starts or when spawned
@@ -32,15 +33,20 @@ protected:
 	// TODO DESCRIPTION
 	float GetDirectionSpeedMethod(float DeltaTime, float InputAxisValue, float CurrentSpeed);
 
-	 UPROPERTY(EditAnywhere,Category = Input)
-	 UInputMappingContext* DefaultMappingContext;
+	UPROPERTY(EditAnywhere,Category = Input)
+	UInputMappingContext* DefaultMappingContext;
 
-	 UPROPERTY(EditAnywhere,Category = Input)
-	 UInputAction* MoveAction;
+	UPROPERTY(EditAnywhere,Category = Input)
+	UInputAction* MoveAction;
 
+	UPROPERTY(EditAnywhere,Category = "Energy")
+	UBatteryMeterComponent* BatteryMeterComponent;
+	
+	// Moving input has changed
 	void OnInputChanged(const FInputActionValue& InputActionValue);
 
-	void Move();
+	// Move, called every frame
+	void Move(float DeltaTime);
 
 public:	
 	// Called every frame
@@ -48,7 +54,7 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
+	
 	// Root cube is the actual physics parts of the drone. This allows it to not be tied
 	// into what mesh the artists are designing and their mass, scale, etc
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "DroneComponents")
@@ -76,7 +82,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "LiveStats");
 	float CurrentRightThrust;
 
-	
+
 private:
 	FVector MoveResult;
 	FVector2D MovementVector;

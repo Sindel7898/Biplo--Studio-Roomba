@@ -1,14 +1,15 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "Drone.h"
+#include "DronePawn.h"
 
+#include "BatteryMeterComponent.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 
 
 // Sets default values
-ADrone::ADrone()
+ADronePawn::ADronePawn()
 {
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -44,10 +45,12 @@ ADrone::ADrone()
 	PrimaryCamera->SetRelativeRotation(FQuat::MakeFromEuler(FVector(0.0f, -25.0f, 0.0f)));
 	PrimaryCamera->bAutoActivate = true;
 
+	BatteryMeterComponent = CreateDefaultSubobject<UBatteryMeterComponent>(TEXT("BatteryMeterComponent"));
+
 }
 
 // Called when the game starts or when spawned
-void ADrone::BeginPlay()
+void ADronePawn::BeginPlay()
 {
 	Super::BeginPlay();
 
@@ -55,7 +58,7 @@ void ADrone::BeginPlay()
 	
 }
 
-void ADrone::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+void ADronePawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	// Add Input Mapping Context
 	if (APlayerController* PlayerController = Cast<APlayerController>(GetController()))
@@ -70,8 +73,8 @@ void ADrone::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent)) {
 
 		// Moving
-		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ADrone::OnInputChanged);
-		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Completed, this, &ADrone::OnInputChanged);
+		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ADronePawn::OnInputChanged);
+		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Completed, this, &ADronePawn::OnInputChanged);
 
 		
 		
@@ -80,7 +83,7 @@ void ADrone::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 }
 
 
-float ADrone::GetDirectionSpeedMethod(float DeltaTime, float InputAxisValue, float CurrentSpeed)
+float ADronePawn::GetDirectionSpeedMethod(float DeltaTime, float InputAxisValue, float CurrentSpeed)
 {
 	const float Alpha = (InputAxisValue + 1.0f) / 2.0f;
 	const float Lerp = FMath::Lerp(-MaxThrust, MaxThrust, Alpha);
@@ -91,10 +94,8 @@ float ADrone::GetDirectionSpeedMethod(float DeltaTime, float InputAxisValue, flo
 }
 
 
-void ADrone::Move()
+void ADronePawn::Move(float DeltaTime)
 {
-	float DeltaTime = GetWorld()->GetDeltaSeconds();
-	
 	if (Controller)
 	{
 		const float MoveRight    = MovementVector.X;
@@ -112,18 +113,23 @@ void ADrone::Move()
 	}
 }
 
-void ADrone::OnInputChanged(const FInputActionValue& InputActionValue)
+void ADronePawn::OnInputChanged(const FInputActionValue& InputActionValue)
 {
 	MovementVector = InputActionValue.Get<FVector2D>();
 }
 
 // Called every frame
-void ADrone::Tick(float DeltaTime)
+void ADronePawn::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
 	
-	Move();
+	Move(DeltaTime);
+
+	//if (MoveResult.Length() > 0.01f)
+	{
+		BatteryMeterComponent->NegateStamina(1000.0f);
+	}
 	
 	DroneRootCube->SetPhysicsLinearVelocity(MoveResult);
 }
