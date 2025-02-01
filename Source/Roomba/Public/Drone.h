@@ -38,7 +38,9 @@ protected:
 	 UPROPERTY(EditAnywhere,Category = Input)
 	 UInputAction* MoveAction;
 
-	void Move(const FInputActionValue& InputActionValue);
+	void OnInputChanged(const FInputActionValue& InputActionValue);
+
+	void Move();
 
 public:	
 	// Called every frame
@@ -73,8 +75,12 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "LiveStats");
 	float CurrentRightThrust;
+
 	
 private:
 	FVector MoveResult;
+
+	FVector2D MovementVector; //todo default vlaue
+
 	
 };

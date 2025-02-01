@@ -68,7 +68,10 @@ void ADrone::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent)) {
 
 		// Moving
-		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ADrone::Move);
+		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ADrone::OnInputChanged);
+		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Completed, this, &ADrone::OnInputChanged);
+
+		
 		
 	}
 	
@@ -86,10 +89,8 @@ float ADrone::GetDirectionSpeedMethod(float DeltaTime, float InputAxisValue, flo
 }
 
 
-void ADrone::Move(const FInputActionValue& InputActionValue)
+void ADrone::Move()
 {
-	FVector2D MovementVector = InputActionValue.Get<FVector2D>();
-
 	float DeltaTime = GetWorld()->GetDeltaSeconds();
 	
 	if (Controller)
@@ -109,10 +110,18 @@ void ADrone::Move(const FInputActionValue& InputActionValue)
 	}
 }
 
+void ADrone::OnInputChanged(const FInputActionValue& InputActionValue)
+{
+	MovementVector = InputActionValue.Get<FVector2D>();
+}
+
 // Called every frame
 void ADrone::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	
+	Move();
 	
 	DroneRootCube->SetPhysicsLinearVelocity(MoveResult);
 }
