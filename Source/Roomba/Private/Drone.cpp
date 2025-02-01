@@ -105,7 +105,7 @@ void ADrone::Move(const FInputActionValue& InputActionValue)
 		const FVector ForwardVector = DroneRootCube->GetForwardVector() * CurrentForwardThrust;
 		const FVector RightVector = DroneRootCube->GetRightVector() * CurrentRightThrust;
 
-		 MoveResult = ForwardVector + RightVector;
+		MoveResult = ForwardVector + RightVector;
 	}
 }
 
