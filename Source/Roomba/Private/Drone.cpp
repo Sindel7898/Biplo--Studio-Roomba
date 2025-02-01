@@ -20,6 +20,8 @@ ADrone::ADrone()
 	CurrentForwardThrust = 0.0f;
 	CurrentRightThrust = 0.0f;
 
+	MovementVector = FVector2D(0.0f, 0.0f);
+	
 	// Setup components
 	DroneRootCube = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("DroneRootCube"));
 	DroneRootCube->SetAngularDamping(1);

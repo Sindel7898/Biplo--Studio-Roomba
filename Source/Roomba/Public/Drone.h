@@ -79,8 +79,7 @@ public:
 	
 private:
 	FVector MoveResult;
-
-	FVector2D MovementVector; //todo default vlaue
+	FVector2D MovementVector;
 
 	
 };
