@@ -126,9 +126,9 @@ void ADronePawn::Tick(float DeltaTime)
 	
 	Move(DeltaTime);
 
-	//if (MoveResult.Length() > 0.01f)
+	if (MoveResult.Length() >= 0.90f)
 	{
-		BatteryMeterComponent->NegateStamina(1000.0f);
+		BatteryMeterComponent->NegateStamina(1.0f * DeltaTime);
 	}
 	
 	DroneRootCube->SetPhysicsLinearVelocity(MoveResult);
