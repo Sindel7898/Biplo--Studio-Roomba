@@ -14,7 +14,13 @@ class UInputAction;
 struct FInputActionValue;
 
 DECLARE_LOG_CATEGORY_EXTERN(LogTemplateCharacter, Log, All);
+UENUM()
+enum CameraState
+{
+	AtSpecifiedPosition UMETA(DisplayName = "AtSpecifiedPosition"),
+	AttachedToPlayer UMETA(DisplayName = "AttachedToPlayer"),
 
+};
 UCLASS(config=Game)
 class ARoombaCharacter : public ACharacter
 {
@@ -65,9 +71,23 @@ protected:
 	virtual void BeginPlay();
 
 public:
+	virtual void Tick(float DeltaTime) override;
+
 	/** Returns CameraBoom subobject **/
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	/** Returns FollowCamera subobject **/
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
+
+	CameraState cameraState = CameraState::AttachedToPlayer;
+
+	FVector DefultCameraPosition;
+	UPROPERTY(EditAnywhere)
+	float InterpolationSpeed ;
+	UPROPERTY(EditAnywhere)
+	FVector TargetPosition ;
+	UPROPERTY(EditAnywhere)
+	FRotator TargetRotation ;
+
+	bool CanPlayerLook = true;
 };
 

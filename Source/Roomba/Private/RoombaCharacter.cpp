@@ -18,6 +18,8 @@ DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
 ARoombaCharacter::ARoombaCharacter()
 {
+	PrimaryActorTick.bCanEverTick = true;
+
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
 		
@@ -58,6 +60,43 @@ void ARoombaCharacter::BeginPlay()
 {
 	// Call the base class  
 	Super::BeginPlay();
+	
+	 DefultCameraPosition = FollowCamera->GetComponentLocation();
+}
+
+void ARoombaCharacter::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	
+
+
+	if (cameraState == CameraState::AttachedToPlayer)
+	{
+		CanPlayerLook = true;
+
+		if (!FollowCamera->GetAttachParent()) 
+		{
+			FollowCamera->AttachToComponent(CameraBoom, FAttachmentTransformRules::SnapToTargetIncludingScale);
+		}
+		FVector CurrentLocation = FollowCamera->GetComponentLocation();
+
+		FVector NewLocation = FMath::VInterpTo(CurrentLocation, DefultCameraPosition, DeltaTime, InterpolationSpeed);
+		//FollowCamera->SetWorldLocation(NewLocation);
+	}
+
+	if (cameraState == CameraState::AtSpecifiedPosition)
+	{
+		GEngine->AddOnScreenDebugMessage(6, 2.0f, FColor::Red, TEXT("Switching Camera POsitrion!"));
+		CanPlayerLook = false;
+		FollowCamera->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform);
+		FVector CurrentLocation = FollowCamera->GetComponentLocation();
+		
+		FVector  NewLocation  = FMath::VInterpTo(CurrentLocation, TargetPosition, DeltaTime, InterpolationSpeed);
+		FRotator  NewRotation = FMath::RInterpTo(TargetRotation, TargetRotation, DeltaTime, InterpolationSpeed);
+
+		FTransform NewTransform = FTransform(NewRotation,NewLocation);
+		FollowCamera->SetWorldTransform(NewTransform);
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -121,7 +160,7 @@ void ARoombaCharacter::Look(const FInputActionValue& Value)
 	// input is a Vector2D
 	FVector2D LookAxisVector = Value.Get<FVector2D>();
 
-	if (Controller != nullptr)
+	if (Controller != nullptr && CanPlayerLook)
 	{
 		// add yaw and pitch input to controller
 		AddControllerYawInput(LookAxisVector.X);
