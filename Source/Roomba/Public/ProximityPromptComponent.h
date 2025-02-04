@@ -37,6 +37,12 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Info")
 	bool Visible;
 	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Info")
+	bool Enabled;
+	
+	UFUNCTION(BlueprintCallable, Category="Config")
+	void SetEnabled(bool bEnabled);
+	
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;

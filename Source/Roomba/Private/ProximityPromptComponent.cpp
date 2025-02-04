@@ -16,10 +16,21 @@ UProximityPromptComponent::UProximityPromptComponent()
 	// ...
 	MaxActivationDistance = 500.0f;
 	Visible = false;
+	Enabled = true;
 
 	
 }
 
+
+void UProximityPromptComponent::SetEnabled(bool bEnabled)
+{
+	Enabled = bEnabled;
+	
+	if (Visible)
+	{
+		SetVisibility(false);	
+	}
+}
 
 // Called when the game starts
 void UProximityPromptComponent::BeginPlay()
@@ -65,7 +76,7 @@ void UProximityPromptComponent::TickComponent(float DeltaTime, ELevelTick TickTy
 	float Distance = GetDistanceToPlayer();
 	GEngine->AddOnScreenDebugMessage(7,1,FColor::Green, FString::SanitizeFloat(Distance));
 
-	if (Distance < MaxActivationDistance)
+	if (Distance < MaxActivationDistance && Enabled)
 	{
 		SetVisibility(true);
 	}
