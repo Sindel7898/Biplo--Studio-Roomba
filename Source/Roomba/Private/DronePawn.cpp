@@ -73,10 +73,13 @@ void ADronePawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 	if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent)) {
 
 		// Moving
-		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ADronePawn::OnInputChanged);
-		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Completed, this, &ADronePawn::OnInputChanged);
+		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ADronePawn::OnMoveInputChanged);
+		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Completed, this, &ADronePawn::OnMoveInputChanged);
 
-		
+		// Dash
+		EnhancedInputComponent->BindAction(DashAction, ETriggerEvent::Triggered, this, &ADronePawn::OnDashInputChanged);
+		EnhancedInputComponent->BindAction(DashAction, ETriggerEvent::Completed, this, &ADronePawn::OnDashInputChanged);
+
 		
 	}
 	
@@ -93,6 +96,26 @@ float ADronePawn::GetDirectionSpeedMethod(float DeltaTime, float InputAxisValue,
 	return NewSpeed;
 }
 
+
+void ADronePawn::OnDashInputChanged(const FInputActionValue& InputActionValue)
+{
+	bool DashValue = InputActionValue.Get<bool>();
+	if (DashValue)
+	{
+		GEngine->AddOnScreenDebugMessage(5,1,FColor::Green, "On");
+
+	}
+	else
+	{
+		GEngine->AddOnScreenDebugMessage(5,1,FColor::Green, "Off");
+
+	}
+}
+
+void ADronePawn::OnMoveInputChanged(const FInputActionValue& InputActionValue)
+{
+	MovementVector = InputActionValue.Get<FVector2D>();
+}
 
 void ADronePawn::Move(float DeltaTime)
 {
@@ -111,11 +134,6 @@ void ADronePawn::Move(float DeltaTime)
 
 		MoveResult = ForwardVector + RightVector;
 	}
-}
-
-void ADronePawn::OnInputChanged(const FInputActionValue& InputActionValue)
-{
-	MovementVector = InputActionValue.Get<FVector2D>();
 }
 
 // Called every frame

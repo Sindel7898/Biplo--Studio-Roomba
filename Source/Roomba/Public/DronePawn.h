@@ -39,12 +39,18 @@ protected:
 	UPROPERTY(EditAnywhere,Category = Input)
 	UInputAction* MoveAction;
 
+	UPROPERTY(EditAnywhere,Category = Input)
+	UInputAction* DashAction;
+
 	UPROPERTY(EditAnywhere,Category = "Energy")
 	UBatteryMeterComponent* BatteryMeterComponent;
 	
 	// Moving input has changed
-	void OnInputChanged(const FInputActionValue& InputActionValue);
+	void OnMoveInputChanged(const FInputActionValue& InputActionValue);
 
+	// Dash input has changed
+	void OnDashInputChanged(const FInputActionValue& InputActionValue);
+	
 	// Move, called every frame
 	void Move(float DeltaTime);
 
@@ -86,6 +92,8 @@ public:
 private:
 	FVector MoveResult;
 	FVector2D MovementVector;
+
+	
 
 	
 };
