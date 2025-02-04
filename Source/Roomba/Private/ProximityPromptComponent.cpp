@@ -14,7 +14,7 @@ UProximityPromptComponent::UProximityPromptComponent()
 	PrimaryComponentTick.bCanEverTick = true;
 
 	// ...
-	MaxActivationDistance = 100.0f;
+	MaxActivationDistance = 500.0f;
 	Visible = false;
 
 	
@@ -62,7 +62,9 @@ void UProximityPromptComponent::TickComponent(float DeltaTime, ELevelTick TickTy
 
 	// ...
 
-	float Distance = 0.0f; //GetDistanceToPlayer();
+	float Distance = GetDistanceToPlayer();
+	GEngine->AddOnScreenDebugMessage(7,1,FColor::Green, FString::SanitizeFloat(Distance));
+
 	if (Distance < MaxActivationDistance)
 	{
 		SetVisibility(true);
@@ -75,8 +77,7 @@ void UProximityPromptComponent::TickComponent(float DeltaTime, ELevelTick TickTy
 
 float UProximityPromptComponent::GetDistanceToPlayer()
 {
-	
-	const FVector PlayerLocation = Character->GetActorLocation();
+	const FVector PlayerLocation = UGameplayStatics::GetPlayerPawn(GetWorld(), 0)->GetActorLocation();
 	const FVector ProximityLocation = GetComponentLocation();
 
 	return FVector::Distance(PlayerLocation, ProximityLocation);

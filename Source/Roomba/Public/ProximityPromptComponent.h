@@ -31,10 +31,10 @@ public:
 	UPROPERTY(BlueprintAssignable, Category="Events")
 	FOnVisibilityChanged OnVisibilityChanged;
 
-	UPROPERTY(BlueprintReadWrite, Category="Config")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Config")
 	float MaxActivationDistance;
 
-	UPROPERTY(BlueprintReadOnly, Category="Info")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Info")
 	bool Visible;
 	
 protected:
