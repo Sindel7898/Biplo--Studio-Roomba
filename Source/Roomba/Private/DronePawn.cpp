@@ -83,7 +83,7 @@ void ADronePawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 		EnhancedInputComponent->BindAction(DashAction, ETriggerEvent::Completed, this, &ADronePawn::OnDashInputChanged);
 
 		// Trigger
-		//EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Triggered, this, &UProximityPromptComponent::Trigger);
+		EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Triggered, this, &ADronePawn::OnInteract);
 
 	}
 	
@@ -119,7 +119,19 @@ void ADronePawn::OnDashInputChanged(const FInputActionValue& InputActionValue)
 void ADronePawn::OnInteract(const FInputActionValue& InputActionValue)
 {
 	// Loop through proximity prompts
-	
+
+	TArray<AActor*> InteractionActors;
+	UGameplayStatics::GetAllActorsWithTag(GetWorld(), "Interaction", InteractionActors);
+
+	for (int i = 0; i < InteractionActors.Num(); i++)
+	{
+		AActor* FoundActor = InteractionActors[i];
+		UProximityPromptComponent* Comp = Cast<UProximityPromptComponent>(FoundActor->GetComponentByClass(UProximityPromptComponent::StaticClass()));
+		if (Comp)
+		{
+			Comp->Trigger();
+		}
+	}
 
 	// Call Trigger
 }

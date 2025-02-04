@@ -49,7 +49,8 @@ void UProximityPromptComponent::Trigger()
 	{
 		return;
 	}
-	GEngine->AddOnScreenDebugMessage(5,1,FColor::Green, "trigger");
+	
+	GEngine->AddOnScreenDebugMessage(5,1,FColor::Green, "Proximity prompt has been triggered!!");
 
 	OnTriggered.Broadcast();
 }

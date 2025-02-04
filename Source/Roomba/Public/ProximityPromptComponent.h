@@ -43,11 +43,12 @@ protected:
 
 	void SetVisibility(bool NewVisible);
 
-	virtual void Trigger();
 
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+
+	void Trigger();
 
 private:
 
