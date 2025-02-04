@@ -43,7 +43,6 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	bool BLighting = false;
-	float Brightness = 0;
 	bool IsPlayerInLight = false;
 	
 protected:
