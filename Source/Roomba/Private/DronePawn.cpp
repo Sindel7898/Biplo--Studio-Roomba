@@ -83,7 +83,7 @@ void ADronePawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 		EnhancedInputComponent->BindAction(DashAction, ETriggerEvent::Completed, this, &ADronePawn::OnDashInputChanged);
 
 		// Trigger
-		EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Triggered, this, &UProximityPromptComponent::Trigger);
+		//EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Triggered, this, &UProximityPromptComponent::Trigger);
 
 	}
 	
