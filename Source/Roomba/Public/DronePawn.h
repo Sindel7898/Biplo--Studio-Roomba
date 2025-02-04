@@ -42,6 +42,9 @@ protected:
 	UPROPERTY(EditAnywhere,Category = Input)
 	UInputAction* DashAction;
 
+	UPROPERTY(EditAnywhere,Category = Input)
+	UInputAction* InteractAction;
+	
 	UPROPERTY(EditAnywhere,Category = "Energy")
 	UBatteryMeterComponent* BatteryMeterComponent;
 	
@@ -50,6 +53,8 @@ protected:
 
 	// Dash input has changed
 	void OnDashInputChanged(const FInputActionValue& InputActionValue);
+
+	void OnInteract(const FInputActionValue& InputActionValue);
 	
 	// Move, called every frame
 	void Move(float DeltaTime);

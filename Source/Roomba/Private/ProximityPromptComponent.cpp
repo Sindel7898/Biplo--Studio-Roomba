@@ -3,6 +3,9 @@
 
 #include "ProximityPromptComponent.h"
 
+#include "GameFramework/Character.h"
+#include "Kismet/GameplayStatics.h"
+
 // Sets default values for this component's properties
 UProximityPromptComponent::UProximityPromptComponent()
 {
@@ -11,6 +14,10 @@ UProximityPromptComponent::UProximityPromptComponent()
 	PrimaryComponentTick.bCanEverTick = true;
 
 	// ...
+	MaxActivationDistance = 100.0f;
+	Visible = false;
+
+	
 }
 
 
@@ -23,6 +30,29 @@ void UProximityPromptComponent::BeginPlay()
 	
 }
 
+void UProximityPromptComponent::SetVisibility(bool NewVisible)
+{
+	if (NewVisible == Visible)
+	{
+		return;
+	}
+
+	GEngine->AddOnScreenDebugMessage(5,1,FColor::Green, "set visible");
+
+	Visible = NewVisible;
+	OnVisibilityChanged.Broadcast(Visible);
+}
+
+void UProximityPromptComponent::Trigger()
+{
+	if (!Visible)
+	{
+		return;
+	}
+	GEngine->AddOnScreenDebugMessage(5,1,FColor::Green, "trigger");
+
+	OnTriggered.Broadcast();
+}
 
 // Called every frame
 void UProximityPromptComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
@@ -30,5 +60,25 @@ void UProximityPromptComponent::TickComponent(float DeltaTime, ELevelTick TickTy
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// ...
+
+	float Distance = 0.0f; //GetDistanceToPlayer();
+	if (Distance < MaxActivationDistance)
+	{
+		SetVisibility(true);
+	}
+	else
+	{
+		SetVisibility(false);
+	}
 }
+
+float UProximityPromptComponent::GetDistanceToPlayer()
+{
+	
+	const FVector PlayerLocation = Character->GetActorLocation();
+	const FVector ProximityLocation = GetComponentLocation();
+
+	return FVector::Distance(PlayerLocation, ProximityLocation);
+}
+
 

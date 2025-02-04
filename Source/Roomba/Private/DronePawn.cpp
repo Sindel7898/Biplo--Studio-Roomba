@@ -6,6 +6,8 @@
 #include "BatteryMeterComponent.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "ProximityPromptComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 
 // Sets default values
@@ -80,7 +82,9 @@ void ADronePawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 		EnhancedInputComponent->BindAction(DashAction, ETriggerEvent::Triggered, this, &ADronePawn::OnDashInputChanged);
 		EnhancedInputComponent->BindAction(DashAction, ETriggerEvent::Completed, this, &ADronePawn::OnDashInputChanged);
 
-		
+		// Trigger
+		EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Triggered, this, &UProximityPromptComponent::Trigger);
+
 	}
 	
 }
@@ -110,6 +114,14 @@ void ADronePawn::OnDashInputChanged(const FInputActionValue& InputActionValue)
 		GEngine->AddOnScreenDebugMessage(5,1,FColor::Green, "Off");
 
 	}
+}
+
+void ADronePawn::OnInteract(const FInputActionValue& InputActionValue)
+{
+	// Loop through proximity prompts
+	
+
+	// Call Trigger
 }
 
 void ADronePawn::OnMoveInputChanged(const FInputActionValue& InputActionValue)
