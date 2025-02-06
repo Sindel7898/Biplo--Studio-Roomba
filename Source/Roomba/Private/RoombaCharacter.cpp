@@ -139,16 +139,27 @@ void ARoombaCharacter::Move(const FInputActionValue& Value)
 
 	if (Controller != nullptr)
 	{
-		// find out which way is forward
-		const FRotator Rotation = Controller->GetControlRotation();
-		const FRotator YawRotation(0, Rotation.Yaw, 0);
+		 FVector ForwardDirection;
+		 FVector RightDirection;
+		
+		if (CanPlayerLook)
+		{
+			// find out which way is forward
+			const FRotator Rotation = Controller->GetControlRotation();
+			const FRotator YawRotation(0, Rotation.Yaw, 0);
 
-		// get forward vector
-		const FVector ForwardDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
+			// get forward vector
+			ForwardDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
 	
-		// get right vector 
-		const FVector RightDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
-
+			// get right vector 
+			 RightDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
+		}
+		else
+		{
+			ForwardDirection = FVector(1, 0, 0);  // World X-Axis
+			RightDirection   = FVector(0, 1, 0);  // World Y-Axis
+		}
+		
 		// add movement 
 		AddMovementInput(ForwardDirection, MovementVector.Y);
 		AddMovementInput(RightDirection, MovementVector.X);
