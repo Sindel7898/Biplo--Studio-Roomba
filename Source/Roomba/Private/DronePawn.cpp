@@ -20,8 +20,12 @@ ADronePawn::ADronePawn()
 	MaxThrust = 300.0f;
 	Acceleration = 5.0f;
 
+	DashHoldTimeToDoubleSpeed = 2.0f;
+	TimeSpentDashing = 0.0f;
+
 	CurrentForwardThrust = 0.0f;
 	CurrentRightThrust = 0.0f;
+	bIsDashing = false;
 
 	MovementVector = FVector2D(0.0f, 0.0f);
 	
@@ -104,16 +108,13 @@ float ADronePawn::GetDirectionSpeedMethod(float DeltaTime, float InputAxisValue,
 void ADronePawn::OnDashInputChanged(const FInputActionValue& InputActionValue)
 {
 	bool DashValue = InputActionValue.Get<bool>();
+	bIsDashing = DashValue;
+	
 	if (DashValue)
 	{
-		GEngine->AddOnScreenDebugMessage(5,1,FColor::Green, "On");
-
+		TimeSpentDashing = 0.0f;
 	}
-	else
-	{
-		GEngine->AddOnScreenDebugMessage(5,1,FColor::Green, "Off");
-
-	}
+	
 }
 
 void ADronePawn::OnInteract(const FInputActionValue& InputActionValue)
@@ -147,16 +148,41 @@ void ADronePawn::Move(float DeltaTime)
 	{
 		const float MoveRight    = MovementVector.X;
 		const float MoveForward  = MovementVector.Y;
-		const float ForwardSpeed = GetDirectionSpeedMethod(DeltaTime, MoveForward, CurrentForwardThrust);
-		const float RightSpeed   = GetDirectionSpeedMethod(DeltaTime, MoveRight, CurrentRightThrust);
 
+		float ForwardSpeed = GetDirectionSpeedMethod(DeltaTime, MoveForward, CurrentForwardThrust);
+		float RightSpeed   = GetDirectionSpeedMethod(DeltaTime, MoveRight, CurrentRightThrust);
+		
 		CurrentRightThrust = RightSpeed;
 		CurrentForwardThrust = ForwardSpeed;
 
-		const FVector ForwardVector = DroneRootCube->GetForwardVector() * CurrentForwardThrust;
-		const FVector RightVector = DroneRootCube->GetRightVector() * CurrentRightThrust;
+		if (bIsDashing)
+		{
+			// Make MoveResult quicker
+			TimeSpentDashing+= DeltaTime;
 
+			if (TimeSpentDashing >= DashHoldTimeToDoubleSpeed)
+			{
+				// Dash over, now just make it double
+				// Add dash
+				ForwardSpeed *= 2.0f;
+				RightSpeed *= 2.0f;
+			}
+			else
+			{
+				// Currently dashing, keep going
+				// Add dash
+				ForwardSpeed *= 3.5f;
+				RightSpeed *= 3.5f;
+			}
+		}
+		
+
+		const FVector ForwardVector = DroneRootCube->GetForwardVector() * ForwardSpeed;
+		const FVector RightVector = DroneRootCube->GetRightVector() * RightSpeed;
+		
 		MoveResult = ForwardVector + RightVector;
+
+		
 	}
 }
 

@@ -86,6 +86,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "MovementConfiguration")
 	float Acceleration;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "MovementConfiguration")
+	float DashHoldTimeToDoubleSpeed;
+	
 	// TODO DESCRIPTION
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "LiveStats");
 	float CurrentForwardThrust;
@@ -93,12 +96,21 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "LiveStats");
 	float CurrentRightThrust;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "LiveStats");
+	bool bIsDashing;
+
 
 private:
+	
 	FVector MoveResult;
+	
 	FVector2D MovementVector;
 
+	float TimeSpentDashing;
+
+	bool bWasDashing = false;
 	
+
 
 	
 };
