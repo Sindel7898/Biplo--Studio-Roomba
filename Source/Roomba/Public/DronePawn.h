@@ -85,10 +85,7 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "MovementConfiguration")
 	float Acceleration;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "MovementConfiguration")
-	float DashHoldTimeToDoubleSpeed;
-
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "MovementConfiguration")
 	float DashLength;
 	

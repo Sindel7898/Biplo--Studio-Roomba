@@ -20,7 +20,6 @@ ADronePawn::ADronePawn()
 	MaxThrust = 300.0f;
 	Acceleration = 5.0f;
 
-	DashHoldTimeToDoubleSpeed = 0.5f;
 	DashLength = 0.5f;
 	TimeSpentDashing = 0.0f;
 
