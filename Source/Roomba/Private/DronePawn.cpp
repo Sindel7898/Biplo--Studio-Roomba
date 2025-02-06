@@ -20,7 +20,8 @@ ADronePawn::ADronePawn()
 	MaxThrust = 300.0f;
 	Acceleration = 5.0f;
 
-	DashHoldTimeToDoubleSpeed = 2.0f;
+	DashHoldTimeToDoubleSpeed = 0.5f;
+	DashLength = 0.5f;
 	TimeSpentDashing = 0.0f;
 
 	CurrentForwardThrust = 0.0f;
@@ -108,10 +109,11 @@ float ADronePawn::GetDirectionSpeedMethod(float DeltaTime, float InputAxisValue,
 void ADronePawn::OnDashInputChanged(const FInputActionValue& InputActionValue)
 {
 	bool DashValue = InputActionValue.Get<bool>();
-	bIsDashing = DashValue;
+	bIsHoldingDash = DashValue;
 	
 	if (DashValue)
 	{
+		bIsDashing = true;
 		TimeSpentDashing = 0.0f;
 	}
 	
@@ -155,24 +157,27 @@ void ADronePawn::Move(float DeltaTime)
 		CurrentRightThrust = RightSpeed;
 		CurrentForwardThrust = ForwardSpeed;
 
+		if (bIsHoldingDash && !bIsDashing)
+		{
+			// Dash over, now just make it double
+			// Add dash
+			ForwardSpeed *= 2.0f;
+			RightSpeed *= 2.0f;
+		}
+
 		if (bIsDashing)
 		{
 			// Make MoveResult quicker
 			TimeSpentDashing+= DeltaTime;
-
-			if (TimeSpentDashing >= DashHoldTimeToDoubleSpeed)
+			
+			// Currently dashing, keep going
+			// Add dash
+			ForwardSpeed *= 3.5f;
+			RightSpeed *= 3.5f;
+			
+			if (TimeSpentDashing >= DashLength)
 			{
-				// Dash over, now just make it double
-				// Add dash
-				ForwardSpeed *= 2.0f;
-				RightSpeed *= 2.0f;
-			}
-			else
-			{
-				// Currently dashing, keep going
-				// Add dash
-				ForwardSpeed *= 3.5f;
-				RightSpeed *= 3.5f;
+				bIsDashing = false;
 			}
 		}
 		

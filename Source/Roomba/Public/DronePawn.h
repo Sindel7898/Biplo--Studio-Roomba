@@ -88,6 +88,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "MovementConfiguration")
 	float DashHoldTimeToDoubleSpeed;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "MovementConfiguration")
+	float DashLength;
 	
 	// TODO DESCRIPTION
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "LiveStats");
@@ -98,6 +101,10 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "LiveStats");
 	bool bIsDashing;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "LiveStats");
+	bool bIsHoldingDash;
+
 
 
 private:
