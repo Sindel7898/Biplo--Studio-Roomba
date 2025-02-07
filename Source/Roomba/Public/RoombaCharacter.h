@@ -7,6 +7,7 @@
 #include "Logging/LogMacros.h"
 #include "RoombaCharacter.generated.h"
 
+class UBatteryMeter;
 class USpringArmComponent;
 class UCameraComponent;
 class UInputMappingContext;
@@ -70,6 +71,9 @@ protected:
 	// To add mapping context
 	virtual void BeginPlay();
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Battery")
+	UBatteryMeter* BatteryMeter;
+
 public:
 	virtual void Tick(float DeltaTime) override;
 
@@ -87,6 +91,10 @@ public:
 	FVector TargetPosition ;
 	UPROPERTY(EditAnywhere)
 	FRotator TargetRotation ;
+
+	FVector StaticForwardDirection;
+	FVector StaticRightDirection;
+
 
 	bool CanPlayerLook = true;
 };

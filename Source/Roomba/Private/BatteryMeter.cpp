@@ -77,7 +77,7 @@ void UBatteryMeter::TickComponent(float DeltaTime, ELevelTick TickType, FActorCo
 
 void UBatteryMeter::IncreaseStamina() 
 {
-	BatteryLevel++;
+	BatteryLevel += 0.2;
 
 	// cap battery level to 100
 	if (BatteryLevel >= 100)

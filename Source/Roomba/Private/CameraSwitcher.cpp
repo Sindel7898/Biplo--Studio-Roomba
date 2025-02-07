@@ -50,7 +50,9 @@ void ACameraSwitcher::OnComponentOverlap(UPrimitiveComponent* OverlappedComp, AA
 		RoombaCharacter->cameraState = CameraState::AtSpecifiedPosition;
 		RoombaCharacter->InterpolationSpeed = InterpolationRate;
 		RoombaCharacter->TargetPosition = TargetCameraPosition;
-		RoombaCharacter->TargetRotation = TargetCameraRotation;	
+		RoombaCharacter->TargetRotation = TargetCameraRotation;
+		RoombaCharacter-> StaticForwardDirection = PlayerForwardDirection;
+		RoombaCharacter-> StaticRightDirection = PlayerRightDirection;
 
 	}
 	

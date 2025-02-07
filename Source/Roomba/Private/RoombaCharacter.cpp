@@ -1,6 +1,8 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "Roomba/Public/RoombaCharacter.h"
+
+#include "BatteryMeter.h"
 #include "Engine/LocalPlayer.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -54,6 +56,8 @@ ARoombaCharacter::ARoombaCharacter()
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
+	BatteryMeter = CreateDefaultSubobject<UBatteryMeter>(TEXT("BatteryMeter"));
+
 }
 
 void ARoombaCharacter::BeginPlay()
@@ -68,8 +72,6 @@ void ARoombaCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	
-
-
 	if (cameraState == CameraState::AttachedToPlayer)
 	{
 		CanPlayerLook = true;
@@ -139,9 +141,6 @@ void ARoombaCharacter::Move(const FInputActionValue& Value)
 
 	if (Controller != nullptr)
 	{
-		 FVector ForwardDirection;
-		 FVector RightDirection;
-		
 		if (CanPlayerLook)
 		{
 			// find out which way is forward
@@ -149,20 +148,22 @@ void ARoombaCharacter::Move(const FInputActionValue& Value)
 			const FRotator YawRotation(0, Rotation.Yaw, 0);
 
 			// get forward vector
-			ForwardDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
-	
+			FVector CameraForwardDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
 			// get right vector 
-			 RightDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
+			 FVector CameraRightDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
+
+			AddMovementInput(CameraForwardDirection, MovementVector.Y);
+			AddMovementInput(CameraRightDirection, MovementVector.X);
 		}
 		else
 		{
-			ForwardDirection = FVector(1, 0, 0);  // World X-Axis
-			RightDirection   = FVector(0, 1, 0);  // World Y-Axis
+			
+			AddMovementInput(StaticForwardDirection, MovementVector.Y);
+			AddMovementInput(StaticRightDirection, MovementVector.X);
 		}
-		
+		BatteryMeter->NegateStamina(-0.1);
 		// add movement 
-		AddMovementInput(ForwardDirection, MovementVector.Y);
-		AddMovementInput(RightDirection, MovementVector.X);
+		
 	}
 }
 

@@ -32,14 +32,18 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	UPROPERTY(EditAnywhere)
-	float IncreaseRate = 3.0f;
+	float IncreaseRate = 0.2f;
 
 	UPROPERTY(EditAnywhere)
-	float IncreaseRateInLight = 1.3f;
+	float IncreaseRateInLight = 0.1f;
+
 	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<AActor> LightBPClass;
 	
 	void NegateStamina(float NegateAmount);
+
+	UFUNCTION(BlueprintCallable)
+	float GetBatteryLevel() {return BatteryLevel  / 100.0f;} 
 
 };
