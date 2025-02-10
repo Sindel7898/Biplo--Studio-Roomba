@@ -2,7 +2,7 @@
 
 #include "Roomba/Public/RoombaCharacter.h"
 
-#include "BatteryMeter.h"
+#include "BatteryMeterComponent.h"
 #include "Engine/LocalPlayer.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -56,7 +56,7 @@ ARoombaCharacter::ARoombaCharacter()
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
-	BatteryMeter = CreateDefaultSubobject<UBatteryMeter>(TEXT("BatteryMeter"));
+	BatteryMeter = CreateDefaultSubobject<UBatteryMeterComponent>(TEXT("BatteryMeter"));
 
 }
 

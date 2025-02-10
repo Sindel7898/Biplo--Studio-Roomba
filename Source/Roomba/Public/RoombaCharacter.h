@@ -7,7 +7,7 @@
 #include "Logging/LogMacros.h"
 #include "RoombaCharacter.generated.h"
 
-class UBatteryMeter;
+class UBatteryMeterComponent;
 class USpringArmComponent;
 class UCameraComponent;
 class UInputMappingContext;
@@ -72,7 +72,7 @@ protected:
 	virtual void BeginPlay();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Battery")
-	UBatteryMeter* BatteryMeter;
+	UBatteryMeterComponent* BatteryMeter;
 
 public:
 	virtual void Tick(float DeltaTime) override;
