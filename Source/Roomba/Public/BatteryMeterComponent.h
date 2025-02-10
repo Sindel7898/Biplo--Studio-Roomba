@@ -4,26 +4,30 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "BatteryMeter.generated.h"
+#include "BatteryMeterComponent.generated.h"
 
 
 class ALightDetection;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class UBatteryMeter : public UActorComponent
+class UBatteryMeterComponent : public UActorComponent
 {
 	GENERATED_BODY()
 
 public:	
 	// Sets default values for this component's properties
-	UBatteryMeter();
+	UBatteryMeterComponent();
 
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
+	
 	void IncreaseStamina();
+	
 	float BatteryLevel;
+	
 	FTimerHandle StaminaIncreaseHandle;
+	
 	UPROPERTY()
 	ALightDetection* LightDetectionRef;
 	
@@ -41,7 +45,7 @@ public:
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<AActor> LightBPClass;
 	
-	void NegateStamina(float NegateAmount);
+	void NegateStamina(float Amount);
 
 	UFUNCTION(BlueprintCallable)
 	float GetBatteryLevel() {return BatteryLevel  / 100.0f;} 

@@ -1,13 +1,13 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "Roomba/Public/BatteryMeter.h"
+#include "Roomba/Public/BatteryMeterComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Roomba/Public/LightDetection.h"
 
 
 // Sets default values for this component's properties
-UBatteryMeter::UBatteryMeter()
+UBatteryMeterComponent::UBatteryMeterComponent()
 {
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
@@ -17,12 +17,11 @@ UBatteryMeter::UBatteryMeter()
 
 
 // Called when the game starts
-void UBatteryMeter::BeginPlay()
+void UBatteryMeterComponent::BeginPlay()
 {
 	Super::BeginPlay();
 	BatteryLevel = 100;
 
-	// search through all the actors in the scene to fidn the light detection actor
 	TArray<AActor*> FoundActors;
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(),LightBPClass,FoundActors);
 
@@ -35,15 +34,15 @@ void UBatteryMeter::BeginPlay()
 			break;
 		}
 	}
-	// slowly increase the battery 
-	GetWorld()->GetTimerManager().SetTimer(StaminaIncreaseHandle, this, &UBatteryMeter::IncreaseStamina, IncreaseRate, true);
+	
+	GetWorld()->GetTimerManager().SetTimer(StaminaIncreaseHandle, this, &UBatteryMeterComponent::IncreaseStamina, IncreaseRate, true);
 
 }
 
 
 
 // Called every frame
-void UBatteryMeter::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
+void UBatteryMeterComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
@@ -53,43 +52,39 @@ void UBatteryMeter::TickComponent(float DeltaTime, ELevelTick TickType, FActorCo
 	{
 		if (GetWorld()->GetTimerManager().GetTimerRate(StaminaIncreaseHandle) != IncreaseRateInLight)
 		{
-			GetWorld()->GetTimerManager().SetTimer(StaminaIncreaseHandle, this, &UBatteryMeter::IncreaseStamina, IncreaseRateInLight, true);
+			GetWorld()->GetTimerManager().SetTimer(StaminaIncreaseHandle, this, &UBatteryMeterComponent::IncreaseStamina, IncreaseRateInLight, true);
 		}
 	}
 	else
 	{
 		if (GetWorld()->GetTimerManager().GetTimerRate(StaminaIncreaseHandle) != IncreaseRate)
 		{
-			GetWorld()->GetTimerManager().SetTimer(StaminaIncreaseHandle, this, &UBatteryMeter::IncreaseStamina, IncreaseRate, true);
+			GetWorld()->GetTimerManager().SetTimer(StaminaIncreaseHandle, this, &UBatteryMeterComponent::IncreaseStamina, IncreaseRate, true);
 		}
 	}
 	
-    ///Debug logs///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	FString BatteryData = FString::Printf(TEXT("Battery = %f"),BatteryLevel);
 	GEngine->AddOnScreenDebugMessage(1,1,FColor::Green,BatteryData);
 
 	FString Batteryincreasestring = FString::Printf(TEXT("Battery Increase Speed = %f"),GetWorld()->GetTimerManager().GetTimerRate(StaminaIncreaseHandle));
 	GEngine->AddOnScreenDebugMessage(2,1,FColor::Green,Batteryincreasestring);
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 }
 
-
-void UBatteryMeter::IncreaseStamina() 
+void UBatteryMeterComponent::IncreaseStamina() 
 {
-	BatteryLevel += 0.2;
-
-	// cap battery level to 100
+	BatteryLevel++;
+	
 	if (BatteryLevel >= 100)
 	{
 		BatteryLevel = 100;
 	}
 }
 
-void UBatteryMeter::NegateStamina( float NegateAmount) 
+void UBatteryMeterComponent::NegateStamina( float Amount) 
 {
-	BatteryLevel +=NegateAmount;
-	// cap battery level to 0
+	BatteryLevel -= Amount;
+	
 	if (BatteryLevel <=  0)
 	{
 		BatteryLevel = 0;
