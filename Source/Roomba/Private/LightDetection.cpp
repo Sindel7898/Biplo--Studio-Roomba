@@ -39,17 +39,19 @@ void ALightDetection::Tick(float DeltaTime)
 	
 	if (FrameCount == 10)
 	{
-		Brightness = CalculateBrightness();
-
+		CalculateTextureData();
 		//Debug
-		FString BrightnessString = FString::Printf(TEXT("Brightness = %f"),Brightness);
+		FString BrightnessString = FString::Printf(TEXT("Brightness = %f"),TotalBrightness);
 		GEngine->AddOnScreenDebugMessage(3,1,FColor::Yellow,BrightnessString);
 
+		FString BluenessString = FString::Printf(TEXT("Blueness = %f"),TotalBlueness);
+		GEngine->AddOnScreenDebugMessage(4,1,FColor::Blue,BluenessString);
+
 		FString BrightnessBoolString = FString::Printf(TEXT(" Past Light Thresh = %d"),IsPlayerInLight);
-		GEngine->AddOnScreenDebugMessage(4,1,FColor::Red,BrightnessBoolString);
+		GEngine->AddOnScreenDebugMessage(5,1,FColor::Red,BrightnessBoolString);
 		///////////////////////////////////////////////////////////////////////////////////////////
 		
-		if (Brightness > 60.0f)
+		if (TotalBrightness > 60.0f)
 		{
 			IsPlayerInLight = true;
 		}
@@ -63,27 +65,26 @@ void ALightDetection::Tick(float DeltaTime)
 }
 
 
-float ALightDetection::CalculateBrightness()
+void  ALightDetection::CalculateTextureData()
 {
 	if (DetectorTextureTop  == nullptr) {
-		return 0.0f;
+		return;
 	}
+	
 	// Reset our values for the next brightness test
 	TotalBrightness = 0.0f;
+	TotalBlueness = 0.0f;
+
 	TotalPixelCount = 0;
 	
 	// Process our top and bottom RenderTextures
 	ProcessRenderTexture(DetectorTextureTop);
-
-
+	
 	//Average the brightness of all the pixel
 	if (TotalPixelCount > 0)
 	{
-		return TotalBrightness / static_cast<float>(TotalPixelCount);
-	}
-	else
-	{
-		return 0.0f;
+		TotalBrightness =  TotalBrightness / static_cast<float>(TotalPixelCount);
+		TotalBlueness   =  TotalBlueness  / static_cast<float>(TotalPixelCount);
 	}
 }
 
@@ -106,6 +107,9 @@ void ALightDetection::ProcessRenderTexture(UTextureRenderTarget2D* Texture)
 		
 		CurrentPixelBrightness = ((0.299 * PixelChannelR) + (0.587 * PixelChannelG) + (0.114 * PixelChannelB));
 		TotalBrightness += CurrentPixelBrightness;
+
+		TotalBlueness += PixelChannelB;
+
 	}
 
 	TotalPixelCount += PixelStorage.Num();

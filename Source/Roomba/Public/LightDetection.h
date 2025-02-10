@@ -10,16 +10,20 @@ class  ALightDetection : public AActor
 {
 	GENERATED_BODY()
 	
-private:	
+private:
+
+	
 	// Sets default values for this actor's properties
 	ALightDetection();
 
 	UFUNCTION()
-	float CalculateBrightness();
+	void CalculateTextureData();
 
 	void ProcessRenderTexture(UTextureRenderTarget2D *Texture);
 	
 	TArray<FColor> PixelStorage;
+
+	float CalculatedTexturData[2] ={0,0};
 	
 	float PixelChannelR = 0;
 	float PixelChannelG = 0;
@@ -27,6 +31,7 @@ private:
 	
 	float BrightnessOutput = 0;
 	float CurrentPixelBrightness = 0;
+	float TotalBlueness = 0;
 
 	float TotalBrightness = 0;
 	int   TotalPixelCount = 0;
@@ -38,7 +43,6 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	bool BLighting = false;
-	float Brightness = 0;
 	bool IsPlayerInLight = false;
 	
 protected:

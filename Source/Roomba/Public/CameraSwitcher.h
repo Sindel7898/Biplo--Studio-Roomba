@@ -45,4 +45,11 @@ public:
 	FVector TargetCameraPosition;
 	UPROPERTY(EditAnywhere)
 	FRotator TargetCameraRotation;
+
+	UPROPERTY(EditAnywhere)
+	FVector PlayerForwardDirection;
+	UPROPERTY(EditAnywhere)
+	FVector PlayerRightDirection;
+
+	
 };

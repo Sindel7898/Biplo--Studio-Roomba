@@ -40,6 +40,8 @@ void ALightTrigger::BeginPlay()
 			break;
 		}
 	}
+
+	
 }
 
 void ALightTrigger::OnComponentOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
