@@ -45,8 +45,8 @@ void ACameraSwitcher::BeginPlay()
 void ACameraSwitcher::OnComponentOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult) 
 {
-
-	if (RoombaCharacter)
+	
+	if (RoombaCharacter  && RoombaCharacter->DroneRootCube == OtherComp)
 	{
 		RoombaCharacter->CameraState = PlayerCamerastate::AtSpecifiedPosition;
 		RoombaCharacter->InterpolationSpeed = InterpolationRate;
