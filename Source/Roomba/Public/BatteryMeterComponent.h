@@ -35,6 +35,9 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float DefaultBatteryLevel;
+	
 	UPROPERTY(EditAnywhere)
 	float IncreaseRate = 0.2f;
 

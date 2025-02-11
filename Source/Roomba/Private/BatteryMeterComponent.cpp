@@ -12,6 +12,8 @@ UBatteryMeterComponent::UBatteryMeterComponent()
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
+	DefaultBatteryLevel = 100.0f;
+	BatteryLevel = DefaultBatteryLevel;
 
 }
 
@@ -20,7 +22,6 @@ UBatteryMeterComponent::UBatteryMeterComponent()
 void UBatteryMeterComponent::BeginPlay()
 {
 	Super::BeginPlay();
-	BatteryLevel = 100;
 
 	TArray<AActor*> FoundActors;
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(),LightBPClass,FoundActors);
