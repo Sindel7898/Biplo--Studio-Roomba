@@ -39,7 +39,7 @@ protected:
 	FVector GetMovementVelocityMethod(float DeltaTime);*/
 
 	// TODO DESCRIPTION
-	float GetDirectionSpeedMethod(float DeltaTime, float InputAxisValue, float CurrentSpeed);
+	float GetDirectionSpeedMethod(float DeltaTime, float InputAxisValue, float CurrentSpeed, float Multiplier = 1.0f);
 
 	UPROPERTY(EditAnywhere,Category = Input)
 	UInputMappingContext* DefaultMappingContext;
@@ -67,6 +67,7 @@ protected:
 	void OnDashInputChanged(const FInputActionValue& InputActionValue);
 
 	void OnInteract(const FInputActionValue& InputActionValue);
+	
 	void Look(const FInputActionValue& Value);
 
 	// Move, called every frame

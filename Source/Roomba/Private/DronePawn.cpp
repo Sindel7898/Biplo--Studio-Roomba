@@ -151,12 +151,12 @@ void ADronePawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 }
 
 
-float ADronePawn::GetDirectionSpeedMethod(float DeltaTime, float InputAxisValue, float CurrentSpeed)
+float ADronePawn::GetDirectionSpeedMethod(float DeltaTime, float InputAxisValue, float CurrentSpeed, float Multiplier)
 {
 	const float Alpha = (InputAxisValue + 1.0f) / 2.0f;
-	const float Lerp = FMath::Lerp(-MaxThrust, MaxThrust, Alpha);
-	const float InterpSpeed = Alpha * Acceleration;
-
+	const float Lerp = FMath::Lerp(-MaxThrust*Multiplier, MaxThrust*Multiplier, Alpha);
+	const float InterpSpeed = Alpha * (Acceleration*Multiplier);
+	
 	const float NewSpeed = FMath::FInterpTo(CurrentSpeed, Lerp, DeltaTime, InterpSpeed);
 	return NewSpeed;
 }
@@ -221,18 +221,12 @@ void ADronePawn::Move(float DeltaTime)
 		const float MoveRight    = MovementVector.X;
 		const float MoveForward  = MovementVector.Y;
 
-		float ForwardSpeed = GetDirectionSpeedMethod(DeltaTime, MoveForward, CurrentForwardThrust);
-		float RightSpeed   = GetDirectionSpeedMethod(DeltaTime, MoveRight, CurrentRightThrust);
-		
-		CurrentRightThrust = RightSpeed;
-		CurrentForwardThrust = ForwardSpeed;
-
+		float MovementMultiplier = 1.0f;
 		if (bIsHoldingDash && !bIsDashing)
 		{
 			// Dash over, now just make it double
 			// Add dash
-			ForwardSpeed *= 2.0f;
-			RightSpeed *= 2.0f;
+			MovementMultiplier *= 2.0f;
 		}
 
 		if (bIsDashing)
@@ -242,17 +236,22 @@ void ADronePawn::Move(float DeltaTime)
 			
 			// Currently dashing, keep going
 			// Add dash
-			ForwardSpeed *= 3.5f;
-			RightSpeed *= 3.5f;
+			MovementMultiplier *= 3.5f;
 			
 			if (TimeSpentDashing >= DashLength)
 			{
 				bIsDashing = false;
 			}
 		}
-
-		 FVector ForwardVector;
-		 FVector RightVector;
+		
+		float ForwardSpeed = GetDirectionSpeedMethod(DeltaTime, MoveForward, CurrentForwardThrust, MovementMultiplier);
+		float RightSpeed   = GetDirectionSpeedMethod(DeltaTime, MoveRight, CurrentRightThrust, MovementMultiplier);
+		
+		CurrentRightThrust = RightSpeed;
+		CurrentForwardThrust = ForwardSpeed;
+		
+		FVector ForwardVector;
+		FVector RightVector;
 		
 		if (CanPlayerLook)
 		{
