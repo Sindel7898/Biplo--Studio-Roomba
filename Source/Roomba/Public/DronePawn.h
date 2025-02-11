@@ -55,10 +55,6 @@ protected:
 
 	UPROPERTY(EditAnywhere,Category = Input)
 	UInputAction* LookAction;
-
-	
-	UPROPERTY(EditAnywhere,Category = "Energy")
-	UBatteryMeterComponent* BatteryMeterComponent;
 	
 	// Moving input has changed
 	void OnMoveInputChanged(const FInputActionValue& InputActionValue);
@@ -93,6 +89,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "DroneComponents")
 	UCameraComponent* PrimaryCamera;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Energy")
+	UBatteryMeterComponent* BatteryMeterComponent;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "MovementConfiguration")
 	float MaxThrust;
