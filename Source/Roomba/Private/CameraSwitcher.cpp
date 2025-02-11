@@ -3,6 +3,7 @@
 
 #include "CameraSwitcher.h"
 
+#include "DronePawn.h"
 #include "RoombaCharacter.h"
 #include "Components/BoxComponent.h"
 #include "Kismet/GameplayStatics.h"
@@ -32,7 +33,7 @@ void ACameraSwitcher::BeginPlay()
 
 	for (AActor* Actor : FoundActors)
 	{
-		RoombaCharacter = Cast<ARoombaCharacter>(Actor);
+		RoombaCharacter = Cast<ADronePawn>(Actor);
 
 		if (RoombaCharacter)
 		{
@@ -42,29 +43,30 @@ void ACameraSwitcher::BeginPlay()
 }
 
 void ACameraSwitcher::OnComponentOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
-	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult) 
 {
 
 	if (RoombaCharacter)
 	{
-		RoombaCharacter->cameraState = CameraState::AtSpecifiedPosition;
+		RoombaCharacter->CameraState = PlayerCamerastate::AtSpecifiedPosition;
 		RoombaCharacter->InterpolationSpeed = InterpolationRate;
 		RoombaCharacter->TargetPosition = TargetCameraPosition;
 		RoombaCharacter->TargetRotation = TargetCameraRotation;
 		RoombaCharacter-> StaticForwardDirection = PlayerForwardDirection;
 		RoombaCharacter-> StaticRightDirection = PlayerRightDirection;
-
+		RoombaCharacter-> CanPlayerLook = false;
 	}
 	
 }
 
 void ACameraSwitcher::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
-	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex) 
 {
 
 	if (RoombaCharacter)
 	{
-		RoombaCharacter->cameraState = CameraState::AttachedToPlayer;
+		RoombaCharacter->CameraState = PlayerCamerastate::AttachedToPlayer;
+		RoombaCharacter-> CanPlayerLook = true;
 
 	}
 }

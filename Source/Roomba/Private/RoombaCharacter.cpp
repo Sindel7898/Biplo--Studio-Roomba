@@ -72,7 +72,7 @@ void ARoombaCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	
-	if (cameraState == CameraState::AttachedToPlayer)
+	if (cameraState == CameraState::AttachedToPlayer2)
 	{
 		CanPlayerLook = true;
 
@@ -86,7 +86,7 @@ void ARoombaCharacter::Tick(float DeltaTime)
 		//FollowCamera->SetWorldLocation(NewLocation);
 	}
 
-	if (cameraState == CameraState::AtSpecifiedPosition)
+	if (cameraState == CameraState::AtSpecifiedPosition2)
 	{
 		GEngine->AddOnScreenDebugMessage(6, 2.0f, FColor::Red, TEXT("Switching Camera POsitrion!"));
 		CanPlayerLook = false;

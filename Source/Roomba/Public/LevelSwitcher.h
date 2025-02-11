@@ -7,6 +7,8 @@
 #include "LevelSwitcher.generated.h"
 
 class UBoxComponent;
+class ADronePawn;
+
 UCLASS()
 class ROOMBA_API ALevelSwitcher : public AActor
 {
@@ -22,6 +24,12 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	UBoxComponent* OverlapVolume;
 
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<AActor> PlayerCharacter;
+
+	UPROPERTY()
+	ADronePawn* RoombaCharacter;
+	
 	UPROPERTY(EditAnywhere, Category = LevelData)
 	FName LevelToLoad;
 	void LoadNextLevel();

@@ -50,6 +50,11 @@ ADronePawn::ADronePawn()
 	PrimaryCamera->SetRelativeLocation(FVector(-150.0f, 0.0f, 155.0f));
 	PrimaryCamera->SetRelativeRotation(FQuat::MakeFromEuler(FVector(0.0f, -25.0f, 0.0f)));
 	PrimaryCamera->bAutoActivate = true;
+	PrimarySpringArm->bUsePawnControlRotation = true;
+
+	bUseControllerRotationYaw = true;
+	bUseControllerRotationPitch = false;
+	bUseControllerRotationRoll = false;
 
 	BatteryMeterComponent = CreateDefaultSubobject<UBatteryMeterComponent>(TEXT("BatteryMeterComponent"));
 
@@ -60,9 +65,58 @@ void ADronePawn::BeginPlay()
 {
 	Super::BeginPlay();
 
-	
-	
+	DefaultCameraPosition = PrimaryCamera->GetComponentLocation();
+	PrimaryCamera->AttachToComponent(PrimarySpringArm, FAttachmentTransformRules::SnapToTargetIncludingScale);
+
 }
+
+// Called every frame
+void ADronePawn::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	
+	Move(DeltaTime);
+
+	if (MoveResult.Length() >= 0.90f)
+	{
+		BatteryMeterComponent->NegateStamina(1.0f * DeltaTime);
+	}
+	
+
+
+	if (CameraState == PlayerCamerastate::AttachedToPlayer)
+	{
+		CanPlayerLook = true;
+
+		if (!PrimaryCamera->GetAttachParent()) 
+		{
+			PrimaryCamera->AttachToComponent(PrimarySpringArm, FAttachmentTransformRules::SnapToTargetIncludingScale);
+		}
+		FVector CurrentLocation = PrimaryCamera->GetComponentLocation();
+
+		FVector NewLocation = FMath::VInterpTo(CurrentLocation, DefaultCameraPosition, DeltaTime, InterpolationSpeed);
+		//PrimaryCamera->SetWorldLocation(NewLocation);
+	}
+
+	if (CameraState == PlayerCamerastate::AtSpecifiedPosition)
+	{
+		GEngine->AddOnScreenDebugMessage(6, 2.0f, FColor::Red, TEXT("Switching Camera POsitrion!"));
+		CanPlayerLook = false;
+		PrimaryCamera->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform);
+		FVector CurrentLocation = PrimaryCamera->GetComponentLocation();
+		
+		FVector  NewLocation  = FMath::VInterpTo(CurrentLocation, TargetPosition, DeltaTime, InterpolationSpeed);
+		FRotator  NewRotation = FMath::RInterpTo(TargetRotation, TargetRotation, DeltaTime, InterpolationSpeed);
+
+		FTransform NewTransform = FTransform(NewRotation,NewLocation);
+		PrimaryCamera->SetWorldTransform(NewTransform);
+	}
+}
+
+
+
+
 
 void ADronePawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
@@ -81,6 +135,9 @@ void ADronePawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 		// Moving
 		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ADronePawn::OnMoveInputChanged);
 		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Completed, this, &ADronePawn::OnMoveInputChanged);
+
+		//Looking
+		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &ADronePawn::Look);
 
 		// Dash
 		EnhancedInputComponent->BindAction(DashAction, ETriggerEvent::Triggered, this, &ADronePawn::OnDashInputChanged);
@@ -138,6 +195,20 @@ void ADronePawn::OnInteract(const FInputActionValue& InputActionValue)
 	// Call Trigger
 }
 
+void ADronePawn::Look(const FInputActionValue& Value)
+{
+	// input is a Vector2D
+	FVector2D LookAxisVector = Value.Get<FVector2D>();
+
+	if (Controller != nullptr && CanPlayerLook)
+	{
+		// add yaw and pitch input to controller
+		AddControllerYawInput(LookAxisVector.X);
+		AddControllerPitchInput(LookAxisVector.Y);
+	}
+}
+
+
 void ADronePawn::OnMoveInputChanged(const FInputActionValue& InputActionValue)
 {
 	MovementVector = InputActionValue.Get<FVector2D>();
@@ -179,30 +250,35 @@ void ADronePawn::Move(float DeltaTime)
 				bIsDashing = false;
 			}
 		}
-		
 
-		const FVector ForwardVector = DroneRootCube->GetForwardVector() * ForwardSpeed;
-		const FVector RightVector = DroneRootCube->GetRightVector() * RightSpeed;
+		 FVector ForwardVector;
+		 FVector RightVector;
+		
+		if (CanPlayerLook)
+		{
+			// find out which way is forward
+			const FRotator Rotation = Controller->GetControlRotation();
+			const FRotator YawRotation(0, Rotation.Yaw, 0);
+
+			// get forward vector
+			FVector CameraForwardDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
+			// get right vector 
+			FVector CameraRightDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
+
+			ForwardVector = CameraForwardDirection * ForwardSpeed;
+			RightVector = CameraRightDirection * RightSpeed;
+			
+		}
+		else
+		{
+			ForwardVector = StaticForwardDirection * ForwardSpeed;
+		    RightVector = StaticRightDirection * RightSpeed;
+		}
 		
 		MoveResult = ForwardVector + RightVector;
-
 		
+		DroneRootCube->SetPhysicsLinearVelocity(MoveResult);
+
 	}
-}
-
-// Called every frame
-void ADronePawn::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-	
-	Move(DeltaTime);
-
-	if (MoveResult.Length() >= 0.90f)
-	{
-		BatteryMeterComponent->NegateStamina(1.0f * DeltaTime);
-	}
-	
-	DroneRootCube->SetPhysicsLinearVelocity(MoveResult);
 }
 

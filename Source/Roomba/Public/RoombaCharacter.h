@@ -18,10 +18,11 @@ DECLARE_LOG_CATEGORY_EXTERN(LogTemplateCharacter, Log, All);
 UENUM()
 enum CameraState
 {
-	AtSpecifiedPosition UMETA(DisplayName = "AtSpecifiedPosition"),
-	AttachedToPlayer UMETA(DisplayName = "AttachedToPlayer"),
+	AtSpecifiedPosition2 UMETA(DisplayName = "AtSpecifiedPosition2"),
+	AttachedToPlayer2 UMETA(DisplayName = "AttachedToPlayer2"),
 
 };
+
 UCLASS(config=Game)
 class ARoombaCharacter : public ACharacter
 {
@@ -82,7 +83,7 @@ public:
 	/** Returns FollowCamera subobject **/
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
 
-	CameraState cameraState = CameraState::AttachedToPlayer;
+	CameraState cameraState = CameraState::AttachedToPlayer2;
 
 	FVector DefultCameraPosition;
 	UPROPERTY(EditAnywhere)

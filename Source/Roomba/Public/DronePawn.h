@@ -14,6 +14,14 @@ class UInputAction;
 class UInputMappingContext;
 class UBatteryMeterComponent;
 
+UENUM()
+enum PlayerCamerastate
+{
+	AtSpecifiedPosition UMETA(DisplayName = "AtSpecifiedPosition"),
+	AttachedToPlayer UMETA(DisplayName = "AttachedToPlayer"),
+
+};
+
 UCLASS()
 class ROOMBA_API ADronePawn : public APawn
 {
@@ -44,6 +52,10 @@ protected:
 
 	UPROPERTY(EditAnywhere,Category = Input)
 	UInputAction* InteractAction;
+
+	UPROPERTY(EditAnywhere,Category = Input)
+	UInputAction* LookAction;
+
 	
 	UPROPERTY(EditAnywhere,Category = "Energy")
 	UBatteryMeterComponent* BatteryMeterComponent;
@@ -55,7 +67,8 @@ protected:
 	void OnDashInputChanged(const FInputActionValue& InputActionValue);
 
 	void OnInteract(const FInputActionValue& InputActionValue);
-	
+	void Look(const FInputActionValue& Value);
+
 	// Move, called every frame
 	void Move(float DeltaTime);
 
@@ -103,6 +116,19 @@ public:
 	bool bIsHoldingDash;
 
 
+	FVector DefaultCameraPosition;
+	UPROPERTY(EditAnywhere)
+	float InterpolationSpeed ;
+	UPROPERTY(EditAnywhere)
+	FVector TargetPosition ;
+	UPROPERTY(EditAnywhere)
+	FRotator TargetRotation ;
+
+	FVector StaticForwardDirection;
+	FVector StaticRightDirection;
+	bool CanPlayerLook = true;
+
+	PlayerCamerastate CameraState = PlayerCamerastate::AttachedToPlayer;
 
 private:
 	
@@ -115,6 +141,4 @@ private:
 	bool bWasDashing = false;
 	
 
-
-	
 };
