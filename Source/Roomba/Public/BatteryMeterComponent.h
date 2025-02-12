@@ -34,6 +34,7 @@ protected:
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+	void RespawnPlayer();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float DefaultBatteryLevel;
@@ -56,4 +57,5 @@ public:
 	UFUNCTION(BlueprintCallable)
 	float GetBatteryLevel() {return BatteryLevel  / 100.0f;} 
 
+	FVector SpawnPosition;
 };
