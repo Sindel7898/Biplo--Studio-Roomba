@@ -82,36 +82,11 @@ void UBatteryMeterComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 	FString Batteryincreasestring = FString::Printf(TEXT("Battery Increase Speed = %f"),GetWorld()->GetTimerManager().GetTimerRate(StaminaIncreaseHandle));
 	GEngine->AddOnScreenDebugMessage(2,1,FColor::Green,Batteryincreasestring);
 	
-	if (BatteryLevel == 0)
-	{
-		ARoombaMovement* PlayerRef = Cast<ARoombaMovement>(GetOwner());
-
-		if (PlayerRef)
-		{
-			APlayerCameraManager * cameramanager = UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0);
-			cameramanager->StartCameraFade(1, 0, 1.5, FLinearColor::Black, false, true);
-
-			FTimerHandle TimerHandle;
-			GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UBatteryMeterComponent::RespawnPlayer, 1.5f, false);
-
-
-		}
-	}
+	
 	
 }
 
-void UBatteryMeterComponent::RespawnPlayer() 
-{
-	ARoombaMovement* PlayerRef = Cast<ARoombaMovement>(GetOwner());
-	APlayerCameraManager * cameramanager = UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0);
 
-	if (PlayerRef && cameramanager )
-	{
-		PlayerRef->SetActorLocation(SpawnPosition);
-		BatteryLevel = 100;
-		cameramanager->StartCameraFade(0, 1, 1.5, FLinearColor::Black, false, true);
-	}
-}
 void UBatteryMeterComponent::IncreaseStamina() 
 {
 	BatteryLevel++;
@@ -129,5 +104,34 @@ void UBatteryMeterComponent::NegateStamina( float Amount)
 	if (BatteryLevel <=  0)
 	{
 		BatteryLevel = 0;
+
+		if (BatteryLevel == 0)
+		{
+			ARoombaMovement* PlayerRef = Cast<ARoombaMovement>(GetOwner());
+
+			if (PlayerRef)
+			{
+				APlayerCameraManager * cameramanager = UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0);
+				cameramanager->StartCameraFade(0, 1, 1.5, FLinearColor::Black, true, true);
+				PlayerRef->CanPlayerLook = false;
+				FTimerHandle TimerHandle;
+				GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UBatteryMeterComponent::RespawnPlayer, 1.5f, false);
+			}
+		}
+
+		
+	}
+}
+
+void UBatteryMeterComponent::RespawnPlayer() 
+{
+	ARoombaMovement* PlayerRef = Cast<ARoombaMovement>(GetOwner());
+	APlayerCameraManager * cameramanager = UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0);
+
+	if (PlayerRef && cameramanager )
+	{
+		PlayerRef->SetActorLocation(SpawnPosition);
+		BatteryLevel = 100;
+		cameramanager->StartCameraFade(1, 0, 1.5, FLinearColor::Black, true, true);
 	}
 }

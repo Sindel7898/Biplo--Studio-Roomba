@@ -89,6 +89,7 @@ void ARoombaMovement::OnDashInputChanged(const FInputActionValue& InputActionVal
 	if (DashValue)
 	{
 		FloatingPawnMovement->MaxSpeed = DashMaxSpeed;
+		BatteryMeterComponent->NegateStamina(BatteryMeterComponent->SpeedBoostMovementNegationAmount);
 	}
 	else
 	{

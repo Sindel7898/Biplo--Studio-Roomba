@@ -94,7 +94,6 @@ public:
 	UPROPERTY(EditAnywhere)
     float  DashMaxSpeed;
 	float  StoreMaxSpeed;
-
 	
 	FVector DefaultCameraPosition;
 	float InterpolationSpeed ;

@@ -37,6 +37,12 @@ void ACheckPoint::Tick(float DeltaTime)
 void ACheckPoint::OverlapBegins(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
 								   UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
+	FVector ActorLocation = GetActorLocation();
+	FString SaveLocationText = FString::Printf(TEXT("new Checkpoint location = X: %f, Y: %f, Z: %f"), ActorLocation.X, ActorLocation.Y, ActorLocation.Z);
+
+	GEngine->AddOnScreenDebugMessage(10,1,FColor::Red,SaveLocationText);
+
+	
 	if (ARoombaMovement* PlayerRef = Cast<ARoombaMovement>(OtherActor))
 	{
 		PlayerRef->BatteryMeterComponent->SpawnPosition = GetActorLocation();
