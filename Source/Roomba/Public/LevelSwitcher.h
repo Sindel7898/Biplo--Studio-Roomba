@@ -7,7 +7,7 @@
 #include "LevelSwitcher.generated.h"
 
 class UBoxComponent;
-class ADronePawn;
+class ARoombaMovement;
 
 UCLASS()
 class ROOMBA_API ALevelSwitcher : public AActor
@@ -28,7 +28,7 @@ protected:
 	TSubclassOf<AActor> PlayerCharacter;
 
 	UPROPERTY()
-	ADronePawn* RoombaCharacter;
+	ARoombaMovement* RoombaCharacter;
 	
 	UPROPERTY(EditAnywhere, Category = LevelData)
 	FName LevelToLoad;

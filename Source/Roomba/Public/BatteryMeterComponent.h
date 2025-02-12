@@ -46,6 +46,9 @@ public:
 
 	
 	UPROPERTY(EditAnywhere)
+	float MovementNegationAmount = -15.0f;
+	
+	UPROPERTY(EditAnywhere)
 	TSubclassOf<AActor> LightBPClass;
 	
 	void NegateStamina(float Amount);

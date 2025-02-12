@@ -6,7 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "CameraSwitcher.generated.h"
 
-class ADronePawn;
+class ARoombaMovement;
 class UBoxComponent;
 UCLASS()
 class ROOMBA_API ACameraSwitcher : public AActor
@@ -25,7 +25,7 @@ protected:
 	UBoxComponent* BoxCollider;
 	
 	UPROPERTY()
-	ADronePawn* RoombaCharacter;
+	ARoombaMovement* RoombaCharacter;
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<AActor> PlayerCharacter;

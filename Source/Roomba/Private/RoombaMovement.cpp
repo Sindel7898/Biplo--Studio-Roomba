@@ -3,12 +3,15 @@
 
 #include "RoombaMovement.h"
 
+#include "BatteryMeterComponent.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "ProximityPromptComponent.h"
 #include "Camera/CameraComponent.h"
 #include "Components/BoxComponent.h"
 #include "GameFramework/FloatingPawnMovement.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 ARoombaMovement::ARoombaMovement()
@@ -34,17 +37,17 @@ ARoombaMovement::ARoombaMovement()
 	FollowCamera->bUsePawnControlRotation = false; // Camera does not rotate relative to arm
 
 	FloatingPawnMovement = CreateDefaultSubobject<UFloatingPawnMovement>(TEXT("FloatingPawnMovement"));
-	FloatingPawnMovement->MaxSpeed = 600.0f;
-	FloatingPawnMovement->Acceleration = 1200.0f;
-	FloatingPawnMovement->Deceleration = 1200.0f;
-	FloatingPawnMovement->TurningBoost = 8.0f;
+
+	BatteryMeterComponent = CreateDefaultSubobject<UBatteryMeterComponent>(TEXT("BatteryMeterComponent"));
+
 }
 
 // Called when the game starts or when spawned
 void ARoombaMovement::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	StoreMaxSpeed = FloatingPawnMovement->MaxSpeed;
 }
 
 
@@ -64,15 +67,30 @@ void ARoombaMovement::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 	// Set up action bindings
 	if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent)) {
 		
-		// Jumping
-		/*EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Started, this, &ACharacter::Jump);
-		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Completed, this, &ACharacter::StopJumping);*/
+		EnhancedInputComponent->BindAction(DashAction, ETriggerEvent::Triggered, this, &ARoombaMovement::OnDashInputChanged);
+		EnhancedInputComponent->BindAction(DashAction, ETriggerEvent::Completed, this, &ARoombaMovement::OnDashInputChanged);
 
 		// Moving
 		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ARoombaMovement::Move);
 
 		// Looking
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &ARoombaMovement::Look);
+	}
+	
+}
+
+
+void ARoombaMovement::OnDashInputChanged(const FInputActionValue& InputActionValue)
+{
+	bool DashValue = InputActionValue.Get<bool>();
+	
+	if (DashValue)
+	{
+		FloatingPawnMovement->MaxSpeed = DashMaxSpeed;
+	}
+	else
+	{
+		FloatingPawnMovement->MaxSpeed  = StoreMaxSpeed;
 	}
 	
 }
@@ -96,30 +114,78 @@ void ARoombaMovement::Move(const FInputActionValue& Value)
 {
 	FVector2D MovementVector = Value.Get<FVector2D>();
 
+	FVector MovementDirection;
+	FVector ForwardDirection;
+	FVector RightDirection;
+	
 	if (AController* PlayerController = GetController())
 	{
-		// Get the forward direction based on the controller's rotation
-		FRotator ControllerRotation = PlayerController->GetControlRotation();
-		FVector ForwardDirection = FRotationMatrix(ControllerRotation).GetUnitAxis(EAxis::X);
-		FVector RightDirection = FRotationMatrix(ControllerRotation).GetUnitAxis(EAxis::Y);
+		if (CanPlayerLook)
+		{
+			// Get the forward direction based on the controller's rotation
+			FRotator ControllerRotation = PlayerController->GetControlRotation();
+			ForwardDirection = FRotationMatrix(ControllerRotation).GetUnitAxis(EAxis::X);
+			RightDirection = FRotationMatrix(ControllerRotation).GetUnitAxis(EAxis::Y);
+			
+		}
+		else
+		{
+			ForwardDirection =  StaticForwardDirection;
+			RightDirection   =  StaticRightDirection;
+		}
 
-		FVector MovementDirection = ForwardDirection * MovementVector.Y + RightDirection * MovementVector.X;
-		MovementDirection.Z = 0;  // Zero out the Z component to prevent vertical movement
+		MovementDirection = ForwardDirection * MovementVector.Y + RightDirection * MovementVector.X;
+		MovementDirection.Z = 0;  // Zero out the Z component to prevent unwanted camera movement
+		
+		if (!MovementDirection.IsNearlyZero())
+		{
+			// Normalize direction to avoid scaling issues
+			MovementDirection.Normalize();
 
+			// Compute the target rotation based on movement direction
+			FRotator TargetLookAtRotation = FRotationMatrix::MakeFromX(MovementDirection).Rotator();
+
+			// Smoothly interpolate current rotation to the target rotation
+			FRotator NewRotation = FMath::RInterpTo(GetActorRotation(), TargetLookAtRotation, GetWorld()->GetDeltaSeconds(), 5.0f);
+			SetActorRotation(NewRotation);
+		}
+
+		
+		BatteryMeterComponent->NegateStamina(BatteryMeterComponent->MovementNegationAmount * GetWorld()->GetDeltaSeconds());
 		FloatingPawnMovement->AddInputVector(MovementDirection);
-
 	}
-
-	
 }
 
 
+void ARoombaMovement::OnInteract(const FInputActionValue& InputActionValue)
+{
+	// Loop through proximity prompts
+	TArray<AActor*> InteractionActors;
+	UGameplayStatics::GetAllActorsWithTag(GetWorld(), "Interaction", InteractionActors);
+
+	for (int i = 0; i < InteractionActors.Num(); i++)
+	{
+		AActor* FoundActor = InteractionActors[i];
+		UProximityPromptComponent* Comp = Cast<UProximityPromptComponent>(FoundActor->GetComponentByClass(UProximityPromptComponent::StaticClass()));
+		if (Comp)
+		{
+			Comp->Trigger();
+		}
+	}
+}
 
 // Called every frame
 void ARoombaMovement::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	HoverPlayer();
+	ChangePlayerCamera();
+}
+
+
+void ARoombaMovement::HoverPlayer()
+{
 	// Perform a raycast downward to check the ground distance
 	FVector Start = GetActorLocation();
 	FVector End = Start - FVector(0, 0, 1000); // Raycast down 1000 units
@@ -129,34 +195,54 @@ void ARoombaMovement::Tick(float DeltaTime)
 
 	// Perform the raycast
 	FCollisionQueryParams CollisionParams;
-	CollisionParams.AddIgnoredActor(this); // Ignore the Roomba itself in the collision check
-
+	CollisionParams.AddIgnoredActor(this); 
+ 
+	
 	bool bHit = GetWorld()->LineTraceSingleByChannel(HitResult, Start, End, ECC_Visibility, CollisionParams);
 
 	// If the raycast hits something (ground), check the distance
 	if (bHit)
 	{
-		float DistanceToGround = Start.Z - HitResult.ImpactPoint.Z;
-		float TargetHeight = HitResult.ImpactPoint.Z + 90.0f; // The height should be at least 5 units above the ground
+		float TargetHeight = HitResult.ImpactPoint.Z + 100.0f;
 		
 		FVector CurrentLocation = GetActorLocation();
 
-		if (CurrentLocation.Z > TargetHeight + 90.0f)
-		{
-			CurrentLocation.Z = TargetHeight + 90.0f;  // Ensure the Z is set to at least 5 units above the ground
-			SetActorLocation(CurrentLocation);
-		}
-		else
-
-			{
-			// Smoothly interpolate to the desired height
-			CurrentLocation.Z = FMath::FInterpTo(CurrentLocation.Z, TargetHeight, DeltaTime, 1.5f);
-			SetActorLocation(CurrentLocation);
-		}
+		CurrentLocation.Z = FMath::FInterpTo(CurrentLocation.Z, TargetHeight, GetWorld()->GetDeltaSeconds(), 0.5f); 
+		SetActorLocation(CurrentLocation);
 	}
 
 	DrawDebugLine(GetWorld(), Start, End, FColor::Green, false, 0.1f, 0, 1.0f); // Raycast line in green
 
-	
+
 }
 
+void ARoombaMovement::ChangePlayerCamera()
+{
+
+	if (CameraState == PlayerCamerastate::AttachedToPlayer)
+	{
+		CanPlayerLook = true;
+
+		FollowCamera->AttachToComponent(CameraBoom, FAttachmentTransformRules::SnapToTargetIncludingScale);
+	
+	}
+
+	if (CameraState == PlayerCamerastate::AtSpecifiedPosition)
+	{
+		GEngine->AddOnScreenDebugMessage(6, 2.0f, FColor::Red, TEXT("Switching Camera POsitrion!"));
+		CanPlayerLook = false;
+		FollowCamera->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform);
+		FVector CurrentLocation = FollowCamera->GetComponentLocation();
+		
+		FVector  NewLocation  = FMath::VInterpTo(CurrentLocation, TargetPosition, GetWorld()->GetDeltaSeconds(), InterpolationSpeed);
+		FRotator  NewRotation = FMath::RInterpTo(TargetRotation, TargetRotation, GetWorld()->GetDeltaSeconds(), InterpolationSpeed);
+
+		FTransform NewTransform = FTransform(NewRotation,NewLocation);
+		FollowCamera->SetWorldTransform(NewTransform);
+	}
+}
+
+float ARoombaMovement::GetCurrentSpeed() 
+{
+	return FloatingPawnMovement->Velocity.Size();
+}

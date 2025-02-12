@@ -84,7 +84,7 @@ void UBatteryMeterComponent::IncreaseStamina()
 
 void UBatteryMeterComponent::NegateStamina( float Amount) 
 {
-	BatteryLevel -= Amount;
+	BatteryLevel += Amount;
 	
 	if (BatteryLevel <=  0)
 	{

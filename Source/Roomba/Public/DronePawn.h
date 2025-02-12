@@ -14,13 +14,14 @@ class UInputAction;
 class UInputMappingContext;
 class UBatteryMeterComponent;
 
+/*
 UENUM()
 enum PlayerCamerastate
 {
 	AtSpecifiedPosition UMETA(DisplayName = "AtSpecifiedPosition"),
 	AttachedToPlayer UMETA(DisplayName = "AttachedToPlayer"),
-
 };
+*/
 
 UCLASS()
 class ROOMBA_API ADronePawn : public APawn
@@ -128,7 +129,9 @@ public:
 	FVector StaticRightDirection;
 	bool CanPlayerLook = true;
 
+	/*
 	PlayerCamerastate CameraState = PlayerCamerastate::AttachedToPlayer;
+	*/
 
 private:
 	

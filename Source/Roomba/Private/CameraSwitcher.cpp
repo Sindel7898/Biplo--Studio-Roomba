@@ -5,6 +5,7 @@
 
 #include "DronePawn.h"
 #include "RoombaCharacter.h"
+#include "RoombaMovement.h"
 #include "Components/BoxComponent.h"
 #include "Kismet/GameplayStatics.h"
 
@@ -33,7 +34,7 @@ void ACameraSwitcher::BeginPlay()
 
 	for (AActor* Actor : FoundActors)
 	{
-		RoombaCharacter = Cast<ADronePawn>(Actor);
+		RoombaCharacter = Cast<ARoombaMovement>(Actor);
 
 		if (RoombaCharacter)
 		{
@@ -45,8 +46,7 @@ void ACameraSwitcher::BeginPlay()
 void ACameraSwitcher::OnComponentOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult) 
 {
-	
-	if (RoombaCharacter  && RoombaCharacter->DroneRootCube == OtherComp)
+	if (RoombaCharacter  && RoombaCharacter->RoombaMesh == OtherComp)
 	{
 		RoombaCharacter->CameraState = PlayerCamerastate::AtSpecifiedPosition;
 		RoombaCharacter->InterpolationSpeed = InterpolationRate;

@@ -83,35 +83,6 @@ void ADronePawn::Tick(float DeltaTime)
 		BatteryMeterComponent->NegateStamina(1.0f * DeltaTime);
 	}
 	
-
-
-	if (CameraState == PlayerCamerastate::AttachedToPlayer)
-	{
-		CanPlayerLook = true;
-
-		if (!PrimaryCamera->GetAttachParent()) 
-		{
-			PrimaryCamera->AttachToComponent(PrimarySpringArm, FAttachmentTransformRules::SnapToTargetIncludingScale);
-		}
-		FVector CurrentLocation = PrimaryCamera->GetComponentLocation();
-
-		FVector NewLocation = FMath::VInterpTo(CurrentLocation, DefaultCameraPosition, DeltaTime, InterpolationSpeed);
-		//PrimaryCamera->SetWorldLocation(NewLocation);
-	}
-
-	if (CameraState == PlayerCamerastate::AtSpecifiedPosition)
-	{
-		GEngine->AddOnScreenDebugMessage(6, 2.0f, FColor::Red, TEXT("Switching Camera POsitrion!"));
-		CanPlayerLook = false;
-		PrimaryCamera->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform);
-		FVector CurrentLocation = PrimaryCamera->GetComponentLocation();
-		
-		FVector  NewLocation  = FMath::VInterpTo(CurrentLocation, TargetPosition, DeltaTime, InterpolationSpeed);
-		FRotator  NewRotation = FMath::RInterpTo(TargetRotation, TargetRotation, DeltaTime, InterpolationSpeed);
-
-		FTransform NewTransform = FTransform(NewRotation,NewLocation);
-		PrimaryCamera->SetWorldTransform(NewTransform);
-	}
 }
 
 

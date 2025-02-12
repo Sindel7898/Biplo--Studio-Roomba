@@ -5,6 +5,7 @@
 
 #include "DronePawn.h"
 #include "RoombaCharacter.h"
+#include "RoombaMovement.h"
 #include "Components/BoxComponent.h"
 #include "Kismet/GameplayStatics.h"
 
@@ -33,7 +34,7 @@ void ALevelSwitcher::BeginPlay()
 
 	for (AActor* Actor : FoundActors)
 	{
-		RoombaCharacter = Cast<ADronePawn>(Actor);
+		RoombaCharacter = Cast<ARoombaMovement>(Actor);
 
 		if (RoombaCharacter)
 		{
@@ -50,7 +51,7 @@ void ALevelSwitcher::OverlapBegins(UPrimitiveComponent* OverlappedComponent, AAc
                                    UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	
-	if (OtherActor == RoombaCharacter && LevelToLoad != "")
+	if ( RoombaCharacter && OtherActor == RoombaCharacter && LevelToLoad != "")
 	{
 		APlayerCameraManager * cameramanager = UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0);
 		cameramanager->StartCameraFade(0, 1, 1.5, FLinearColor::Black, false, true);
