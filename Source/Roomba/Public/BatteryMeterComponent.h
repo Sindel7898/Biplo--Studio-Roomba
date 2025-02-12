@@ -38,6 +38,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float DefaultBatteryLevel;
 	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float MaxBatteryLevel;
+	
 	UPROPERTY(EditAnywhere)
 	float IncreaseRate = 0.2f;
 
@@ -54,6 +57,6 @@ public:
 	void NegateStamina(float Amount);
 
 	UFUNCTION(BlueprintCallable)
-	float GetBatteryLevel() {return BatteryLevel  / 100.0f;} 
+	float GetBatteryLevel() {return BatteryLevel  / MaxBatteryLevel;} 
 
 };
