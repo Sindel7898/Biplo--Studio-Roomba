@@ -3,8 +3,6 @@
 
 #include "CameraSwitcher.h"
 
-#include "DronePawn.h"
-#include "RoombaCharacter.h"
 #include "RoombaMovement.h"
 #include "Components/BoxComponent.h"
 #include "Kismet/GameplayStatics.h"

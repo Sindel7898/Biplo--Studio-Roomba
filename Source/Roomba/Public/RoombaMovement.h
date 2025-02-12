@@ -44,6 +44,9 @@ class ROOMBA_API ARoombaMovement : public APawn
 	/** Look Input Action */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction* LookAction;
+
+	UPROPERTY(EditAnywhere,Category = Input)
+	UInputAction* InteractAction;
 	
 	UPROPERTY(VisibleAnywhere, Category = "Movement")
 	UFloatingPawnMovement* FloatingPawnMovement;
