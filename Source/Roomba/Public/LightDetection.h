@@ -44,7 +44,8 @@ private:
 	UPROPERTY(EditAnywhere)
 	bool BLighting = false;
 	bool IsPlayerInLight = false;
-	
+	bool IsPlayerInArtificialLight = false;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -52,4 +53,6 @@ protected:
 
 public:
 	FORCEINLINE bool GetBIsPlayerInLight() const {return IsPlayerInLight;}
+	FORCEINLINE bool GetBIsPlayerInArtificialLight() const {return IsPlayerInArtificialLight;}
+
 };

@@ -47,6 +47,9 @@ public:
 
 	
 	UPROPERTY(EditAnywhere)
+	float IncreaseRateInArtificialLight = 0.1f;
+
+	UPROPERTY(EditAnywhere)
 	float MovementNegationAmount = -15.0f;
 	
 	UPROPERTY(EditAnywhere)

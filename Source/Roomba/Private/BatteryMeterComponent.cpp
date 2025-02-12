@@ -49,6 +49,15 @@ void UBatteryMeterComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
+
+	if (LightDetectionRef && LightDetectionRef->GetBIsPlayerInArtificialLight())
+	{
+		if (GetWorld()->GetTimerManager().GetTimerRate(StaminaIncreaseHandle) != IncreaseRateInArtificialLight)
+		{
+			GetWorld()->GetTimerManager().SetTimer(StaminaIncreaseHandle, this, &UBatteryMeterComponent::IncreaseStamina, IncreaseRateInArtificialLight, true);
+		}
+	}
+	
 	
 	// Adjust the timer rate dynamically based on light detection
 	if (LightDetectionRef && LightDetectionRef->GetBIsPlayerInLight())
