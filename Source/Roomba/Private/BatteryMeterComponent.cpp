@@ -16,6 +16,7 @@ UBatteryMeterComponent::UBatteryMeterComponent()
 	PrimaryComponentTick.bCanEverTick = true;
 	DefaultBatteryLevel = 100.0f;
 	BatteryLevel = DefaultBatteryLevel;
+	MaxBatteryLevel = 100.0f;
 // test commit
 }
 
