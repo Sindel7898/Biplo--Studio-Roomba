@@ -46,7 +46,7 @@ void ACameraSwitcher::OnComponentOverlap(UPrimitiveComponent* OverlappedComp, AA
 {
 	if (RoombaCharacter  && RoombaCharacter->RoombaSkeletalMesh == OtherComp)
 	{
-		RoombaCharacter->CameraState = PlayerCamerastate::AtSpecifiedPosition;
+		RoombaCharacter->CameraState = PlayerCameraState::AtSpecifiedPosition;
 		RoombaCharacter->InterpolationSpeed = InterpolationRate;
 		RoombaCharacter->TargetPosition = TargetCameraPosition;
 		RoombaCharacter->TargetRotation = TargetCameraRotation;
@@ -63,7 +63,7 @@ void ACameraSwitcher::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* 
 
 	if (RoombaCharacter)
 	{
-		RoombaCharacter->CameraState = PlayerCamerastate::AttachedToPlayer;
+		RoombaCharacter->CameraState = PlayerCameraState::AttachedToPlayer;
 		RoombaCharacter-> CanPlayerLook = true;
 
 	}

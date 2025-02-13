@@ -19,7 +19,7 @@ class USkeletalMeshComponent;
 class USceneComponent;
 
 UENUM()
-enum PlayerCamerastate 
+enum PlayerCameraState 
 {
 	AtSpecifiedPosition UMETA(DisplayName = "AtSpecifiedPosition"),
 	AttachedToPlayer UMETA(DisplayName = "AttachedToPlayer"),
@@ -110,9 +110,11 @@ public:
 
 	FVector StaticForwardDirection;
 	FVector StaticRightDirection;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool CanPlayerLook = true;
 
-	PlayerCamerastate CameraState = PlayerCamerastate::AttachedToPlayer;
+	PlayerCameraState CameraState = PlayerCameraState::AttachedToPlayer;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	USkeletalMeshComponent* RoombaSkeletalMesh;

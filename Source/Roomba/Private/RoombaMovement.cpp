@@ -223,7 +223,7 @@ void ARoombaMovement::HoverPlayer()
 void ARoombaMovement::ChangePlayerCamera()
 {
 
-	if (CameraState == PlayerCamerastate::AttachedToPlayer)
+	if (CameraState == PlayerCameraState::AttachedToPlayer)
 	{
 		CanPlayerLook = true;
 
@@ -231,7 +231,7 @@ void ARoombaMovement::ChangePlayerCamera()
 	
 	}
 
-	if (CameraState == PlayerCamerastate::AtSpecifiedPosition)
+	if (CameraState == PlayerCameraState::AtSpecifiedPosition)
 	{
 		GEngine->AddOnScreenDebugMessage(6, 2.0f, FColor::Red, TEXT("Switching Camera POsitrion!"));
 		CanPlayerLook = false;
