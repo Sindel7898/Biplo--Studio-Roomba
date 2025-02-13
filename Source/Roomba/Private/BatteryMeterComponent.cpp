@@ -39,7 +39,7 @@ void UBatteryMeterComponent::BeginPlay()
 		}
 	}
 	
-	GetWorld()->GetTimerManager().SetTimer(StaminaIncreaseHandle, this, &UBatteryMeterComponent::IncreaseStamina, IncreaseRate, true);
+	//GetWorld()->GetTimerManager().SetTimer(StaminaIncreaseHandle, this, &UBatteryMeterComponent::IncreaseStamina, IncreaseRate, true);
 
 }
 
