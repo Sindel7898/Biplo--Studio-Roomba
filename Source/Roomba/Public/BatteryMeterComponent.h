@@ -21,8 +21,11 @@ public:
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
-	
-	void IncreaseStamina();
+
+	UFUNCTION()
+	void IncreaseStamina2();
+
+	UFUNCTION()
 	void DecreaseStaminaInShadow();
 
 	float BatteryLevel;

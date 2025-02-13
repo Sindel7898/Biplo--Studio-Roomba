@@ -39,8 +39,6 @@ void UBatteryMeterComponent::BeginPlay()
 		}
 	}
 	
-	//GetWorld()->GetTimerManager().SetTimer(StaminaIncreaseHandle, this, &UBatteryMeterComponent::IncreaseStamina, IncreaseRate, true);
-
 }
 
 
@@ -55,20 +53,22 @@ void UBatteryMeterComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 	{
 		if (GetWorld()->GetTimerManager().GetTimerRate(StaminaIncreaseHandle) != IncreaseRateInArtificialLight)
 		{
-			GetWorld()->GetTimerManager().SetTimer(StaminaIncreaseHandle, this, &UBatteryMeterComponent::IncreaseStamina, IncreaseRateInArtificialLight, true);
+			GetWorld()->GetTimerManager().SetTimer(StaminaIncreaseHandle, this, &UBatteryMeterComponent::IncreaseStamina2, IncreaseRateInArtificialLight, true);
 		}
 	}
+	
 	
 	
 	// Adjust the timer rate dynamically based on light detection
-	if (LightDetectionRef && LightDetectionRef->GetBIsPlayerInLight())
+	if (LightDetectionRef && LightDetectionRef->GetBIsPlayerInLight() &&  !LightDetectionRef->GetBIsPlayerInArtificialLight())
 	{
 		if (GetWorld()->GetTimerManager().GetTimerRate(StaminaIncreaseHandle) != IncreaseRateInLight)
 		{
-			GetWorld()->GetTimerManager().SetTimer(StaminaIncreaseHandle, this, &UBatteryMeterComponent::IncreaseStamina, IncreaseRateInLight, true);
+	
+			GetWorld()->GetTimerManager().SetTimer(StaminaIncreaseHandle, this, &UBatteryMeterComponent::IncreaseStamina2, IncreaseRateInLight, true);
 		}
 	}
-	else
+	else if (LightDetectionRef && !LightDetectionRef->GetBIsPlayerInLight())
 	{
 		if (GetWorld()->GetTimerManager().GetTimerRate(StaminaIncreaseHandle) != DecreaseRateWhileInShadow)
 		{
@@ -76,6 +76,7 @@ void UBatteryMeterComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 
 		}
 	}
+	
 	
 
 	FString BatteryData = FString::Printf(TEXT("Battery = %f"),BatteryLevel);
@@ -89,8 +90,11 @@ void UBatteryMeterComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 }
 
 
-void UBatteryMeterComponent::IncreaseStamina() 
+void UBatteryMeterComponent::IncreaseStamina2() 
 {
+	FString BatteryincrEQFRWReasestring = FString::Printf(TEXT("INCREASE STAMINA CALLED "));
+	GEngine->AddOnScreenDebugMessage(23,1,FColor::Green,BatteryincrEQFRWReasestring);
+	
 	BatteryLevel++;
 	
 	if (BatteryLevel >= 100)

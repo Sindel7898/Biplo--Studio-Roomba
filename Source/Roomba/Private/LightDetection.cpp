@@ -61,7 +61,7 @@ void ALightDetection::Tick(float DeltaTime)
 		}
 
 
-		if (TotalBlueness > 60.0f)
+		if (TotalBlueness > 100.0f)
 		{
 			IsPlayerInArtificialLight = true;
 		}
