@@ -69,7 +69,8 @@ public:
     	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<AActor> LightBPClass;
-	
+
+	UFUNCTION(BlueprintCallable)
 	void NegateStamina(float Amount);
 
 	UFUNCTION(BlueprintCallable)
