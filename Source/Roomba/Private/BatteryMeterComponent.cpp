@@ -70,9 +70,10 @@ void UBatteryMeterComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 	}
 	else
 	{
-		if (GetWorld()->GetTimerManager().GetTimerRate(StaminaIncreaseHandle) != IncreaseRate)
+		if (GetWorld()->GetTimerManager().GetTimerRate(StaminaIncreaseHandle) != DecreaseRateWhileInShadow)
 		{
-			GetWorld()->GetTimerManager().SetTimer(StaminaIncreaseHandle, this, &UBatteryMeterComponent::IncreaseStamina, IncreaseRate, true);
+			GetWorld()->GetTimerManager().SetTimer(StaminaIncreaseHandle, this, &UBatteryMeterComponent::DecreaseStaminaInShadow, DecreaseRateWhileInShadow, true);
+
 		}
 	}
 	
@@ -98,6 +99,15 @@ void UBatteryMeterComponent::IncreaseStamina()
 	}
 }
 
+void UBatteryMeterComponent::DecreaseStaminaInShadow() 
+{
+	BatteryLevel--;
+	
+	if (BatteryLevel <= 0)
+	{
+		BatteryLevel = 0;
+	}
+}
 void UBatteryMeterComponent::NegateStamina( float Amount) 
 {
 	BatteryLevel += Amount;

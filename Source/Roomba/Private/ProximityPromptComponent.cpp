@@ -70,9 +70,7 @@ void UProximityPromptComponent::Trigger()
 void UProximityPromptComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
-	// ...
-
+	
 	float Distance = GetDistanceToPlayer();
 	GEngine->AddOnScreenDebugMessage(7,1,FColor::Green, FString::SanitizeFloat(Distance));
 

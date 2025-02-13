@@ -19,12 +19,13 @@ ARoombaMovement::ARoombaMovement()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	BoxCollider = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxComponent"));
+	BoxCollider = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollider"));
 	RootComponent = BoxCollider;
-
-	RoombaMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("RoombaMesh"));
-	RoombaMesh->SetupAttachment(BoxCollider);
-
+	
+	RoombaSkeletalMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("RoombaSkeletalMesh"));
+	RoombaSkeletalMesh->SetupAttachment(RootComponent);
+	
+	
 	// Create a camera boom (pulls in towards the player if there is a collision)
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(RootComponent);
@@ -206,7 +207,7 @@ void ARoombaMovement::HoverPlayer()
 	// If the raycast hits something (ground), check the distance
 	if (bHit)
 	{
-		float TargetHeight = HitResult.ImpactPoint.Z + 100.0f;
+		float TargetHeight = HitResult.ImpactPoint.Z + HoverHeight;
 		
 		FVector CurrentLocation = GetActorLocation();
 

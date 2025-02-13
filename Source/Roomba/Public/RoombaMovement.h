@@ -6,6 +6,8 @@
 #include "GameFramework/Pawn.h"
 #include "RoombaMovement.generated.h"
 
+class UCapsuleComponent;
+class USphereComponent;
 class UBoxComponent;
 class USpringArmComponent;
 class UCameraComponent;
@@ -13,9 +15,11 @@ class UInputMappingContext;
 class UInputAction;
 class UFloatingPawnMovement;
 class UBatteryMeterComponent;
+class USkeletalMeshComponent;
+class USceneComponent;
 
 UENUM()
-enum PlayerCamerastate
+enum PlayerCamerastate 
 {
 	AtSpecifiedPosition UMETA(DisplayName = "AtSpecifiedPosition"),
 	AttachedToPlayer UMETA(DisplayName = "AttachedToPlayer"),
@@ -56,6 +60,7 @@ class ROOMBA_API ARoombaMovement : public APawn
 	
 	UPROPERTY(EditAnywhere)
 	UBoxComponent* BoxCollider;
+
 public:
 	// Sets default values for this character's properties
 	ARoombaMovement();
@@ -92,6 +97,9 @@ public:
 
 
 	UPROPERTY(EditAnywhere)
+	float  HoverHeight = 100;
+	
+	UPROPERTY(EditAnywhere)
     float  DashMaxSpeed;
 	float  StoreMaxSpeed;
 	
@@ -106,6 +114,7 @@ public:
 
 	PlayerCamerastate CameraState = PlayerCamerastate::AttachedToPlayer;
 
-	UPROPERTY(EditAnywhere)
-	UStaticMeshComponent* RoombaMesh; 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	USkeletalMeshComponent* RoombaSkeletalMesh;
+
 };

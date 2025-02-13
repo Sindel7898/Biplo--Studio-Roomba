@@ -59,7 +59,4 @@ public:
 private:
 
 	float GetDistanceToPlayer();
-
-	ACharacter* Character;
-	
 };

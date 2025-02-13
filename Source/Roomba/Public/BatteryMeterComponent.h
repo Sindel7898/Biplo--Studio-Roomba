@@ -23,7 +23,8 @@ protected:
 	virtual void BeginPlay() override;
 	
 	void IncreaseStamina();
-	
+	void DecreaseStaminaInShadow();
+
 	float BatteryLevel;
 	
 	FTimerHandle StaminaIncreaseHandle;
@@ -43,7 +44,7 @@ public:
 	float MaxBatteryLevel;
 	
 	UPROPERTY(EditAnywhere)
-	float IncreaseRate = 0.2f;
+	float DecreaseRateWhileInShadow = 0.2f;
 
 	UPROPERTY(EditAnywhere)
 	float IncreaseRateInLight = 0.1f;
@@ -59,6 +60,10 @@ public:
 	UPROPERTY(EditAnywhere)
 	float SpeedBoostMovementNegationAmount = -25.0f;
 	
+	
+	UPROPERTY(EditAnywhere)
+	float NegateInShadowAmount = -5.0f;
+    	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<AActor> LightBPClass;
 	
