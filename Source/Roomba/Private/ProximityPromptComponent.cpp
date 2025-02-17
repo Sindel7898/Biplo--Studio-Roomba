@@ -17,7 +17,7 @@ UProximityPromptComponent::UProximityPromptComponent()
 	MaxActivationDistance = 500.0f;
 	Visible = false;
 	Enabled = true;
-
+	bIsCollidingWithBoxComponent = false;
 	
 }
 
@@ -38,6 +38,13 @@ void UProximityPromptComponent::BeginPlay()
 	Super::BeginPlay();
 
 	// ...
+	if (IsValid(BoxComponent))
+	{
+		GEngine->AddOnScreenDebugMessage(15,1,FColor::Green, "Added box component");
+
+		BoxComponent->OnComponentBeginOverlap.AddDynamic(this, &UProximityPromptComponent::OnComponentBeginOverlap);
+		BoxComponent->OnComponentEndOverlap.AddDynamic(this, &UProximityPromptComponent::OnComponentEndOverlap);
+	}
 	
 }
 
@@ -52,6 +59,22 @@ void UProximityPromptComponent::SetVisibility(bool NewVisible)
 
 	Visible = NewVisible;
 	OnVisibilityChanged.Broadcast(Visible);
+}
+
+void UProximityPromptComponent::OnComponentBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
+	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	GEngine->AddOnScreenDebugMessage(5,1,FColor::Green, "Overlap begin");
+
+	bIsCollidingWithBoxComponent = true;
+}
+
+void UProximityPromptComponent::OnComponentEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
+	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+{
+	GEngine->AddOnScreenDebugMessage(5,1,FColor::Green, "Overlap end");
+
+	bIsCollidingWithBoxComponent = false;
 }
 
 void UProximityPromptComponent::Trigger()
@@ -70,11 +93,21 @@ void UProximityPromptComponent::Trigger()
 void UProximityPromptComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-	
-	float Distance = GetDistanceToPlayer();
-	GEngine->AddOnScreenDebugMessage(7,1,FColor::Green, FString::SanitizeFloat(Distance));
 
-	if (Distance < MaxActivationDistance && Enabled)
+	bool IsNearToInteraction = false;
+	
+	if (BoxComponent)
+	{
+		IsNearToInteraction = bIsCollidingWithBoxComponent;
+	}
+	else
+	{
+		float Distance = GetDistanceToPlayer();
+		GEngine->AddOnScreenDebugMessage(7,1,FColor::Green, FString::SanitizeFloat(Distance));
+		IsNearToInteraction = Distance < MaxActivationDistance;
+	}
+	
+	if (IsNearToInteraction && Enabled)
 	{
 		SetVisibility(true);
 	}
