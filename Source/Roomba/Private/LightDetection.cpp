@@ -97,6 +97,7 @@ void  ALightDetection::CalculateTextureData()
 		TotalBrightness =  TotalBrightness / static_cast<float>(TotalPixelCount);
 		TotalBlueness   =  TotalBlueness  / static_cast<float>(TotalPixelCount);
 	}
+	
 }
 
 
