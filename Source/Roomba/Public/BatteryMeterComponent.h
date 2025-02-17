@@ -61,7 +61,7 @@ public:
 
 
 	UPROPERTY(EditAnywhere)
-	float SpeedBoostMovementNegationAmount = -25.0f;
+	float SpeedBoostMovementNegationAmount = -0.30f;
 	
 	
 	UPROPERTY(EditAnywhere)
@@ -73,6 +73,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void NegateStamina(float Amount);
 
+	FTimerHandle TimerHandle;
+
+	
 	UFUNCTION(BlueprintCallable)
 	float GetBatteryLevel() {return BatteryLevel  / MaxBatteryLevel;} 
 

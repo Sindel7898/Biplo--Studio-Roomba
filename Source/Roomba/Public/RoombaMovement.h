@@ -17,6 +17,7 @@ class UFloatingPawnMovement;
 class UBatteryMeterComponent;
 class USkeletalMeshComponent;
 class USceneComponent;
+class UWidgetComponent;
 
 UENUM()
 enum PlayerCameraState 
@@ -61,6 +62,12 @@ class ROOMBA_API ARoombaMovement : public APawn
 	UPROPERTY(EditAnywhere)
 	UBoxComponent* BoxCollider;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "UI", meta = (AllowPrivateAccess = "true"))
+	UWidgetComponent* WidgetComponent;
+
+	UPROPERTY(EditAnywhere)
+	USceneComponent* SceneComponent;
+	
 public:
 	// Sets default values for this character's properties
 	ARoombaMovement();
@@ -119,4 +126,5 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	USkeletalMeshComponent* RoombaSkeletalMesh;
 
+	
 };

@@ -9,6 +9,7 @@
 #include "ProximityPromptComponent.h"
 #include "Camera/CameraComponent.h"
 #include "Components/BoxComponent.h"
+#include "Components/WidgetComponent.h"
 #include "GameFramework/FloatingPawnMovement.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Kismet/GameplayStatics.h"
@@ -40,6 +41,12 @@ ARoombaMovement::ARoombaMovement()
 	FloatingPawnMovement = CreateDefaultSubobject<UFloatingPawnMovement>(TEXT("FloatingPawnMovement"));
 
 	BatteryMeterComponent = CreateDefaultSubobject<UBatteryMeterComponent>(TEXT("BatteryMeterComponent"));
+
+
+	SceneComponent = CreateDefaultSubobject<USceneComponent>(TEXT(" Scene Component"));
+	
+	WidgetComponent = CreateDefaultSubobject<UWidgetComponent>(TEXT("WidgetComponent"));
+	WidgetComponent->SetupAttachment(SceneComponent);  // Attach to root or another component
 
 }
 
@@ -185,6 +192,8 @@ void ARoombaMovement::Tick(float DeltaTime)
 
 	HoverPlayer();
 	ChangePlayerCamera();
+	
+	SceneComponent->SetWorldLocation(GetActorLocation());
 }
 
 
@@ -211,7 +220,7 @@ void ARoombaMovement::HoverPlayer()
 		
 		FVector CurrentLocation = GetActorLocation();
 
-		CurrentLocation.Z = FMath::FInterpTo(CurrentLocation.Z, TargetHeight, GetWorld()->GetDeltaSeconds(), 0.5f); 
+		CurrentLocation.Z = FMath::FInterpTo(CurrentLocation.Z, TargetHeight, GetWorld()->GetDeltaSeconds(), 1.0f); 
 		SetActorLocation(CurrentLocation);
 	}
 
