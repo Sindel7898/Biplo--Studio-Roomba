@@ -43,6 +43,9 @@ public:
 	
 	UFUNCTION(BlueprintCallable, Category="Config")
 	void SetEnabled(bool bEnabled);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Config")
+	UTexture2D* Image;
 	
 protected:
 	// Called when the game starts

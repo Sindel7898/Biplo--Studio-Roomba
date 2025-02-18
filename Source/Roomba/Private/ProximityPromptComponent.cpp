@@ -18,7 +18,8 @@ UProximityPromptComponent::UProximityPromptComponent()
 	Visible = false;
 	Enabled = true;
 	bIsCollidingWithBoxComponent = false;
-	
+
+	Image = nullptr;
 }
 
 
