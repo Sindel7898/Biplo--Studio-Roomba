@@ -131,39 +131,41 @@ void ARoombaMovement::Move(const FInputActionValue& Value)
 	
 	if (AController* PlayerController = GetController())
 	{
-		if (CanPlayerLook)
+		if (CanPlayerMove)
 		{
-			// Get the forward direction based on the controller's rotation
-			FRotator ControllerRotation = PlayerController->GetControlRotation();
-			ForwardDirection = FRotationMatrix(ControllerRotation).GetUnitAxis(EAxis::X);
-			RightDirection = FRotationMatrix(ControllerRotation).GetUnitAxis(EAxis::Y);
+			if (CanPlayerLook)
+			{
+				// Get the forward direction based on the controller's rotation
+				FRotator ControllerRotation = PlayerController->GetControlRotation();
+				ForwardDirection = FRotationMatrix(ControllerRotation).GetUnitAxis(EAxis::X);
+				RightDirection = FRotationMatrix(ControllerRotation).GetUnitAxis(EAxis::Y);
 			
-		}
-		else
-		{
-			ForwardDirection =  StaticForwardDirection;
-			RightDirection   =  StaticRightDirection;
-		}
+			}
+			else
+			{
+				ForwardDirection =  StaticForwardDirection;
+				RightDirection   =  StaticRightDirection;
+			}
 
-		MovementDirection = ForwardDirection * MovementVector.Y + RightDirection * MovementVector.X;
-		MovementDirection.Z = 0;  // Zero out the Z component to prevent unwanted camera movement
+			MovementDirection = ForwardDirection * MovementVector.Y + RightDirection * MovementVector.X;
+			MovementDirection.Z = 0;  // Zero out the Z component to prevent unwanted camera movement
 		
-		if (!MovementDirection.IsNearlyZero())
-		{
-			// Normalize direction to avoid scaling issues
-			MovementDirection.Normalize();
+			if (!MovementDirection.IsNearlyZero())
+			{
+				// Normalize direction to avoid scaling issues
+				MovementDirection.Normalize();
 
-			// Compute the target rotation based on movement direction
-			FRotator TargetLookAtRotation = FRotationMatrix::MakeFromX(MovementDirection).Rotator();
+				// Compute the target rotation based on movement direction
+				FRotator TargetLookAtRotation = FRotationMatrix::MakeFromX(MovementDirection).Rotator();
 
-			// Smoothly interpolate current rotation to the target rotation
-			FRotator NewRotation = FMath::RInterpTo(GetActorRotation(), TargetLookAtRotation, GetWorld()->GetDeltaSeconds(), 5.0f);
-			SetActorRotation(NewRotation);
+				// Smoothly interpolate current rotation to the target rotation
+				FRotator NewRotation = FMath::RInterpTo(GetActorRotation(), TargetLookAtRotation, GetWorld()->GetDeltaSeconds(), 5.0f);
+				SetActorRotation(NewRotation);
+			}
+			
+			BatteryMeterComponent->NegateStamina(BatteryMeterComponent->MovementNegationAmount * GetWorld()->GetDeltaSeconds());
+			FloatingPawnMovement->AddInputVector(MovementDirection);
 		}
-
-		
-		BatteryMeterComponent->NegateStamina(BatteryMeterComponent->MovementNegationAmount * GetWorld()->GetDeltaSeconds());
-		FloatingPawnMovement->AddInputVector(MovementDirection);
 	}
 }
 
@@ -223,9 +225,6 @@ void ARoombaMovement::HoverPlayer()
 		CurrentLocation.Z = FMath::FInterpTo(CurrentLocation.Z, TargetHeight, GetWorld()->GetDeltaSeconds(), 1.0f); 
 		SetActorLocation(CurrentLocation);
 	}
-
-	DrawDebugLine(GetWorld(), Start, End, FColor::Green, false, 0.1f, 0, 1.0f); // Raycast line in green
-
 
 }
 

@@ -126,5 +126,5 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	USkeletalMeshComponent* RoombaSkeletalMesh;
 
-	
+	bool CanPlayerMove = true;
 };

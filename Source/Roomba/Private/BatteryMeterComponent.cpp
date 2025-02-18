@@ -40,6 +40,8 @@ void UBatteryMeterComponent::BeginPlay()
 		}
 	}
 
+	 PlayerRef = Cast<ARoombaMovement>(GetOwner());
+
 }
 
 
@@ -77,8 +79,6 @@ void UBatteryMeterComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 	
 	if (BatteryLevel <= 0 && !GetWorld()->GetTimerManager().IsTimerActive(TimerHandle))
 	{
-		ARoombaMovement* PlayerRef = Cast<ARoombaMovement>(GetOwner());
-
 		if (PlayerRef)
 		{
 			APlayerCameraManager * cameramanager = UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0);
@@ -88,14 +88,11 @@ void UBatteryMeterComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 			GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UBatteryMeterComponent::RespawnPlayer, 1.5f, false);
 		}
 	}
-
 	FString BatteryData = FString::Printf(TEXT("Battery = %f"),BatteryLevel);
 	GEngine->AddOnScreenDebugMessage(1,1,FColor::Green,BatteryData);
 
 	FString Batteryincreasestring = FString::Printf(TEXT("Battery Increase Speed = %f"),GetWorld()->GetTimerManager().GetTimerRate(StaminaIncreaseHandle));
 	GEngine->AddOnScreenDebugMessage(2,1,FColor::Green,Batteryincreasestring);
-	
-	
 	
 }
 
@@ -119,6 +116,7 @@ void UBatteryMeterComponent::DecreaseStaminaInShadow()
 	
 	if (BatteryLevel <= 0)
 	{
+		PlayerRef->CanPlayerMove = false;
 		BatteryLevel = 0;
 	}
 }
@@ -128,13 +126,13 @@ void UBatteryMeterComponent::NegateStamina( float Amount)
 	
 	if (BatteryLevel <=  0)
 	{
+		PlayerRef->CanPlayerMove = false;
 		BatteryLevel = 0;
 	}
 }
 
 void UBatteryMeterComponent::RespawnPlayer() 
 {
-	ARoombaMovement* PlayerRef = Cast<ARoombaMovement>(GetOwner());
 	APlayerCameraManager * cameramanager = UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0);
 
 	if (PlayerRef && cameramanager )

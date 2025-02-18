@@ -8,6 +8,7 @@
 
 
 class ALightDetection;
+class ARoombaMovement;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class UBatteryMeterComponent : public UActorComponent
@@ -34,7 +35,10 @@ protected:
 	
 	UPROPERTY()
 	ALightDetection* LightDetectionRef;
-	
+
+
+	UPROPERTY()
+	ARoombaMovement* PlayerRef;
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
