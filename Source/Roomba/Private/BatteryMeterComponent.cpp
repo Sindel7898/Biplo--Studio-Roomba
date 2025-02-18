@@ -17,7 +17,17 @@ UBatteryMeterComponent::UBatteryMeterComponent()
 	DefaultBatteryLevel = 100.0f;
 	BatteryLevel = DefaultBatteryLevel;
 	MaxBatteryLevel = 100.0f;
+	bInLight = false;
 // test commit
+}
+
+void UBatteryMeterComponent::SetInLight(const bool bNewInLight)
+{
+	if (bInLight != bNewInLight)
+	{
+		bInLight = bNewInLight;
+		InShadowChanged.Broadcast(not bInLight);
+	}
 }
 
 
@@ -38,7 +48,10 @@ void UBatteryMeterComponent::BeginPlay()
 			break;
 		}
 	}
-	
+
+
+
+	InShadowChanged.Broadcast(not bInLight);
 }
 
 
@@ -48,8 +61,11 @@ void UBatteryMeterComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
+	const bool InArtificialLight = LightDetectionRef && LightDetectionRef->GetBIsPlayerInArtificialLight();
+	const bool InRegularLight = LightDetectionRef && LightDetectionRef->GetBIsPlayerInLight();
+	const bool InAnyLight =  InArtificialLight || InRegularLight;
 
-	if (LightDetectionRef && LightDetectionRef->GetBIsPlayerInArtificialLight())
+	if (LightDetectionRef && InArtificialLight)
 	{
 		if (GetWorld()->GetTimerManager().GetTimerRate(StaminaIncreaseHandle) != IncreaseRateInArtificialLight)
 		{
@@ -60,7 +76,7 @@ void UBatteryMeterComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 	
 	
 	// Adjust the timer rate dynamically based on light detection
-	if (LightDetectionRef && LightDetectionRef->GetBIsPlayerInLight() &&  !LightDetectionRef->GetBIsPlayerInArtificialLight())
+	if (LightDetectionRef && InRegularLight && !InArtificialLight)
 	{
 		if (GetWorld()->GetTimerManager().GetTimerRate(StaminaIncreaseHandle) != IncreaseRateInLight)
 		{
@@ -68,7 +84,7 @@ void UBatteryMeterComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 			GetWorld()->GetTimerManager().SetTimer(StaminaIncreaseHandle, this, &UBatteryMeterComponent::IncreaseStamina2, IncreaseRateInLight, true);
 		}
 	}
-	else if (LightDetectionRef && !LightDetectionRef->GetBIsPlayerInLight())
+	else if (LightDetectionRef && !InRegularLight)
 	{
 		if (GetWorld()->GetTimerManager().GetTimerRate(StaminaIncreaseHandle) != DecreaseRateWhileInShadow)
 		{
@@ -77,15 +93,13 @@ void UBatteryMeterComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 		}
 	}
 	
-	
-
 	FString BatteryData = FString::Printf(TEXT("Battery = %f"),BatteryLevel);
 	GEngine->AddOnScreenDebugMessage(1,1,FColor::Green,BatteryData);
 
 	FString Batteryincreasestring = FString::Printf(TEXT("Battery Increase Speed = %f"),GetWorld()->GetTimerManager().GetTimerRate(StaminaIncreaseHandle));
 	GEngine->AddOnScreenDebugMessage(2,1,FColor::Green,Batteryincreasestring);
 	
-	
+	SetInLight(InAnyLight);
 	
 }
 
