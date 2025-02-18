@@ -35,10 +35,11 @@ void UBatteryMeterComponent::BeginPlay()
 
 		if (LightDetectionRef)
 		{
+			SpawnPosition = LightDetectionRef->GetActorLocation();
 			break;
 		}
 	}
-	
+
 }
 
 
@@ -57,8 +58,6 @@ void UBatteryMeterComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 		}
 	}
 	
-	
-	
 	// Adjust the timer rate dynamically based on light detection
 	if (LightDetectionRef && LightDetectionRef->GetBIsPlayerInLight() &&  !LightDetectionRef->GetBIsPlayerInArtificialLight())
 	{
@@ -73,11 +72,22 @@ void UBatteryMeterComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 		if (GetWorld()->GetTimerManager().GetTimerRate(StaminaIncreaseHandle) != DecreaseRateWhileInShadow)
 		{
 			GetWorld()->GetTimerManager().SetTimer(StaminaIncreaseHandle, this, &UBatteryMeterComponent::DecreaseStaminaInShadow, DecreaseRateWhileInShadow, true);
-
 		}
 	}
 	
-	
+	if (BatteryLevel <= 0 && !GetWorld()->GetTimerManager().IsTimerActive(TimerHandle))
+	{
+		ARoombaMovement* PlayerRef = Cast<ARoombaMovement>(GetOwner());
+
+		if (PlayerRef)
+		{
+			APlayerCameraManager * cameramanager = UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0);
+			cameramanager->StartCameraFade(0, 1, 1.5, FLinearColor::Black, true, true);
+			PlayerRef->CanPlayerLook = false;
+
+			GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UBatteryMeterComponent::RespawnPlayer, 1.5f, false);
+		}
+	}
 
 	FString BatteryData = FString::Printf(TEXT("Battery = %f"),BatteryLevel);
 	GEngine->AddOnScreenDebugMessage(1,1,FColor::Green,BatteryData);
@@ -119,22 +129,6 @@ void UBatteryMeterComponent::NegateStamina( float Amount)
 	if (BatteryLevel <=  0)
 	{
 		BatteryLevel = 0;
-
-		if (BatteryLevel == 0)
-		{
-			ARoombaMovement* PlayerRef = Cast<ARoombaMovement>(GetOwner());
-
-			if (PlayerRef)
-			{
-				APlayerCameraManager * cameramanager = UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0);
-				cameramanager->StartCameraFade(0, 1, 1.5, FLinearColor::Black, true, true);
-				PlayerRef->CanPlayerLook = false;
-				FTimerHandle TimerHandle;
-				GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UBatteryMeterComponent::RespawnPlayer, 1.5f, false);
-			}
-		}
-
-		
 	}
 }
 
@@ -148,5 +142,6 @@ void UBatteryMeterComponent::RespawnPlayer()
 		PlayerRef->SetActorLocation(SpawnPosition);
 		BatteryLevel = 100;
 		cameramanager->StartCameraFade(1, 0, 1.5, FLinearColor::Black, true, true);
+		GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
 	}
 }
