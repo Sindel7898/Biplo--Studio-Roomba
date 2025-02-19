@@ -35,7 +35,7 @@ void ALightTrigger::BeginPlay()
 	{
 		SunLightRef = Cast<ASunLight>(FoundActor);
 		
-		if (FoundActor)
+		if (SunLightRef)
 		{
 			break;
 		}
@@ -48,18 +48,24 @@ void ALightTrigger::OnComponentOverlap(UPrimitiveComponent* OverlappedComp, AAct
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	//Interpolate the sun to the chosen position
-	SunLightRef->SunState = SunLightTransionStates::TOSPECIFICPOSITION;
-	SunLightRef->InterpolationSpeed = InterpolationRate;
-	SunLightRef->TargetPosition = TargetSunPosition;
+	if (SunLightRef)
+	{
+		SunLightRef->SunState = SunLightTransionStates::TOSPECIFICPOSITION;
+		SunLightRef->InterpolationSpeed = InterpolationRate;
+		SunLightRef->TargetPosition = TargetSunPosition;	
+	}
 	
 }
 
 void ALightTrigger::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	//RestValues for Interpolate
-	SunLightRef->SunState = SunLightTransionStates::Static;
-	SunLightRef->InterpolationSpeed = 0;
-	SunLightRef->TargetPosition = FRotator(0.0f,0.0f,0.0f);
+	if (SunLightRef)
+	{
+		//RestValues for Interpolate
+		SunLightRef->SunState = SunLightTransionStates::Static;
+		SunLightRef->InterpolationSpeed = 0;
+		SunLightRef->TargetPosition = FRotator(0.0f,0.0f,0.0f);
 	
+	}
 }
