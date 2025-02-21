@@ -95,7 +95,7 @@ void ARoombaMovement::OnDashInputChanged(const FInputActionValue& InputActionVal
 {
 	bool bIsDashing  = InputActionValue.Get<bool>();
 	
-	if (bIsDashing && !bIsCurrentlyDashing)
+	if (bIsDashing && !bIsCurrentlyDashing && CanPlayerMove)
 	{
 		bIsCurrentlyDashing = true;
 
