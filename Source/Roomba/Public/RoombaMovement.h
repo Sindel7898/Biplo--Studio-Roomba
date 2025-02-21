@@ -101,14 +101,20 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	void OnDashInputChanged(const FInputActionValue& InputActionValue);
+	void EndDash();
 
 
 	UPROPERTY(EditAnywhere)
 	float  HoverHeight = 100;
 	
 	UPROPERTY(EditAnywhere)
-    float  DashMaxSpeed;
+    float  DashMaxSpeed = 500;
 	float  StoreMaxSpeed;
+
+	bool bIsCurrentlyDashing = false;
+	UPROPERTY(EditAnywhere)
+	float DashDuration = 0.6;
+
 	
 	FVector DefaultCameraPosition;
 	float InterpolationSpeed ;
@@ -117,6 +123,9 @@ public:
 
 	FVector StaticForwardDirection;
 	FVector StaticRightDirection;
+
+	float OriginalMaxSpeed;
+	float OriginalDeceleration;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool CanPlayerLook = true;

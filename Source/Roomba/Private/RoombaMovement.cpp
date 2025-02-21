@@ -76,7 +76,6 @@ void ARoombaMovement::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 	if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent)) {
 		
 		EnhancedInputComponent->BindAction(DashAction, ETriggerEvent::Triggered, this, &ARoombaMovement::OnDashInputChanged);
-		EnhancedInputComponent->BindAction(DashAction, ETriggerEvent::Completed, this, &ARoombaMovement::OnDashInputChanged);
 		// Moving
 		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ARoombaMovement::Move);
 
@@ -90,20 +89,42 @@ void ARoombaMovement::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 }
 
 
+
+
 void ARoombaMovement::OnDashInputChanged(const FInputActionValue& InputActionValue)
 {
-	bool DashValue = InputActionValue.Get<bool>();
+	bool bIsDashing  = InputActionValue.Get<bool>();
 	
-	if (DashValue)
+	if (bIsDashing && !bIsCurrentlyDashing)
 	{
+		bIsCurrentlyDashing = true;
+
+		OriginalMaxSpeed = FloatingPawnMovement->MaxSpeed;
+		OriginalDeceleration = FloatingPawnMovement->Deceleration;
+
 		FloatingPawnMovement->MaxSpeed = DashMaxSpeed;
+		FloatingPawnMovement->Deceleration = 0.0f; // Prevents gradual slowing
+		
+		FVector DashDirection = GetActorForwardVector();
+		FloatingPawnMovement->Velocity = DashDirection * DashMaxSpeed;
+
 		BatteryMeterComponent->NegateStamina(BatteryMeterComponent->SpeedBoostMovementNegationAmount);
-	}
-	else
-	{
-		FloatingPawnMovement->MaxSpeed  = StoreMaxSpeed;
+		
+		FTimerHandle DashTimerHandle;
+		GetWorldTimerManager().SetTimer(DashTimerHandle, this, &ARoombaMovement::EndDash, DashDuration, false);
 	}
 	
+}
+
+void ARoombaMovement::EndDash()
+{
+	
+    FloatingPawnMovement->MaxSpeed = OriginalMaxSpeed;
+    FloatingPawnMovement->Deceleration = OriginalDeceleration;
+	FloatingPawnMovement->StopMovementImmediately(); 
+	FloatingPawnMovement->Velocity = GetActorForwardVector() * 300.0f;
+	bIsCurrentlyDashing = false;
+
 }
 
 
