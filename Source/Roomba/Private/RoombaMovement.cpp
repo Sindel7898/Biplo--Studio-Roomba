@@ -71,6 +71,7 @@ void ARoombaMovement::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 			Subsystem->AddMappingContext(DefaultMappingContext, 0);
 		}
 	}
+
 	
 	// Set up action bindings
 	if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent)) {
@@ -125,6 +126,7 @@ void ARoombaMovement::EndDash()
 	FloatingPawnMovement->Velocity = GetActorForwardVector() * 500.0f;
 	bIsCurrentlyDashing = false;
 
+	
 }
 
 
