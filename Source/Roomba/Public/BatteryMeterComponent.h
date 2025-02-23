@@ -59,25 +59,25 @@ public:
 	FInShadowChanged InShadowChanged;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float DefaultBatteryLevel;
+	float DefaultBatteryLevel = 100;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float MaxBatteryLevel;
+	float MaxBatteryLevel = 100;
 	
 	UPROPERTY(EditAnywhere)
-	float DecreaseRateWhileInShadow = 0.2f;
+	float DecreaseRateWhileInShadow = 0.1f;
 
 	UPROPERTY(EditAnywhere)
-	float IncreaseRateInLight = 0.1f;
+	float IncreaseRateInLight = 0.05f;
 	
 	UPROPERTY(EditAnywhere)
-	float IncreaseRateInArtificialLight = 0.1f;
+	float IncreaseRateInArtificialLight = 0.099f;
 
 	UPROPERTY(EditAnywhere)
-	float MovementNegationAmount = -15.0f;
+	float MovementNegationAmount = -3.0f;
 	
 	UPROPERTY(EditAnywhere)
-	float SpeedBoostMovementNegationAmount = -0.30f;
+	float SpeedBoostMovementNegationAmount = -35.0f;
 	
 	UPROPERTY(EditAnywhere)
 	float NegateInShadowAmount = -5.0f;

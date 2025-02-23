@@ -120,9 +120,9 @@ void ARoombaMovement::EndDash()
 {
 	
     FloatingPawnMovement->MaxSpeed = OriginalMaxSpeed;
-    FloatingPawnMovement->Deceleration = OriginalDeceleration;
-	FloatingPawnMovement->StopMovementImmediately(); 
-	FloatingPawnMovement->Velocity = GetActorForwardVector() * 300.0f;
+	FloatingPawnMovement->StopMovementImmediately();
+	FloatingPawnMovement->Deceleration = OriginalDeceleration;
+	FloatingPawnMovement->Velocity = GetActorForwardVector() * 500.0f;
 	bIsCurrentlyDashing = false;
 
 }
