@@ -7,6 +7,9 @@
 #include "CheckPoint.generated.h"
 class UBoxComponent;
 
+UDELEGATE(BlueprintAuthorityOnly)
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FCheckpointReached, int, CheckpointId);
+
 UCLASS()
 class ROOMBA_API ACheckPoint : public AActor
 {
@@ -22,9 +25,18 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	UBoxComponent* OverlapVolume;
 	
+	// Broadcast when the checkpoint is reached
+	UPROPERTY(BlueprintAssignable, Category="Events")
+	FCheckpointReached CheckpointReached;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Config")
+	int CheckpointId;
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	
 
 	UFUNCTION()
 	void OverlapBegins(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp,

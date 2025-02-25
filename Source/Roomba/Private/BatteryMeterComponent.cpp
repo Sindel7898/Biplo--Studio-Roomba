@@ -159,11 +159,13 @@ void UBatteryMeterComponent::RespawnPlayer()
 
 	if (PlayerRef && cameramanager )
 	{
-		PlayerRef->SetActorLocation(SpawnPosition);
-		BatteryLevel = 100;
-		cameramanager->StartCameraFade(1, 0, 1.5, FLinearColor::Black, true, true);
-		PlayerRef->CanPlayerMove = true;
+		//PlayerRef->SetActorLocation(SpawnPosition);
+		//BatteryLevel = 100;
+		//cameramanager->StartCameraFade(1, 0, 1.5, FLinearColor::Black, true, true);
+		//PlayerRef->CanPlayerMove = true;
 
-		GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
+		//GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
+
+		UGameplayStatics::OpenLevel(this, FName(*UGameplayStatics::GetCurrentLevelName(this, true)));
 	}
 }
