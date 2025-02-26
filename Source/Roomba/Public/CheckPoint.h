@@ -29,14 +29,14 @@ protected:
 	UPROPERTY(BlueprintAssignable, Category="Events")
 	FCheckpointReached CheckpointReached;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Config")
-	int CheckpointId;
+
 
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Config")
+	int CheckpointId;
 
 	UFUNCTION()
 	void OverlapBegins(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp,
