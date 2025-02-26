@@ -245,8 +245,12 @@ void ARoombaMovement::HoverPlayer()
 		
 		FVector CurrentLocation = GetActorLocation();
 
-		CurrentLocation.Z = FMath::FInterpTo(CurrentLocation.Z, TargetHeight, GetWorld()->GetDeltaSeconds(), 1.0f); 
+		CurrentLocation.Z = FMath::FInterpTo(CurrentLocation.Z, TargetHeight, GetWorld()->GetDeltaSeconds(), HoverInterpulationSpeed); 
 		SetActorLocation(CurrentLocation);
+
+		FString InterpolationText = FString::Printf(TEXT("InterpolationSpeed: %f"), HoverInterpulationSpeed);
+		GEngine->AddOnScreenDebugMessage(6, 2.0f, FColor::Red, InterpolationText);
+
 	}
 
 }

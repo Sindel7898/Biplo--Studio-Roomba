@@ -115,6 +115,8 @@ public:
 	UPROPERTY(EditAnywhere)
 	float DashDuration = 0.6;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float HoverInterpulationSpeed = 1.0f;
 	
 	FVector DefaultCameraPosition;
 	float InterpolationSpeed ;
