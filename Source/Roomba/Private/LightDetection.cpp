@@ -95,7 +95,7 @@ void  ALightDetection::CalculateTextureData()
 	if (TotalPixelCount > 0)
 	{
 		TotalBrightness =  TotalBrightness / static_cast<float>(TotalPixelCount);
-		TotalBlueness   =  TotalBlueness  / static_cast<float>(TotalPixelCount);
+	//	TotalBlueness   =  TotalBlueness  / static_cast<float>(TotalPixelCount);
 	}
 	
 }
@@ -105,8 +105,6 @@ void ALightDetection::ProcessRenderTexture(UTextureRenderTarget2D* Texture)
 {
 	// Read the pixels from our RenderTexture and store the data into our color array
 	RenderTarget = Texture->GameThread_GetRenderTargetResource();
-
-	
 	RenderTarget->ReadPixels(PixelStorage);
 
 
@@ -120,7 +118,7 @@ void ALightDetection::ProcessRenderTexture(UTextureRenderTarget2D* Texture)
 		CurrentPixelBrightness = ((0.299 * PixelChannelR) + (0.587 * PixelChannelG) + (0.114 * PixelChannelB));
 		TotalBrightness += CurrentPixelBrightness;
 
-		TotalBlueness += PixelChannelB;
+	//	TotalBlueness += PixelChannelB;
 
 	}
 

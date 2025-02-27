@@ -50,8 +50,7 @@ void UBatteryMeterComponent::BeginPlay()
 		}
 	}
 
-
-
+	
 	InShadowChanged.Broadcast(not bInLight);
 
 	 PlayerRef = Cast<ARoombaMovement>(GetOwner());
@@ -76,8 +75,6 @@ void UBatteryMeterComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 			GetWorld()->GetTimerManager().SetTimer(StaminaIncreaseHandle, this, &UBatteryMeterComponent::IncreaseStamina2, IncreaseRateInArtificialLight, true);
 		}
 	}
-	
-	
 	
 	// Adjust the timer rate dynamically based on light detection
 	if (LightDetectionRef && InRegularLight && !InArtificialLight)
@@ -108,6 +105,7 @@ void UBatteryMeterComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 			GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UBatteryMeterComponent::RespawnPlayer, 1.5f, false);
 		}
 	}
+	
 	FString BatteryData = FString::Printf(TEXT("Battery = %f"),BatteryLevel);
 	GEngine->AddOnScreenDebugMessage(1,1,FColor::Green,BatteryData);
 
