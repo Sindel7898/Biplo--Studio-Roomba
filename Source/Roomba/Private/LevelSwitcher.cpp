@@ -61,7 +61,8 @@ void ALevelSwitcher::OverlapBegins(UPrimitiveComponent* OverlappedComponent, AAc
 
 void ALevelSwitcher::LoadNextLevel()
 {
-	UGameplayStatics::OpenLevel(this, LevelToLoad);
+	NewLevelReached.Broadcast(LevelToLoad);
+	//UGameplayStatics::OpenLevel(this, LevelToLoad);
 }
 
 

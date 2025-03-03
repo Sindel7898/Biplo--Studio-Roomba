@@ -14,7 +14,7 @@ ACheckPoint::ACheckPoint()
 	PrimaryActorTick.bCanEverTick = true;
 
 	OverlapVolume = CreateDefaultSubobject<UBoxComponent>(TEXT("OverlapVolume"));
-
+	CheckpointId = 1;
 	
 	OverlapVolume->OnComponentBeginOverlap.AddDynamic(this,&ACheckPoint::OverlapBegins);
 
@@ -46,5 +46,7 @@ void ACheckPoint::OverlapBegins(UPrimitiveComponent* OverlappedComponent, AActor
 	if (ARoombaMovement* PlayerRef = Cast<ARoombaMovement>(OtherActor))
 	{
 		PlayerRef->BatteryMeterComponent->SpawnPosition = GetActorLocation();
+
+		CheckpointReached.Broadcast(CheckpointId);
 	}
 }
