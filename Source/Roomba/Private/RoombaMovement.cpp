@@ -77,6 +77,8 @@ void ARoombaMovement::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 	if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent)) {
 		
 		EnhancedInputComponent->BindAction(DashAction, ETriggerEvent::Triggered, this, &ARoombaMovement::OnDashInputChanged);
+		
+
 		// Moving
 		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ARoombaMovement::Move);
 
@@ -110,23 +112,23 @@ void ARoombaMovement::OnDashInputChanged(const FInputActionValue& InputActionVal
 		FloatingPawnMovement->Velocity = DashDirection * DashMaxSpeed;
 
 		BatteryMeterComponent->NegateStamina(BatteryMeterComponent->SpeedBoostMovementNegationAmount);
+
 		
 		FTimerHandle DashTimerHandle;
 		GetWorldTimerManager().SetTimer(DashTimerHandle, this, &ARoombaMovement::EndDash, DashDuration, false);
 	}
-	
 }
 
 void ARoombaMovement::EndDash()
 {
-	
-    FloatingPawnMovement->MaxSpeed = OriginalMaxSpeed;
-	FloatingPawnMovement->StopMovementImmediately();
-	FloatingPawnMovement->Deceleration = OriginalDeceleration;
-	FloatingPawnMovement->Velocity = GetActorForwardVector() * 500.0f;
-	bIsCurrentlyDashing = false;
-
-	
+	if (bIsCurrentlyDashing)
+	{
+		FloatingPawnMovement->MaxSpeed = OriginalMaxSpeed;
+		FloatingPawnMovement->StopMovementImmediately();
+		FloatingPawnMovement->Deceleration = OriginalDeceleration;
+		FloatingPawnMovement->Velocity = GetActorForwardVector() * 500.0f;
+		bIsCurrentlyDashing = false;
+	}
 }
 
 
@@ -217,7 +219,6 @@ void ARoombaMovement::Tick(float DeltaTime)
 
 	HoverPlayer();
 	ChangePlayerCamera();
-	
 	SceneComponent->SetWorldLocation(GetActorLocation());
 }
 

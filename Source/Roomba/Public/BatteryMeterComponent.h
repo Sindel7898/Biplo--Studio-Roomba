@@ -81,7 +81,10 @@ public:
 	
 	UPROPERTY(EditAnywhere)
 	float NegateInShadowAmount = -5.0f;
-    	
+
+	UPROPERTY(EditAnywhere)
+	float SpeedBoostCuncurrentDrainRate = -5.0f;
+	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<AActor> LightBPClass;
 
