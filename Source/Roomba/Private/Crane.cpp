@@ -38,7 +38,7 @@ void ACrane::RotateCraneLeft(float RotationAmount)
 
 	float TargetPitch = FMath::Clamp(CurrentRotation.Yaw + RotationAmount, -90.0f, 90.0f);
 
-	FRotator SmoothedRotation = FMath::RInterpTo(CurrentRotation, FRotator(0.0f, TargetPitch, 0.0f), GetWorld()->GetDeltaSeconds(), 5.0f);
+	FRotator SmoothedRotation = FMath::RInterpTo(CurrentRotation, FRotator(CurrentRotation.Pitch, TargetPitch, CurrentRotation.Roll), GetWorld()->GetDeltaSeconds(), 5.0f);
 	CraneRotator->SetRelativeRotation(SmoothedRotation);
 }
 
@@ -47,7 +47,7 @@ void ACrane::RotateCraneRight(float RotationAmount)
 	FRotator CurrentRotation = CraneRotator->GetRelativeRotation();
 	float TargetPitch = FMath::Clamp(CurrentRotation.Yaw - RotationAmount, -90.0f, 90.0f);
 
-	FRotator SmoothedRotation = FMath::RInterpTo(CurrentRotation, FRotator(0.0f, TargetPitch, 0.0f), GetWorld()->GetDeltaSeconds(), 5.0f);
+	FRotator SmoothedRotation = FMath::RInterpTo(CurrentRotation, FRotator(CurrentRotation.Pitch, TargetPitch, CurrentRotation.Roll), GetWorld()->GetDeltaSeconds(), 5.0f);
 	CraneRotator->SetRelativeRotation(SmoothedRotation);
 
 }
