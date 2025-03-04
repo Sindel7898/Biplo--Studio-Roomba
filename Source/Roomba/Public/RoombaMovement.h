@@ -136,4 +136,7 @@ public:
 	USkeletalMeshComponent* RoombaSkeletalMesh;
 
 	bool CanPlayerMove = true;
+
+	FORCEINLINE UInputMappingContext* GetMappingContext(){return DefaultMappingContext;}
+
 };
