@@ -70,8 +70,15 @@ void ARoombaMovement::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 		{
 			Subsystem->AddMappingContext(DefaultMappingContext, 0);
 		}
+		else
+		{
+			GEngine->AddOnScreenDebugMessage(11, 2.0f, FColor::Red, FString("No subysystem"));
+		}
 	}
-
+	else
+	{
+		GEngine->AddOnScreenDebugMessage(11, 2.0f, FColor::Red, FString("No controller"));
+	}
 	
 	// Set up action bindings
 	if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent)) {
@@ -84,6 +91,12 @@ void ARoombaMovement::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &ARoombaMovement::Look);
 
 		EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Triggered, this, &ARoombaMovement::OnInteract);
+		GEngine->AddOnScreenDebugMessage(11, 2.0f, FColor::Red, FString("All input binded"));
+
+	}
+	else
+	{
+		GEngine->AddOnScreenDebugMessage(11, 2.0f, FColor::Red, FString("No EIC"));
 
 	}
 	
