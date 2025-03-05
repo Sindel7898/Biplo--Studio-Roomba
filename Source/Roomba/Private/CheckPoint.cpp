@@ -10,11 +10,11 @@
 // Sets default values
 ACheckPoint::ACheckPoint()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	OverlapVolume = CreateDefaultSubobject<UBoxComponent>(TEXT("OverlapVolume"));
-
+	CheckpointId = 1;
 	
 	OverlapVolume->OnComponentBeginOverlap.AddDynamic(this,&ACheckPoint::OverlapBegins);
 
@@ -46,5 +46,7 @@ void ACheckPoint::OverlapBegins(UPrimitiveComponent* OverlappedComponent, AActor
 	if (ARoombaMovement* PlayerRef = Cast<ARoombaMovement>(OtherActor))
 	{
 		PlayerRef->BatteryMeterComponent->SpawnPosition = GetActorLocation();
+
+		CheckpointReached.Broadcast(CheckpointId);
 	}
 }
