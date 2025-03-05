@@ -52,12 +52,12 @@ class ROOMBA_API ARoombaMovement : public APawn
 
 	UPROPERTY(EditAnywhere,Category = Input)
 	UInputAction* InteractAction;
-	
-	UPROPERTY(VisibleAnywhere, Category = "Movement")
-	UFloatingPawnMovement* FloatingPawnMovement;
 
 	UPROPERTY(EditAnywhere,Category = Input)
 	UInputAction* DashAction;
+
+	UPROPERTY(EditAnywhere,Category = Input)
+	UInputAction* SpeedBoostAction;
 	
 	UPROPERTY(EditAnywhere)
 	UBoxComponent* BoxCollider;
@@ -74,6 +74,10 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UBatteryMeterComponent* BatteryMeterComponent;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UFloatingPawnMovement* FloatingPawnMovement;
+	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -101,8 +105,9 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	void OnDashInputChanged(const FInputActionValue& InputActionValue);
+	void OnBeginSpeedBoost(const FInputActionValue& InputActionValue);
+	void OnEndSpeedBoost(const FInputActionValue& InputActionValue);
 	void EndDash();
-
 
 	UPROPERTY(EditAnywhere)
 	float  HoverHeight = 100;
@@ -115,6 +120,8 @@ public:
 	UPROPERTY(EditAnywhere)
 	float DashDuration = 0.6;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float HoverInterpulationSpeed = 1.0f;
 	
 	FVector DefaultCameraPosition;
 	float InterpolationSpeed ;
@@ -126,7 +133,8 @@ public:
 
 	float OriginalMaxSpeed;
 	float OriginalDeceleration;
-	
+	float OriginalAcceleration;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool CanPlayerLook = true;
 

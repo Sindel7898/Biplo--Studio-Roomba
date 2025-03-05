@@ -9,6 +9,9 @@
 class UBoxComponent;
 class ARoombaMovement;
 
+UDELEGATE(BlueprintAuthorityOnly)
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FNewLevelReached, FName, LevelName);
+
 UCLASS()
 class ROOMBA_API ALevelSwitcher : public AActor
 {
@@ -32,8 +35,13 @@ protected:
 	
 	UPROPERTY(EditAnywhere, Category = LevelData)
 	FName LevelToLoad;
+
+	// Broadcast when the next level is reached
+	UPROPERTY(BlueprintAssignable, Category="Events")
+	FNewLevelReached NewLevelReached;
+	
 	void LoadNextLevel();
+	
 	UFUNCTION()
 	void OverlapBegins(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult);
-
 };
