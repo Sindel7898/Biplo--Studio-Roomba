@@ -9,7 +9,7 @@
 // Sets default values
 ALevelSwitcher::ALevelSwitcher()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
 
 	OverlapVolume = CreateDefaultSubobject<UBoxComponent>(TEXT("OverlapVolume"));
@@ -45,7 +45,7 @@ void ALevelSwitcher::BeginPlay()
 
 
 void ALevelSwitcher::OverlapBegins(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
-                                   UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+								   UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	
 	if ( RoombaCharacter && OtherActor == RoombaCharacter && LevelToLoad != "")
@@ -61,8 +61,9 @@ void ALevelSwitcher::OverlapBegins(UPrimitiveComponent* OverlappedComponent, AAc
 
 void ALevelSwitcher::LoadNextLevel()
 {
-	UGameplayStatics::OpenLevel(this, LevelToLoad);
+	// Switching level was changed to blueprints becausing the save system in blueprints will yield
+	NewLevelReached.Broadcast(LevelToLoad);
+	//UGameplayStatics::OpenLevel(this, LevelToLoad);
 }
-
 
 
