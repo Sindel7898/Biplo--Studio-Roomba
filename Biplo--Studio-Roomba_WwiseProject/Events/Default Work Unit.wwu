@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{EE6AED1A-BB96-400A-9F23-941E6F03BA29}" SchemaVersion="123">
+	<Events>
+		<WorkUnit Name="Default Work Unit" ID="{EE6AED1A-BB96-400A-9F23-941E6F03BA29}" PersistMode="Standalone">
+			<ChildrenList>
+				<Event Name="AmbientExt" ID="{084E3D51-4E55-4197-8C1D-9BB1A566F7D6}">
+					<ChildrenList>
+						<Action Name="" ID="{CFFF0358-FA7B-4783-89B1-2C72CDC1EFCF}" ShortID="170734924">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Street Wind" ID="{72AB1FD5-6811-45BD-99BD-E20D572437D1}" WorkUnitID="{76A28ABE-AE1E-4D49-B620-3767832526DA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Folder Name="PlayerNoises" ID="{97153B25-6412-4F21-AA89-A00596BFD8CD}" ShortID="975678088">
+					<ChildrenList>
+						<Event Name="Move" ID="{94A1909F-D218-4D47-AAE6-BEF901B2A481}">
+							<ChildrenList>
+								<Action Name="" ID="{477EAAD5-1CD7-4BBA-8C41-CAD1837B44A2}" ShortID="478034189">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Hover_normal" ID="{AAF8E05E-211D-4ECF-B9D4-CC3162B19F6C}" WorkUnitID="{76A28ABE-AE1E-4D49-B620-3767832526DA}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Dash" ID="{69288CA0-22BA-4854-A433-83C8CC9BFEA7}">
+							<ChildrenList>
+								<Action Name="" ID="{F66ADA03-F959-42D4-8980-0D6F5D4E6978}" ShortID="1049950328">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Hover_fast" ID="{40B3EFB5-99BF-43AF-AB5E-BDA4DDCC52B5}" WorkUnitID="{76A28ABE-AE1E-4D49-B620-3767832526DA}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+				<Event Name="AmbientInt" ID="{90B15117-CB54-4085-93AA-94BDB30DDA3E}">
+					<ChildrenList>
+						<Action Name="" ID="{C9114FBA-5004-4820-8621-8F86EAC97CEA}" ShortID="409941214">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="InteriorBack" ID="{EC38CA45-8AC7-4335-AF89-B33C235870EF}" WorkUnitID="{76A28ABE-AE1E-4D49-B620-3767832526DA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

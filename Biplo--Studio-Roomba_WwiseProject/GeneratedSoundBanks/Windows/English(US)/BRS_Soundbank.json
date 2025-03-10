@@ -1,0 +1,97 @@
+{
+ "SoundBanksInfo": {
+  "Platform": "Windows",
+  "BasePlatform": "Windows",
+  "SchemaVersion": "16",
+  "SoundBankVersion": "154",
+  "SoundBanks": [
+   {
+    "Id": "221959794",
+    "Type": "User",
+    "GUID": "{F8011E67-8302-405A-B5C0-D4D5877C3B16}",
+    "Language": "English(US)",
+    "Hash": "{FF196F36-86EC-C19F-034D-1D58899244A2}",
+    "ObjectPath": "\\SoundBanks\\Default Work Unit\\BRS_Soundbank",
+    "ShortName": "BRS_Soundbank",
+    "Path": "English(US)/BRS_Soundbank.bnk",
+    "Media": [
+     {
+      "Id": "175158539",
+      "Language": "English(US)",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Hover_fast.wav",
+      "CachePath": "33/{33B1668B-E896-3D13-E39F-95696DFF84C9}.wem"
+     },
+     {
+      "Id": "362472988",
+      "Language": "English(US)",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Street Wind.wav",
+      "CachePath": "9E/{9E5D21C3-64CD-818A-883F-ECE39F3A1291}.wem"
+     },
+     {
+      "Id": "774493338",
+      "Language": "English(US)",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Hover_normal.wav",
+      "CachePath": "18/{18AF4CBA-5D46-7D4D-FD24-6EEAE5D9CA8F}.wem"
+     }
+    ],
+    "Events": [
+     {
+      "Id": "132023120",
+      "Name": "AmbientExt",
+      "ObjectPath": "\\Events\\Default Work Unit\\AmbientExt",
+      "GUID": "{084E3D51-4E55-4197-8C1D-9BB1A566F7D6}",
+      "DurationType": "OneShot",
+      "DurationMin": "64.36224",
+      "DurationMax": "64.36224",
+      "MediaRefs": [
+       {
+        "Id": "362472988"
+       }
+      ]
+     },
+     {
+      "Id": "1942692385",
+      "Name": "Dash",
+      "ObjectPath": "\\Events\\Default Work Unit\\PlayerNoises\\Dash",
+      "GUID": "{69288CA0-22BA-4854-A433-83C8CC9BFEA7}",
+      "DurationType": "OneShot",
+      "DurationMin": "1.3362069",
+      "DurationMax": "1.3362069",
+      "MediaRefs": [
+       {
+        "Id": "175158539"
+       }
+      ]
+     },
+     {
+      "Id": "3011204530",
+      "Name": "Move",
+      "ObjectPath": "\\Events\\Default Work Unit\\PlayerNoises\\Move",
+      "GUID": "{94A1909F-D218-4D47-AAE6-BEF901B2A481}",
+      "DurationType": "Infinite",
+      "MediaRefs": [
+       {
+        "Id": "774493338"
+       }
+      ]
+     }
+    ],
+    "GameParameters": [
+     {
+      "Id": "2267600265",
+      "Name": "PlayerMove",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\PlayerMove",
+      "GUID": "{7EACA078-DCDE-47A6-889B-8571AA0F3BEB}"
+     }
+    ]
+   }
+  ],
+  "FileHash": "{5CE0F776-787D-514A-8079-F08D130AD184}"
+ }
+}

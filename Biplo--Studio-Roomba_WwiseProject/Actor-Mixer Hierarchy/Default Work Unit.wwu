@@ -1,0 +1,735 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{76A28ABE-AE1E-4D49-B620-3767832526DA}" SchemaVersion="123">
+	<AudioObjects>
+		<WorkUnit Name="Default Work Unit" ID="{76A28ABE-AE1E-4D49-B620-3767832526DA}" PersistMode="Standalone">
+			<ChildrenList>
+				<Folder Name="Ambience" ID="{0FC0BCF9-6A6C-4B6F-A2EA-F0060915D47C}" ShortID="500303277">
+					<ChildrenList>
+						<Sound Name="InteriorBack" ID="{EC38CA45-8AC7-4335-AF89-B33C235870EF}" ShortID="950411443">
+							<PropertyList>
+								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+								<Property Name="IsVoice" Type="bool" Value="True"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-6</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{48ED21AE-A92D-4FE4-ABC7-8DBC0FD43A04}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{80B98C60-A93B-4ADD-84FE-5D660F5C4E93}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="InteriorBack" ID="{9E04BEC8-94CA-486B-BF04-315DA9B8279D}">
+									<Language>English(US)</Language>
+									<AudioFile>InteriorBack.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="16417537"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="InteriorBack" ID="{9E04BEC8-94CA-486B-BF04-315DA9B8279D}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="LeavesRustle" ID="{A0A52480-1013-4BA4-BB3E-49D7B523A05D}" ShortID="144602561">
+							<PropertyList>
+								<Property Name="IsVoice" Type="bool" Value="True"/>
+								<Property Name="Lowpass" Type="int16">
+									<ValueList>
+										<Value>20</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-10</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{48ED21AE-A92D-4FE4-ABC7-8DBC0FD43A04}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{80B98C60-A93B-4ADD-84FE-5D660F5C4E93}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="LeavesRustle" ID="{9925E4FC-6D8A-44CD-ABE8-9A57DA898A0D}">
+									<Language>English(US)</Language>
+									<AudioFile>LeavesRustle.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="934609860"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="LeavesRustle" ID="{9925E4FC-6D8A-44CD-ABE8-9A57DA898A0D}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Street Wind" ID="{72AB1FD5-6811-45BD-99BD-E20D572437D1}" ShortID="662898486">
+							<PropertyList>
+								<Property Name="IsVoice" Type="bool" Value="True"/>
+								<Property Name="Lowpass" Type="int16">
+									<ValueList>
+										<Value>34</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-12</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{48ED21AE-A92D-4FE4-ABC7-8DBC0FD43A04}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{80B98C60-A93B-4ADD-84FE-5D660F5C4E93}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Street Wind" ID="{CA9F1F93-92C1-4EC0-8A8F-E4A4D363A2CD}">
+									<Language>English(US)</Language>
+									<AudioFile>Street Wind.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="362472988"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Street Wind" ID="{CA9F1F93-92C1-4EC0-8A8F-E4A4D363A2CD}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="PlayerNoise" ID="{7E0F1CAF-5379-467F-BB5E-2BD96557FAD9}" ShortID="20388315">
+					<ChildrenList>
+						<Sound Name="Hover_normal" ID="{AAF8E05E-211D-4ECF-B9D4-CC3162B19F6C}" ShortID="808975536">
+							<PropertyList>
+								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+								<Property Name="IsVoice" Type="bool" Value="True"/>
+								<Property Name="Volume" Type="Real64">
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{8C344143-5746-438B-93C1-E63D61F17F4F}"/>
+										</ModifierInfo>
+									</ModifierList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{48ED21AE-A92D-4FE4-ABC7-8DBC0FD43A04}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{80B98C60-A93B-4ADD-84FE-5D660F5C4E93}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Hover_normal" ID="{CE63D3C0-3F05-4A65-8DB5-39935C495AA2}">
+									<PropertyList>
+										<Property Name="LoopEnd" Type="Real64" Value="5.82614942528736"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+									</PropertyList>
+									<Language>English(US)</Language>
+									<AudioFile>Hover_normal.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="774493338"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists>
+								<ObjectList Name="RTPC">
+									<Reference>
+										<Local>
+											<RTPC Name="" ID="{5C2DD517-C653-4745-8154-A6739E08D81A}" ShortID="433928185">
+												<PropertyList>
+													<Property Name="PropertyName" Type="string" Value="Volume"/>
+												</PropertyList>
+												<ReferenceList>
+													<Reference Name="ControlInput">
+														<ObjectRef Name="PlayerMove" ID="{7EACA078-DCDE-47A6-889B-8571AA0F3BEB}" WorkUnitID="{BBEF4483-C6E2-418E-9900-3B30300F3064}"/>
+													</Reference>
+													<Reference Name="Curve">
+														<Custom>
+															<Curve Name="" ID="{4A39A968-E088-4BE5-ADBB-BAC96E043A96}">
+																<PropertyList>
+																	<Property Name="Flags" Type="int32" Value="3"/>
+																</PropertyList>
+																<PointList>
+																	<Point>
+																		<XPos>0</XPos>
+																		<YPos>-200</YPos>
+																		<Flags>5</Flags>
+																		<SegmentShape>Log3</SegmentShape>
+																	</Point>
+																	<Point>
+																		<XPos>9.98322</XPos>
+																		<YPos>-1.02609</YPos>
+																		<Flags>0</Flags>
+																	</Point>
+																	<Point>
+																		<XPos>35.05535</XPos>
+																		<YPos>0.02757</YPos>
+																		<Flags>0</Flags>
+																	</Point>
+																	<Point>
+																		<XPos>100</XPos>
+																		<YPos>0</YPos>
+																		<Flags>37</Flags>
+																	</Point>
+																</PointList>
+															</Curve>
+														</Custom>
+													</Reference>
+												</ReferenceList>
+											</RTPC>
+										</Local>
+									</Reference>
+									<Reference>
+										<Local>
+											<RTPC Name="" ID="{955FAFC4-24A7-48E3-8BD0-8E961C10A1DD}" ShortID="550055838">
+												<PropertyList>
+													<Property Name="PropertyName" Type="string" Value="Pitch"/>
+												</PropertyList>
+												<ReferenceList>
+													<Reference Name="ControlInput">
+														<ObjectRef Name="PlayerMove" ID="{7EACA078-DCDE-47A6-889B-8571AA0F3BEB}" WorkUnitID="{BBEF4483-C6E2-418E-9900-3B30300F3064}"/>
+													</Reference>
+													<Reference Name="Curve">
+														<Custom>
+															<Curve Name="" ID="{CFC4E8D8-5DCA-4884-96B3-3F7B46D1C9B8}">
+																<PropertyList>
+																	<Property Name="Flags" Type="int32" Value="65537"/>
+																</PropertyList>
+																<PointList>
+																	<Point>
+																		<XPos>0</XPos>
+																		<YPos>-4800</YPos>
+																		<Flags>5</Flags>
+																		<SegmentShape>Log3</SegmentShape>
+																	</Point>
+																	<Point>
+																		<XPos>10.06374</XPos>
+																		<YPos>-1034</YPos>
+																		<Flags>0</Flags>
+																	</Point>
+																	<Point>
+																		<XPos>35.05535</XPos>
+																		<YPos>0</YPos>
+																		<Flags>0</Flags>
+																	</Point>
+																	<Point>
+																		<XPos>100</XPos>
+																		<YPos>333</YPos>
+																		<Flags>37</Flags>
+																	</Point>
+																</PointList>
+															</Curve>
+														</Custom>
+													</Reference>
+												</ReferenceList>
+											</RTPC>
+										</Local>
+									</Reference>
+								</ObjectList>
+							</ObjectLists>
+							<ActiveSourceList>
+								<ActiveSource Name="Hover_normal" ID="{CE63D3C0-3F05-4A65-8DB5-39935C495AA2}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Hover_fast" ID="{40B3EFB5-99BF-43AF-AB5E-BDA4DDCC52B5}" ShortID="318925215">
+							<PropertyList>
+								<Property Name="IsVoice" Type="bool" Value="True"/>
+								<Property Name="Volume" Type="Real64">
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{26D90816-C7A5-4698-A1D7-47CB66AC8AB2}"/>
+										</ModifierInfo>
+									</ModifierList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{48ED21AE-A92D-4FE4-ABC7-8DBC0FD43A04}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{80B98C60-A93B-4ADD-84FE-5D660F5C4E93}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Hover_fast" ID="{20ABC7A2-48F0-48DA-A9EF-0117E35765A0}">
+									<PropertyList>
+										<Property Name="FadeOutDuration" Type="Real64" Value="1.1566091954023"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimBegin" Type="Real64" Value="0.165229885057471"/>
+										<Property Name="TrimEnd" Type="Real64" Value="1.50143678160919"/>
+									</PropertyList>
+									<Language>English(US)</Language>
+									<AudioFile>Hover_fast.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="175158539"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Hover_fast" ID="{20ABC7A2-48F0-48DA-A9EF-0117E35765A0}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Zap noise 2" ID="{1917C47D-C64C-4DF5-9A8C-0C36E6895960}" ShortID="78992463">
+							<PropertyList>
+								<Property Name="IsVoice" Type="bool" Value="True"/>
+								<Property Name="Pitch" Type="int32">
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{0D29ECE1-EE36-4DC2-B2F6-45507E8E9DC9}">
+												<PropertyList>
+													<Property Name="Enabled" Type="bool" Value="True"/>
+													<Property Name="Max" Type="Real64" Value="100"/>
+													<Property Name="Min" Type="Real64" Value="-100"/>
+												</PropertyList>
+											</Modifier>
+										</ModifierInfo>
+									</ModifierList>
+								</Property>
+								<Property Name="Volume" Type="Real64">
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{239871B5-2067-4F0F-917D-5C08DB9B4AB8}">
+												<PropertyList>
+													<Property Name="Enabled" Type="bool" Value="True"/>
+													<Property Name="Max" Type="Real64" Value="2"/>
+													<Property Name="Min" Type="Real64" Value="-2"/>
+												</PropertyList>
+											</Modifier>
+										</ModifierInfo>
+									</ModifierList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{48ED21AE-A92D-4FE4-ABC7-8DBC0FD43A04}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{80B98C60-A93B-4ADD-84FE-5D660F5C4E93}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Zap noise 2" ID="{0BA834DD-8AE3-45B1-8F6C-94AC42ECCCB9}">
+									<PropertyList>
+										<Property Name="FadeInDuration" Type="Real64" Value="0.0928528106760705"/>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.254871490529214"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimEnd" Type="Real64" Value="0.717240578258174"/>
+									</PropertyList>
+									<Language>English(US)</Language>
+									<AudioFile>Zap noise 2.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="101602712"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Zap noise 2" ID="{0BA834DD-8AE3-45B1-8F6C-94AC42ECCCB9}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Folder Name="Beeps" ID="{586F9080-F15F-431E-B148-4E3082A3BF86}" ShortID="147676582">
+							<ChildrenList>
+								<RandomSequenceContainer Name="PowerOn" ID="{412556AE-4B19-4C53-BFC2-8C7FCED11D45}" ShortID="100617992">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{48ED21AE-A92D-4FE4-ABC7-8DBC0FD43A04}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{80B98C60-A93B-4ADD-84FE-5D660F5C4E93}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="Biplo_on1" ID="{6DA98A89-E78A-41B0-AF2D-999275869024}" ShortID="584496504">
+											<PropertyList>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{48ED21AE-A92D-4FE4-ABC7-8DBC0FD43A04}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{80B98C60-A93B-4ADD-84FE-5D660F5C4E93}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Biplo_on1" ID="{5291292C-96A5-4892-921A-FDE19D068F19}">
+													<Language>English(US)</Language>
+													<AudioFile>Biplo_on1.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="507210211"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Biplo_on1" ID="{5291292C-96A5-4892-921A-FDE19D068F19}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Biplo_on2" ID="{E8144FF9-5849-41EB-BB80-1BC3E5CBA58A}" ShortID="45539073">
+											<PropertyList>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{48ED21AE-A92D-4FE4-ABC7-8DBC0FD43A04}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{80B98C60-A93B-4ADD-84FE-5D660F5C4E93}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Biplo_on2" ID="{FEBCBA17-F496-46E9-A566-6A4804C35E58}">
+													<Language>English(US)</Language>
+													<AudioFile>Biplo_on2.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="1049214818"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Biplo_on2" ID="{FEBCBA17-F496-46E9-A566-6A4804C35E58}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</RandomSequenceContainer>
+								<RandomSequenceContainer Name="Crash" ID="{866D9CFA-D043-45AA-A652-3C34825BDB3B}" ShortID="920376773">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{48ED21AE-A92D-4FE4-ABC7-8DBC0FD43A04}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{80B98C60-A93B-4ADD-84FE-5D660F5C4E93}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="Crash Jingle 1" ID="{1B966969-D4A1-4313-991B-9E50C97690FC}" ShortID="299753711">
+											<PropertyList>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{48ED21AE-A92D-4FE4-ABC7-8DBC0FD43A04}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{80B98C60-A93B-4ADD-84FE-5D660F5C4E93}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Crash Jingle 1" ID="{E60BD345-2219-4B4B-9A2E-B82B099FD9AD}">
+													<Language>English(US)</Language>
+													<AudioFile>Crash Jingle 1.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="331411047"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Crash Jingle 1" ID="{E60BD345-2219-4B4B-9A2E-B82B099FD9AD}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Crash Jingle 2" ID="{E995D3A4-626E-4DA7-95D9-3C66307B0B07}" ShortID="265171917">
+											<PropertyList>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{48ED21AE-A92D-4FE4-ABC7-8DBC0FD43A04}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{80B98C60-A93B-4ADD-84FE-5D660F5C4E93}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Crash Jingle 2" ID="{61862751-4663-43AB-A2AF-2278791FA846}">
+													<Language>English(US)</Language>
+													<AudioFile>Crash Jingle 2.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="851095354"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Crash Jingle 2" ID="{61862751-4663-43AB-A2AF-2278791FA846}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</RandomSequenceContainer>
+								<RandomSequenceContainer Name="PowerDown" ID="{F2B70721-2980-4D0F-A4F7-E054F1A95E64}" ShortID="65610486">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{48ED21AE-A92D-4FE4-ABC7-8DBC0FD43A04}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{80B98C60-A93B-4ADD-84FE-5D660F5C4E93}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="powerdown 2" ID="{496BE6B6-D383-4754-BED6-4CFFA93D5741}" ShortID="653434465">
+											<PropertyList>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{48ED21AE-A92D-4FE4-ABC7-8DBC0FD43A04}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{80B98C60-A93B-4ADD-84FE-5D660F5C4E93}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="powerdown 2" ID="{9094E337-44CE-43B4-B63D-776A7C634747}">
+													<Language>English(US)</Language>
+													<AudioFile>powerdown 2.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="632180772"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="powerdown 2" ID="{9094E337-44CE-43B4-B63D-776A7C634747}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="powerdown" ID="{4FED5959-7714-4E28-8926-79087327A38A}" ShortID="580508188">
+											<PropertyList>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{48ED21AE-A92D-4FE4-ABC7-8DBC0FD43A04}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{80B98C60-A93B-4ADD-84FE-5D660F5C4E93}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="powerdown" ID="{793F0CC7-E482-4A92-8050-5C2880C59267}">
+													<Language>English(US)</Language>
+													<AudioFile>powerdown.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="371472513"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="powerdown" ID="{793F0CC7-E482-4A92-8050-5C2880C59267}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</RandomSequenceContainer>
+								<RandomSequenceContainer Name="Alert" ID="{78557A59-0B19-47CC-A33D-C497A8306D18}" ShortID="967860389">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{48ED21AE-A92D-4FE4-ABC7-8DBC0FD43A04}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{80B98C60-A93B-4ADD-84FE-5D660F5C4E93}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="Biplo_popup1" ID="{25FE5566-D566-4891-80D8-5F1F4D83097C}" ShortID="795759431">
+											<PropertyList>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{48ED21AE-A92D-4FE4-ABC7-8DBC0FD43A04}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{80B98C60-A93B-4ADD-84FE-5D660F5C4E93}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Biplo_popup1" ID="{C9361A05-D52B-4F9D-B874-9E5AC57D380E}">
+													<Language>English(US)</Language>
+													<AudioFile>Biplo_popup1.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="632927939"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Biplo_popup1" ID="{C9361A05-D52B-4F9D-B874-9E5AC57D380E}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Biplo_popup2" ID="{66CEFDAD-B332-4532-9618-0FB2C321A152}" ShortID="298942310">
+											<PropertyList>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{48ED21AE-A92D-4FE4-ABC7-8DBC0FD43A04}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{80B98C60-A93B-4ADD-84FE-5D660F5C4E93}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Biplo_popup2" ID="{4029863C-73CD-4518-BDD7-6EC27F55AF28}">
+													<Language>English(US)</Language>
+													<AudioFile>Biplo_popup2.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="1012379241"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Biplo_popup2" ID="{4029863C-73CD-4518-BDD7-6EC27F55AF28}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Biplo_popup3" ID="{76E9E7D8-3E52-4D82-9B1E-CE47B80ABEEA}" ShortID="4032797">
+											<PropertyList>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{48ED21AE-A92D-4FE4-ABC7-8DBC0FD43A04}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{80B98C60-A93B-4ADD-84FE-5D660F5C4E93}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Biplo_popup3" ID="{4856E708-825C-4A04-A13C-BDCB83DF6435}">
+													<Language>English(US)</Language>
+													<AudioFile>Biplo_popup3.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="311142601"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Biplo_popup3" ID="{4856E708-825C-4A04-A13C-BDCB83DF6435}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</RandomSequenceContainer>
+								<Sound Name="Biplo_err" ID="{49811EFD-4BE6-491C-AAF6-72AAA574C916}" ShortID="952383718">
+									<PropertyList>
+										<Property Name="IsVoice" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{48ED21AE-A92D-4FE4-ABC7-8DBC0FD43A04}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{80B98C60-A93B-4ADD-84FE-5D660F5C4E93}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Biplo_err" ID="{555EE830-EBC6-41D7-A6D3-3F7A7475D8B6}">
+											<Language>English(US)</Language>
+											<AudioFile>Biplo_err.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="313025526"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Biplo_err" ID="{555EE830-EBC6-41D7-A6D3-3F7A7475D8B6}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</Folder>
+					</ChildrenList>
+				</Folder>
+				<RandomSequenceContainer Name="DoorUnlock" ID="{410DB35E-FC54-4635-A33A-CAF9D3EDF82B}" ShortID="69516747">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{48ED21AE-A92D-4FE4-ABC7-8DBC0FD43A04}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{80B98C60-A93B-4ADD-84FE-5D660F5C4E93}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<Sound Name="DoorUnlock2" ID="{3F20865A-FAF9-48BC-BAE7-80B6E618EA0B}" ShortID="1025856618">
+							<PropertyList>
+								<Property Name="IsVoice" Type="bool" Value="True"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{48ED21AE-A92D-4FE4-ABC7-8DBC0FD43A04}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{80B98C60-A93B-4ADD-84FE-5D660F5C4E93}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="DoorUnlock2" ID="{F6229C07-A0AE-4D77-A4D8-8A13B3695898}">
+									<Language>English(US)</Language>
+									<AudioFile>DoorUnlock2.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="429305206"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="DoorUnlock2" ID="{F6229C07-A0AE-4D77-A4D8-8A13B3695898}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="DoorUnlock" ID="{CDD392C4-19CE-412C-9C39-220707B23988}" ShortID="967584766">
+							<PropertyList>
+								<Property Name="IsVoice" Type="bool" Value="True"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{48ED21AE-A92D-4FE4-ABC7-8DBC0FD43A04}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{80B98C60-A93B-4ADD-84FE-5D660F5C4E93}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="DoorUnlock" ID="{62C46F46-893A-4656-B3DE-5B42AA37DF83}">
+									<Language>English(US)</Language>
+									<AudioFile>DoorUnlock.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="519674470"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="DoorUnlock" ID="{62C46F46-893A-4656-B3DE-5B42AA37DF83}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+				</RandomSequenceContainer>
+				<Sound Name="DoorZap2" ID="{4F0DE1B2-3E27-4F08-BA7B-1B41A40A0AFA}" ShortID="45553855">
+					<PropertyList>
+						<Property Name="IsVoice" Type="bool" Value="True"/>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{48ED21AE-A92D-4FE4-ABC7-8DBC0FD43A04}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{80B98C60-A93B-4ADD-84FE-5D660F5C4E93}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="DoorZap2" ID="{01E536C8-816D-4B07-A0FC-244A6E9B5401}">
+							<Language>English(US)</Language>
+							<AudioFile>DoorZap2.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="825767663"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="DoorZap2" ID="{01E536C8-816D-4B07-A0FC-244A6E9B5401}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+			</ChildrenList>
+		</WorkUnit>
+	</AudioObjects>
+</WwiseDocument>

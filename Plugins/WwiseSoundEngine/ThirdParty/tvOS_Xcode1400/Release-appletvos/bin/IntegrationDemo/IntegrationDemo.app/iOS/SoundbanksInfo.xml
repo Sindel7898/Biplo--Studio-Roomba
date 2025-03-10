@@ -1,0 +1,2425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="iOS" BasePlatform="iOS" SchemaVersion="16" SoundBankVersion="154">
+	<RootPaths>
+		<ProjectRoot>../..</ProjectRoot>
+		<SourceFilesRoot>../../.cache</SourceFilesRoot>
+		<SoundBanksRoot>.</SoundBanksRoot>
+		<ExternalSourcesInputFile>../../myExternalSources/ExtSourceList.wsources</ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>../../.cache/ExternalSources/iOS</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents>
+		<DialogueEvent Id="3970659059" Name="Objective_Status">
+			<Arguments>
+				<Argument Id="1304109583" Name="Unit"/>
+				<Argument Id="6899006" Name="Objective"/>
+				<Argument Id="3299963692" Name="ObjectiveStatus"/>
+			</Arguments>
+		</DialogueEvent>
+		<DialogueEvent Id="3585983975" Name="Unit_Under_Attack">
+			<Arguments>
+				<Argument Id="1304109583" Name="Unit"/>
+				<Argument Id="3712907969" Name="Hostile"/>
+				<Argument Id="1176052424" Name="Location"/>
+			</Arguments>
+		</DialogueEvent>
+		<DialogueEvent Id="4110439188" Name="WalkieTalkie">
+			<Arguments>
+				<Argument Id="4110439188" Name="WalkieTalkie"/>
+			</Arguments>
+		</DialogueEvent>
+	</DialogueEvents>
+	<SoundBanks>
+		<SoundBank Id="243379636" Type="User" Language="SFX" Hash="{680EBC90-6164-992F-3629-BEC32D978BF2}">
+			<ShortName>Reflect</ShortName>
+			<Path>Reflect.bnk</Path>
+			<Media>
+				<File Id="194525097" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Speech_sample-23LUFS.wav</ShortName>
+					<CachePath>B2/{B28D3C92-4FC6-1A3E-042F-212CAF8B934B}.wem</CachePath>
+				</File>
+			</Media>
+			<Plugins>
+				<Custom>
+					<Plugin Id="535978647" Name="Tone Generator" LibName="Wwise Tone Generator" LibId="6684674"/>
+				</Custom>
+			</Plugins>
+			<Events>
+				<Event Id="4277702254" Name="Play_Reflect_Emitter">
+					<MediaRefs>
+						<MediaRef Id="194525097"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1819748220" Name="ER"/>
+					</AuxBusRefs>
+				</Event>
+				<Event Id="3095552314" Name="Play_Reflect_Noise">
+					<PluginRefs>
+						<Custom>
+							<PluginRef Id="535978647"/>
+						</Custom>
+					</PluginRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1819748220" Name="ER"/>
+					</AuxBusRefs>
+				</Event>
+			</Events>
+		</SoundBank>
+		<SoundBank Id="412724365" Type="User" Language="SFX" Hash="{818613FA-ABFD-5EB1-1FA1-2B2F356B8999}">
+			<ShortName>BGM</ShortName>
+			<Path>BGM.bnk</Path>
+			<Media>
+				<File Id="849825588" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Bass160Fight3.wav</ShortName>
+					<CachePath>1E/{1E49C8AE-1B5F-1144-6324-46C8893244BC}.wem</CachePath>
+				</File>
+				<File Id="1028934394" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Guitar.wav</ShortName>
+					<CachePath>00/{0085EB9F-1374-0DE2-3B3F-B78092DED551}.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="3873244457" Name="Play_NonRecordableMusic">
+					<MediaRefs>
+						<MediaRef Id="1028934394"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2567011622" Name="Play_RecordableMusic">
+					<MediaRefs>
+						<MediaRef Id="849825588"/>
+					</MediaRefs>
+				</Event>
+			</Events>
+		</SoundBank>
+		<SoundBank Id="418215934" Type="User" Language="SFX" Hash="{8AF24BBA-DA88-C99E-9038-50DDB9094E16}">
+			<ShortName>Positioning_Demo</ShortName>
+			<Path>Positioning_Demo.bnk</Path>
+			<Plugins>
+				<Custom>
+					<Plugin Id="216464226" Name="Tone Generator" LibName="Wwise Tone Generator" LibId="6684674"/>
+				</Custom>
+			</Plugins>
+			<Events>
+				<Event Id="1237313597" Name="Play_Positioning_Demo">
+					<PluginRefs>
+						<Custom>
+							<PluginRef Id="216464226"/>
+						</Custom>
+					</PluginRefs>
+				</Event>
+			</Events>
+		</SoundBank>
+		<SoundBank Id="438105790" Type="Bus" Language="SFX" Hash="{938B2B87-C0EF-645C-1BB1-3AEEAAB9287F}">
+			<ShortName>Outside</ShortName>
+			<Path>Bus/Outside.bnk</Path>
+			<Plugins>
+				<ShareSets>
+					<Plugin Id="88356853" Name="Huge_Space_Garage" LibName="Wwise RoomVerb" LibId="7733251"/>
+				</ShareSets>
+			</Plugins>
+			<AuxBusses>
+				<AuxBus Id="438105790" Name="Outside">
+					<PluginRefs>
+						<ShareSets>
+							<PluginRef Id="88356853"/>
+						</ShareSets>
+					</PluginRefs>
+				</AuxBus>
+			</AuxBusses>
+		</SoundBank>
+		<SoundBank Id="480966290" Type="User" Language="SFX" Hash="{97628887-B393-CBC0-4F3A-C669F2EF3179}">
+			<ShortName>ExternalSources</ShortName>
+			<Path>ExternalSources.bnk</Path>
+			<ExternalSources>
+				<Source Cookie="4004957102" Name="Extern_1st_number"/>
+				<Source Cookie="293435250" Name="Extern_2nd_number"/>
+				<Source Cookie="978954801" Name="Extern_3rd_number"/>
+			</ExternalSources>
+			<Events>
+				<Event Id="4142087708" Name="Play_Three_Numbers_in_a_Row">
+					<ExternalSourceRefs>
+						<ExternalSourceRef Cookie="293435250"/>
+						<ExternalSourceRef Cookie="978954801"/>
+						<ExternalSourceRef Cookie="4004957102"/>
+					</ExternalSourceRefs>
+				</Event>
+			</Events>
+		</SoundBank>
+		<SoundBank Id="924456902" Type="Bus" Language="SFX" Hash="{E69CF30B-5739-986B-8AA1-6D4660E4E33C}">
+			<ShortName>ListenerEnv</ShortName>
+			<Path>Bus/ListenerEnv.bnk</Path>
+			<Plugins>
+				<Custom>
+					<Plugin Id="204868897" Name="Wwise Stereo Delay (Custom)" LibName="Wwise Stereo Delay" LibId="8847363"/>
+				</Custom>
+			</Plugins>
+			<AuxBusses>
+				<AuxBus Id="924456902" Name="ListenerEnv">
+					<PluginRefs>
+						<Custom>
+							<PluginRef Id="204868897"/>
+						</Custom>
+					</PluginRefs>
+				</AuxBus>
+			</AuxBusses>
+		</SoundBank>
+		<SoundBank Id="983016381" Type="User" Language="SFX" Hash="{A0E7F0FF-0DC5-3B21-F107-591311DA9AC8}">
+			<ShortName>Car</ShortName>
+			<Path>Car.bnk</Path>
+			<Media>
+				<File Id="77544352" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Porsche_Outside_On-Load_3000_01.wav</ShortName>
+					<CachePath>BC/{BCCD1F4B-81BE-31F6-8071-45BCD3F05E54}.wem</CachePath>
+				</File>
+				<File Id="401675520" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Porsche_Outside_On-Load_6000_01.wav</ShortName>
+					<CachePath>E4/{E4EA90CE-A3B1-BECA-4B55-5DBFC6E1C641}.wem</CachePath>
+				</File>
+				<File Id="486600864" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Porsche_Outside_On-Load_4000_01.wav</ShortName>
+					<CachePath>43/{43EEC80C-DDF8-5519-5EB2-A90FEBBCFC4C}.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="639345804" Name="Play_Engine">
+					<MediaRefs>
+						<MediaRef Id="77544352"/>
+						<MediaRef Id="401675520"/>
+						<MediaRef Id="486600864"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="37214798" Name="Stop_Engine"/>
+			</Events>
+			<GameParameters>
+				<GameParameter Id="796049864" Name="RPM"/>
+			</GameParameters>
+		</SoundBank>
+		<SoundBank Id="1028808198" Type="User" Language="English(US)" Hash="{2D4F511A-5467-F329-52E1-9919F6ECE6D5}">
+			<ShortName>DynamicDialogue</ShortName>
+			<Path>English(US)/DynamicDialogue.bnk</Path>
+			<Media>
+				<File Id="28779853" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNB-HS-HG_01.wav</ShortName>
+					<CachePath>49/{49E71908-8913-03CC-67EC-C16E5EA2A96F}.wem</CachePath>
+				</File>
+				<File Id="38027547" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>WalkieTalkie_OUT_06.wav</ShortName>
+					<CachePath>D7/{D7807195-4922-9EFC-6010-6BC43DDBA536}.wem</CachePath>
+				</File>
+				<File Id="54720405" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNB-BM-LO_01.wav</ShortName>
+					<CachePath>D6/{D6CAF23E-56DF-1E9C-44D1-77D177DC65E7}.wem</CachePath>
+				</File>
+				<File Id="58593093" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNB-GG-ST_01.wav</ShortName>
+					<CachePath>B5/{B5FD093F-B522-3271-2FB1-CED53FD34F45}.wem</CachePath>
+				</File>
+				<File Id="61298839" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNB-HS-LO_01.wav</ShortName>
+					<CachePath>86/{86FDC0A0-C46B-4FEA-FB82-DE38B719D06E}.wem</CachePath>
+				</File>
+				<File Id="62681434" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNB-RH-OS_01.wav</ShortName>
+					<CachePath>C1/{C1957EDF-2D03-2B58-7927-C183DF0D535F}.wem</CachePath>
+				</File>
+				<File Id="99661973" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNA-GG-LO_01.wav</ShortName>
+					<CachePath>B9/{B903C8C6-F4C0-7DCB-C5E0-036B534E4446}.wem</CachePath>
+				</File>
+				<File Id="109058487" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNA-GG-AL_01.wav</ShortName>
+					<CachePath>4F/{4FEA7CB4-A83F-A650-62DF-D1EBDBFB95C5}.wem</CachePath>
+				</File>
+				<File Id="110186142" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNA-GG-ST_01.wav</ShortName>
+					<CachePath>0E/{0E2D9FE5-EDC4-AF10-9173-F19D296659EC}.wem</CachePath>
+				</File>
+				<File Id="114039653" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNB-DB-FL_01.wav</ShortName>
+					<CachePath>31/{31D5A214-E213-3A3D-F194-17F8F1239CF4}.wem</CachePath>
+				</File>
+				<File Id="122150048" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNA-HS-ST_01.wav</ShortName>
+					<CachePath>8F/{8F3C72FB-C44C-1666-24E5-D2B06D711369}.wem</CachePath>
+				</File>
+				<File Id="130972370" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>WalkieTalkie_OUT_01.wav</ShortName>
+					<CachePath>DA/{DA3EBEAB-A08F-0244-3ABB-872BC189C9BE}.wem</CachePath>
+				</File>
+				<File Id="143955854" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNB-DB-CP_01.wav</ShortName>
+					<CachePath>B3/{B340E1BE-5192-7B02-74A8-48AE28122915}.wem</CachePath>
+				</File>
+				<File Id="152207618" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>WalkieTalkie_OUT_03.wav</ShortName>
+					<CachePath>B2/{B2F42959-5504-20E8-642F-05A97BE75BEC}.wem</CachePath>
+				</File>
+				<File Id="154332458" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>WalkieTalkie_IN_05.wav</ShortName>
+					<CachePath>66/{66E4782F-0C94-7C13-C306-A6188F4B10FC}.wem</CachePath>
+				</File>
+				<File Id="160029535" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNB-BM-HG_01.wav</ShortName>
+					<CachePath>DC/{DCE470DB-46D7-1543-DF38-1487A364895B}.wem</CachePath>
+				</File>
+				<File Id="171852403" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNB-NH-OS_01.wav</ShortName>
+					<CachePath>58/{58C590F5-8526-FC91-BC10-1B6C597C1F2E}.wem</CachePath>
+				</File>
+				<File Id="222251975" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNB-RH-FL_01.wav</ShortName>
+					<CachePath>D0/{D0A7C75F-6E5D-415A-723D-776F47E4CA06}.wem</CachePath>
+				</File>
+				<File Id="241281798" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNA-GG-HG_01.wav</ShortName>
+					<CachePath>B4/{B42B4986-B959-80A1-C942-5F9B250C2DCE}.wem</CachePath>
+				</File>
+				<File Id="260542699" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>WalkieTalkie_OUT_05.wav</ShortName>
+					<CachePath>38/{38E113E2-F09B-90AE-9C5A-64E37DBD7895}.wem</CachePath>
+				</File>
+				<File Id="296510554" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNA-NH-CP_01.wav</ShortName>
+					<CachePath>A6/{A6DD6F1D-A885-3294-52AC-80BAFAF92D34}.wem</CachePath>
+				</File>
+				<File Id="302248483" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNB-OB-CP_02.wav</ShortName>
+					<CachePath>56/{563C4EF2-E885-566D-AD55-595A02AA291A}.wem</CachePath>
+				</File>
+				<File Id="302361834" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNA-BM-LO_01.wav</ShortName>
+					<CachePath>F5/{F538D0E9-A32E-261F-A9BE-A94067EFD562}.wem</CachePath>
+				</File>
+				<File Id="323616383" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNA-BM-AL_01.wav</ShortName>
+					<CachePath>39/{395C6146-D98D-8F7A-C4E7-FAC009543B98}.wem</CachePath>
+				</File>
+				<File Id="324373550" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNB-NH-FL_01.wav</ShortName>
+					<CachePath>A4/{A425B250-04CA-B22B-FC21-B0858F5BD397}.wem</CachePath>
+				</File>
+				<File Id="334920825" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNA-HS-AL_01.wav</ShortName>
+					<CachePath>14/{146E2071-8DCF-7A4A-D591-D2A53F7BE9C7}.wem</CachePath>
+				</File>
+				<File Id="335324092" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNB-BM-AL_01.wav</ShortName>
+					<CachePath>06/{06FE503E-3675-4128-55EE-F409133D355F}.wem</CachePath>
+				</File>
+				<File Id="346143568" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNA-OB-FL_01.wav</ShortName>
+					<CachePath>FB/{FB686346-C5F7-9D94-4D9F-17191A077C76}.wem</CachePath>
+				</File>
+				<File Id="352019296" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>WalkieTalkie_IN_02.wav</ShortName>
+					<CachePath>E8/{E886ACFD-CEF9-1F72-AFDE-C02C500B4DC1}.wem</CachePath>
+				</File>
+				<File Id="385859352" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNA-DB-FL_01.wav</ShortName>
+					<CachePath>10/{10A4755A-3AFE-0469-836D-C689C35627D5}.wem</CachePath>
+				</File>
+				<File Id="407699839" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNA-BM-HG_01.wav</ShortName>
+					<CachePath>10/{10846832-DE4E-6370-4CCA-CEF92A37ABC9}.wem</CachePath>
+				</File>
+				<File Id="431999696" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>WalkieTalkie_OUT_02.wav</ShortName>
+					<CachePath>4A/{4AEE0229-75C6-88FA-07DD-73B46BD661F6}.wem</CachePath>
+				</File>
+				<File Id="440704108" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNB-OB-CP_01.wav</ShortName>
+					<CachePath>AD/{ADE7617B-323F-139B-F568-B6191320C573}.wem</CachePath>
+				</File>
+				<File Id="465726618" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNB-GG-AL_01.wav</ShortName>
+					<CachePath>4E/{4EC95877-9C67-EBB6-6AB5-1BE5F30A4EF5}.wem</CachePath>
+				</File>
+				<File Id="473745409" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNB-HS-AL_01.wav</ShortName>
+					<CachePath>9E/{9E2D387E-9B74-1DD3-96FC-9EC1135282D2}.wem</CachePath>
+				</File>
+				<File Id="528410234" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNB-OB-OS_02.wav</ShortName>
+					<CachePath>E0/{E079FF0B-5367-5622-0B55-3AAAA4373E70}.wem</CachePath>
+				</File>
+				<File Id="533589659" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNB-HS-ST_01.wav</ShortName>
+					<CachePath>74/{7464EF1A-C84B-8B3B-75D3-2973DF296C73}.wem</CachePath>
+				</File>
+				<File Id="566477244" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNA-RH-CP_01.wav</ShortName>
+					<CachePath>2F/{2F698438-0540-70E4-4E23-D4B956A7D36A}.wem</CachePath>
+				</File>
+				<File Id="605195977" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNA-NH-OS_01.wav</ShortName>
+					<CachePath>84/{84C74BD6-C768-4E73-A163-B0E601B8902A}.wem</CachePath>
+				</File>
+				<File Id="615211791" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNB-RH-CP_01.wav</ShortName>
+					<CachePath>FA/{FA7BA59C-7E43-F8E1-95B1-31548396D266}.wem</CachePath>
+				</File>
+				<File Id="623421104" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>WalkieTalkie_IN_03.wav</ShortName>
+					<CachePath>51/{5138BD53-BB7C-CABB-B5AD-6B521B9ABA8C}.wem</CachePath>
+				</File>
+				<File Id="625976811" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNA-OB-OS_01.wav</ShortName>
+					<CachePath>6A/{6A13A3AA-F16E-8EC7-0B6C-4C738BE810A7}.wem</CachePath>
+				</File>
+				<File Id="630542219" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNB-BM-ST_01.wav</ShortName>
+					<CachePath>25/{252A3D7B-CA02-82EF-F992-E0827FCF956B}.wem</CachePath>
+				</File>
+				<File Id="647502295" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNA-DB-CP_01.wav</ShortName>
+					<CachePath>92/{9229CA7C-1390-AD7C-9A70-5F8B09462F0C}.wem</CachePath>
+				</File>
+				<File Id="680889701" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>WalkieTalkie_OUT_07.wav</ShortName>
+					<CachePath>57/{57AAF828-0699-0D76-57B3-604F9814D880}.wem</CachePath>
+				</File>
+				<File Id="689721741" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNB-OB-OS_03.wav</ShortName>
+					<CachePath>0E/{0E5066B4-E7B4-98DF-7E95-FF27B83C8F01}.wem</CachePath>
+				</File>
+				<File Id="728268619" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNB-GG-HG_01.wav</ShortName>
+					<CachePath>D3/{D3132990-759E-CA7A-CA8B-509AEE6066F0}.wem</CachePath>
+				</File>
+				<File Id="729243488" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNA-BM-ST_01.wav</ShortName>
+					<CachePath>34/{346D56DC-6FE7-C8A3-259B-A7924787F529}.wem</CachePath>
+				</File>
+				<File Id="740266105" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNA-HS-HG_01.wav</ShortName>
+					<CachePath>FF/{FF8BF01D-5B3A-1A5E-944E-AE85A3BE9B59}.wem</CachePath>
+				</File>
+				<File Id="744200626" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNA-OB-OS_02.wav</ShortName>
+					<CachePath>A1/{A1349312-4D50-3294-5A97-1E7A5B08EDFD}.wem</CachePath>
+				</File>
+				<File Id="755600443" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNB-NH-CP_01.wav</ShortName>
+					<CachePath>80/{801B2938-7996-0AE1-4DEA-BBC3DF6983E9}.wem</CachePath>
+				</File>
+				<File Id="787555637" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNA-OB-OS_03.wav</ShortName>
+					<CachePath>AB/{AB04CFC8-226D-18AE-ECC2-8146CFDED4CC}.wem</CachePath>
+				</File>
+				<File Id="854311290" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNA-DB-OS_01.wav</ShortName>
+					<CachePath>71/{716CEB60-6B08-88DB-4F6A-50DB7F1330C4}.wem</CachePath>
+				</File>
+				<File Id="856886473" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNA-HS-LO_01.wav</ShortName>
+					<CachePath>E2/{E2467EBE-5808-5F77-8272-0406A32034DA}.wem</CachePath>
+				</File>
+				<File Id="898084552" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNA-OB-CP_02.wav</ShortName>
+					<CachePath>66/{6682B056-9D37-9289-310F-35ED7D8EBF51}.wem</CachePath>
+				</File>
+				<File Id="904429250" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNA-OB-CP_01.wav</ShortName>
+					<CachePath>55/{5547B71C-F28E-E47F-8FFB-6CEB50C043D7}.wem</CachePath>
+				</File>
+				<File Id="920042801" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNB-OB-OS_01.wav</ShortName>
+					<CachePath>76/{760A302C-68F9-6382-51E0-E0940048BE80}.wem</CachePath>
+				</File>
+				<File Id="921528663" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>WalkieTalkie_IN_04.wav</ShortName>
+					<CachePath>68/{687B0658-EA12-C321-FDD1-F2D53BE3B3D6}.wem</CachePath>
+				</File>
+				<File Id="924301855" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>WalkieTalkie_IN_01.wav</ShortName>
+					<CachePath>E4/{E4D3A94C-9CF0-392D-D55D-608FFDE4FA0F}.wem</CachePath>
+				</File>
+				<File Id="927632933" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>WalkieTalkie_OUT_04.wav</ShortName>
+					<CachePath>6C/{6C5F5A34-6356-11B0-C53F-10C31D4BA865}.wem</CachePath>
+				</File>
+				<File Id="929317968" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNB-DB-OS_01.wav</ShortName>
+					<CachePath>DF/{DFDDEBDB-9095-850B-09A0-678A7F3E58A1}.wem</CachePath>
+				</File>
+				<File Id="940172438" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNA-RH-FL_01.wav</ShortName>
+					<CachePath>5B/{5B7E0BAB-CCF7-6E19-EDB1-68C9ED469E11}.wem</CachePath>
+				</File>
+				<File Id="951541173" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNB-OB-CP_03.wav</ShortName>
+					<CachePath>26/{26DF6FDC-D9DC-6C19-D755-B6BF78DE7EAE}.wem</CachePath>
+				</File>
+				<File Id="955204429" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNB-GG-LO_01.wav</ShortName>
+					<CachePath>95/{95ED34BF-716F-786F-CBDD-2A11C50C7229}.wem</CachePath>
+				</File>
+				<File Id="1008848796" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNA-RH-OS_01.wav</ShortName>
+					<CachePath>86/{86F60F5E-5E28-375A-5534-90180C5F9ED1}.wem</CachePath>
+				</File>
+				<File Id="1012312638" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNB-OB-FL_01.wav</ShortName>
+					<CachePath>D4/{D4BE5E77-E8C0-A903-12CD-830D4155EE8E}.wem</CachePath>
+				</File>
+				<File Id="1020905538" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>WalkieTalkie_IN_06.wav</ShortName>
+					<CachePath>75/{750ED98F-B1A9-B0BF-DA3A-4C384FF1E2CE}.wem</CachePath>
+				</File>
+				<File Id="1024498142" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNA-OB-CP_03.wav</ShortName>
+					<CachePath>DE/{DE20CE9C-73F4-D068-4101-49767CB96AE9}.wem</CachePath>
+				</File>
+				<File Id="1046575232" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>UNA-NH-FL_01.wav</ShortName>
+					<CachePath>C5/{C51E81C8-6AF3-D8AF-0536-0257E0A506C5}.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="3864097025" Name="Pause_All"/>
+				<Event Id="3679762312" Name="Resume_All"/>
+				<Event Id="452547817" Name="Stop_All"/>
+			</Events>
+			<DialogueEvents>
+				<DialogueEvent Id="3970659059" Name="Objective_Status"/>
+				<DialogueEvent Id="3585983975" Name="Unit_Under_Attack"/>
+				<DialogueEvent Id="4110439188" Name="WalkieTalkie"/>
+			</DialogueEvents>
+			<StateGroups>
+				<StateGroup Id="6899006" Name="Objective">
+					<States>
+						<State Id="141419130" Name="NeutralizeHostile"/>
+						<State Id="748895195" Name="None"/>
+						<State Id="3261872615" Name="DefuseBomb"/>
+						<State Id="3841112373" Name="RescueHostage"/>
+					</States>
+				</StateGroup>
+				<StateGroup Id="1176052424" Name="Location">
+					<States>
+						<State Id="672587556" Name="Alley"/>
+						<State Id="748895195" Name="None"/>
+						<State Id="2192450996" Name="Hangar"/>
+						<State Id="4142189312" Name="Street"/>
+					</States>
+				</StateGroup>
+				<StateGroup Id="1304109583" Name="Unit">
+					<States>
+						<State Id="748895195" Name="None"/>
+						<State Id="3004848132" Name="Unit_B"/>
+						<State Id="3004848135" Name="Unit_A"/>
+					</States>
+				</StateGroup>
+				<StateGroup Id="3299963692" Name="ObjectiveStatus">
+					<States>
+						<State Id="94054856" Name="Completed"/>
+						<State Id="748895195" Name="None"/>
+						<State Id="1655200910" Name="Failed"/>
+					</States>
+				</StateGroup>
+				<StateGroup Id="3712907969" Name="Hostile">
+					<States>
+						<State Id="685704824" Name="Gang"/>
+						<State Id="714721627" Name="Bum"/>
+						<State Id="748895195" Name="None"/>
+					</States>
+				</StateGroup>
+				<StateGroup Id="4110439188" Name="WalkieTalkie">
+					<States>
+						<State Id="748895195" Name="None"/>
+						<State Id="1553720736" Name="Comm_Out"/>
+						<State Id="1856010785" Name="Comm_In"/>
+					</States>
+				</StateGroup>
+			</StateGroups>
+		</SoundBank>
+		<SoundBank Id="1028808198" Type="User" Language="French(Canada)" Hash="{D9FFC54A-CD21-1A08-D1E7-F209FBA4B4D0}">
+			<ShortName>DynamicDialogue</ShortName>
+			<Path>French(Canada)/DynamicDialogue.bnk</Path>
+			<Media>
+				<File Id="28779853" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNB-HS-HG_01.wav</ShortName>
+					<CachePath>49/{49E71908-8913-03CC-67EC-C16E5EA2A96F}.wem</CachePath>
+				</File>
+				<File Id="38027547" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>WalkieTalkie_OUT_06.wav</ShortName>
+					<CachePath>D7/{D7807195-4922-9EFC-6010-6BC43DDBA536}.wem</CachePath>
+				</File>
+				<File Id="54720405" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNB-BM-LO_01.wav</ShortName>
+					<CachePath>D6/{D6CAF23E-56DF-1E9C-44D1-77D177DC65E7}.wem</CachePath>
+				</File>
+				<File Id="58593093" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNB-GG-ST_01.wav</ShortName>
+					<CachePath>B5/{B5FD093F-B522-3271-2FB1-CED53FD34F45}.wem</CachePath>
+				</File>
+				<File Id="61298839" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNB-HS-LO_01.wav</ShortName>
+					<CachePath>86/{86FDC0A0-C46B-4FEA-FB82-DE38B719D06E}.wem</CachePath>
+				</File>
+				<File Id="62681434" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNB-RH-OS_01.wav</ShortName>
+					<CachePath>C1/{C1957EDF-2D03-2B58-7927-C183DF0D535F}.wem</CachePath>
+				</File>
+				<File Id="99661973" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNA-GG-LO_01.wav</ShortName>
+					<CachePath>B9/{B903C8C6-F4C0-7DCB-C5E0-036B534E4446}.wem</CachePath>
+				</File>
+				<File Id="109058487" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNA-GG-AL_01.wav</ShortName>
+					<CachePath>4F/{4FEA7CB4-A83F-A650-62DF-D1EBDBFB95C5}.wem</CachePath>
+				</File>
+				<File Id="110186142" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNA-GG-ST_01.wav</ShortName>
+					<CachePath>0E/{0E2D9FE5-EDC4-AF10-9173-F19D296659EC}.wem</CachePath>
+				</File>
+				<File Id="114039653" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNB-DB-FL_01.wav</ShortName>
+					<CachePath>31/{31D5A214-E213-3A3D-F194-17F8F1239CF4}.wem</CachePath>
+				</File>
+				<File Id="122150048" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNA-HS-ST_01.wav</ShortName>
+					<CachePath>8F/{8F3C72FB-C44C-1666-24E5-D2B06D711369}.wem</CachePath>
+				</File>
+				<File Id="130972370" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>WalkieTalkie_OUT_01.wav</ShortName>
+					<CachePath>DA/{DA3EBEAB-A08F-0244-3ABB-872BC189C9BE}.wem</CachePath>
+				</File>
+				<File Id="143955854" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNB-DB-CP_01.wav</ShortName>
+					<CachePath>B3/{B340E1BE-5192-7B02-74A8-48AE28122915}.wem</CachePath>
+				</File>
+				<File Id="152207618" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>WalkieTalkie_OUT_03.wav</ShortName>
+					<CachePath>B2/{B2F42959-5504-20E8-642F-05A97BE75BEC}.wem</CachePath>
+				</File>
+				<File Id="154332458" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>WalkieTalkie_IN_05.wav</ShortName>
+					<CachePath>66/{66E4782F-0C94-7C13-C306-A6188F4B10FC}.wem</CachePath>
+				</File>
+				<File Id="160029535" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNB-BM-HG_01.wav</ShortName>
+					<CachePath>DC/{DCE470DB-46D7-1543-DF38-1487A364895B}.wem</CachePath>
+				</File>
+				<File Id="171852403" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNB-NH-OS_01.wav</ShortName>
+					<CachePath>58/{58C590F5-8526-FC91-BC10-1B6C597C1F2E}.wem</CachePath>
+				</File>
+				<File Id="222251975" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNB-RH-FL_01.wav</ShortName>
+					<CachePath>D0/{D0A7C75F-6E5D-415A-723D-776F47E4CA06}.wem</CachePath>
+				</File>
+				<File Id="241281798" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNA-GG-HG_01.wav</ShortName>
+					<CachePath>B4/{B42B4986-B959-80A1-C942-5F9B250C2DCE}.wem</CachePath>
+				</File>
+				<File Id="260542699" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>WalkieTalkie_OUT_05.wav</ShortName>
+					<CachePath>38/{38E113E2-F09B-90AE-9C5A-64E37DBD7895}.wem</CachePath>
+				</File>
+				<File Id="296510554" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNA-NH-CP_01.wav</ShortName>
+					<CachePath>A6/{A6DD6F1D-A885-3294-52AC-80BAFAF92D34}.wem</CachePath>
+				</File>
+				<File Id="302248483" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNB-OB-CP_02.wav</ShortName>
+					<CachePath>56/{563C4EF2-E885-566D-AD55-595A02AA291A}.wem</CachePath>
+				</File>
+				<File Id="302361834" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNA-BM-LO_01.wav</ShortName>
+					<CachePath>F5/{F538D0E9-A32E-261F-A9BE-A94067EFD562}.wem</CachePath>
+				</File>
+				<File Id="323616383" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNA-BM-AL_01.wav</ShortName>
+					<CachePath>39/{395C6146-D98D-8F7A-C4E7-FAC009543B98}.wem</CachePath>
+				</File>
+				<File Id="324373550" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNB-NH-FL_01.wav</ShortName>
+					<CachePath>A4/{A425B250-04CA-B22B-FC21-B0858F5BD397}.wem</CachePath>
+				</File>
+				<File Id="334920825" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNA-HS-AL_01.wav</ShortName>
+					<CachePath>14/{146E2071-8DCF-7A4A-D591-D2A53F7BE9C7}.wem</CachePath>
+				</File>
+				<File Id="335324092" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNB-BM-AL_01.wav</ShortName>
+					<CachePath>06/{06FE503E-3675-4128-55EE-F409133D355F}.wem</CachePath>
+				</File>
+				<File Id="346143568" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNA-OB-FL_01.wav</ShortName>
+					<CachePath>FB/{FB686346-C5F7-9D94-4D9F-17191A077C76}.wem</CachePath>
+				</File>
+				<File Id="352019296" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>WalkieTalkie_IN_02.wav</ShortName>
+					<CachePath>E8/{E886ACFD-CEF9-1F72-AFDE-C02C500B4DC1}.wem</CachePath>
+				</File>
+				<File Id="385859352" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNA-DB-FL_01.wav</ShortName>
+					<CachePath>10/{10A4755A-3AFE-0469-836D-C689C35627D5}.wem</CachePath>
+				</File>
+				<File Id="407699839" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNA-BM-HG_01.wav</ShortName>
+					<CachePath>10/{10846832-DE4E-6370-4CCA-CEF92A37ABC9}.wem</CachePath>
+				</File>
+				<File Id="431999696" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>WalkieTalkie_OUT_02.wav</ShortName>
+					<CachePath>4A/{4AEE0229-75C6-88FA-07DD-73B46BD661F6}.wem</CachePath>
+				</File>
+				<File Id="440704108" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNB-OB-CP_01.wav</ShortName>
+					<CachePath>AD/{ADE7617B-323F-139B-F568-B6191320C573}.wem</CachePath>
+				</File>
+				<File Id="465726618" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNB-GG-AL_01.wav</ShortName>
+					<CachePath>4E/{4EC95877-9C67-EBB6-6AB5-1BE5F30A4EF5}.wem</CachePath>
+				</File>
+				<File Id="473745409" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNB-HS-AL_01.wav</ShortName>
+					<CachePath>9E/{9E2D387E-9B74-1DD3-96FC-9EC1135282D2}.wem</CachePath>
+				</File>
+				<File Id="528410234" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNB-OB-OS_02.wav</ShortName>
+					<CachePath>E0/{E079FF0B-5367-5622-0B55-3AAAA4373E70}.wem</CachePath>
+				</File>
+				<File Id="533589659" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNB-HS-ST_01.wav</ShortName>
+					<CachePath>74/{7464EF1A-C84B-8B3B-75D3-2973DF296C73}.wem</CachePath>
+				</File>
+				<File Id="566477244" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNA-RH-CP_01.wav</ShortName>
+					<CachePath>2F/{2F698438-0540-70E4-4E23-D4B956A7D36A}.wem</CachePath>
+				</File>
+				<File Id="605195977" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNA-NH-OS_01.wav</ShortName>
+					<CachePath>84/{84C74BD6-C768-4E73-A163-B0E601B8902A}.wem</CachePath>
+				</File>
+				<File Id="615211791" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNB-RH-CP_01.wav</ShortName>
+					<CachePath>FA/{FA7BA59C-7E43-F8E1-95B1-31548396D266}.wem</CachePath>
+				</File>
+				<File Id="623421104" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>WalkieTalkie_IN_03.wav</ShortName>
+					<CachePath>51/{5138BD53-BB7C-CABB-B5AD-6B521B9ABA8C}.wem</CachePath>
+				</File>
+				<File Id="625976811" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNA-OB-OS_01.wav</ShortName>
+					<CachePath>6A/{6A13A3AA-F16E-8EC7-0B6C-4C738BE810A7}.wem</CachePath>
+				</File>
+				<File Id="630542219" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNB-BM-ST_01.wav</ShortName>
+					<CachePath>25/{252A3D7B-CA02-82EF-F992-E0827FCF956B}.wem</CachePath>
+				</File>
+				<File Id="647502295" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNA-DB-CP_01.wav</ShortName>
+					<CachePath>92/{9229CA7C-1390-AD7C-9A70-5F8B09462F0C}.wem</CachePath>
+				</File>
+				<File Id="680889701" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>WalkieTalkie_OUT_07.wav</ShortName>
+					<CachePath>57/{57AAF828-0699-0D76-57B3-604F9814D880}.wem</CachePath>
+				</File>
+				<File Id="689721741" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNB-OB-OS_03.wav</ShortName>
+					<CachePath>0E/{0E5066B4-E7B4-98DF-7E95-FF27B83C8F01}.wem</CachePath>
+				</File>
+				<File Id="728268619" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNB-GG-HG_01.wav</ShortName>
+					<CachePath>D3/{D3132990-759E-CA7A-CA8B-509AEE6066F0}.wem</CachePath>
+				</File>
+				<File Id="729243488" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNA-BM-ST_01.wav</ShortName>
+					<CachePath>34/{346D56DC-6FE7-C8A3-259B-A7924787F529}.wem</CachePath>
+				</File>
+				<File Id="740266105" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNA-HS-HG_01.wav</ShortName>
+					<CachePath>FF/{FF8BF01D-5B3A-1A5E-944E-AE85A3BE9B59}.wem</CachePath>
+				</File>
+				<File Id="744200626" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNA-OB-OS_02.wav</ShortName>
+					<CachePath>A1/{A1349312-4D50-3294-5A97-1E7A5B08EDFD}.wem</CachePath>
+				</File>
+				<File Id="755600443" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNB-NH-CP_01.wav</ShortName>
+					<CachePath>80/{801B2938-7996-0AE1-4DEA-BBC3DF6983E9}.wem</CachePath>
+				</File>
+				<File Id="787555637" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNA-OB-OS_03.wav</ShortName>
+					<CachePath>AB/{AB04CFC8-226D-18AE-ECC2-8146CFDED4CC}.wem</CachePath>
+				</File>
+				<File Id="854311290" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNA-DB-OS_01.wav</ShortName>
+					<CachePath>71/{716CEB60-6B08-88DB-4F6A-50DB7F1330C4}.wem</CachePath>
+				</File>
+				<File Id="856886473" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNA-HS-LO_01.wav</ShortName>
+					<CachePath>E2/{E2467EBE-5808-5F77-8272-0406A32034DA}.wem</CachePath>
+				</File>
+				<File Id="898084552" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNA-OB-CP_02.wav</ShortName>
+					<CachePath>66/{6682B056-9D37-9289-310F-35ED7D8EBF51}.wem</CachePath>
+				</File>
+				<File Id="904429250" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNA-OB-CP_01.wav</ShortName>
+					<CachePath>55/{5547B71C-F28E-E47F-8FFB-6CEB50C043D7}.wem</CachePath>
+				</File>
+				<File Id="920042801" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNB-OB-OS_01.wav</ShortName>
+					<CachePath>76/{760A302C-68F9-6382-51E0-E0940048BE80}.wem</CachePath>
+				</File>
+				<File Id="921528663" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>WalkieTalkie_IN_04.wav</ShortName>
+					<CachePath>68/{687B0658-EA12-C321-FDD1-F2D53BE3B3D6}.wem</CachePath>
+				</File>
+				<File Id="924301855" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>WalkieTalkie_IN_01.wav</ShortName>
+					<CachePath>E4/{E4D3A94C-9CF0-392D-D55D-608FFDE4FA0F}.wem</CachePath>
+				</File>
+				<File Id="927632933" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>WalkieTalkie_OUT_04.wav</ShortName>
+					<CachePath>6C/{6C5F5A34-6356-11B0-C53F-10C31D4BA865}.wem</CachePath>
+				</File>
+				<File Id="929317968" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNB-DB-OS_01.wav</ShortName>
+					<CachePath>DF/{DFDDEBDB-9095-850B-09A0-678A7F3E58A1}.wem</CachePath>
+				</File>
+				<File Id="940172438" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNA-RH-FL_01.wav</ShortName>
+					<CachePath>5B/{5B7E0BAB-CCF7-6E19-EDB1-68C9ED469E11}.wem</CachePath>
+				</File>
+				<File Id="951541173" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNB-OB-CP_03.wav</ShortName>
+					<CachePath>26/{26DF6FDC-D9DC-6C19-D755-B6BF78DE7EAE}.wem</CachePath>
+				</File>
+				<File Id="955204429" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNB-GG-LO_01.wav</ShortName>
+					<CachePath>95/{95ED34BF-716F-786F-CBDD-2A11C50C7229}.wem</CachePath>
+				</File>
+				<File Id="1008848796" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNA-RH-OS_01.wav</ShortName>
+					<CachePath>86/{86F60F5E-5E28-375A-5534-90180C5F9ED1}.wem</CachePath>
+				</File>
+				<File Id="1012312638" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNB-OB-FL_01.wav</ShortName>
+					<CachePath>D4/{D4BE5E77-E8C0-A903-12CD-830D4155EE8E}.wem</CachePath>
+				</File>
+				<File Id="1020905538" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>WalkieTalkie_IN_06.wav</ShortName>
+					<CachePath>75/{750ED98F-B1A9-B0BF-DA3A-4C384FF1E2CE}.wem</CachePath>
+				</File>
+				<File Id="1024498142" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNA-OB-CP_03.wav</ShortName>
+					<CachePath>DE/{DE20CE9C-73F4-D068-4101-49767CB96AE9}.wem</CachePath>
+				</File>
+				<File Id="1046575232" Language="French(Canada)" Streaming="false" Location="Memory" UsingReferenceLanguage="true">
+					<ShortName>UNA-NH-FL_01.wav</ShortName>
+					<CachePath>C5/{C51E81C8-6AF3-D8AF-0536-0257E0A506C5}.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="3864097025" Name="Pause_All"/>
+				<Event Id="3679762312" Name="Resume_All"/>
+				<Event Id="452547817" Name="Stop_All"/>
+			</Events>
+			<DialogueEvents>
+				<DialogueEvent Id="3970659059" Name="Objective_Status"/>
+				<DialogueEvent Id="3585983975" Name="Unit_Under_Attack"/>
+				<DialogueEvent Id="4110439188" Name="WalkieTalkie"/>
+			</DialogueEvents>
+			<StateGroups>
+				<StateGroup Id="6899006" Name="Objective">
+					<States>
+						<State Id="141419130" Name="NeutralizeHostile"/>
+						<State Id="748895195" Name="None"/>
+						<State Id="3261872615" Name="DefuseBomb"/>
+						<State Id="3841112373" Name="RescueHostage"/>
+					</States>
+				</StateGroup>
+				<StateGroup Id="1176052424" Name="Location">
+					<States>
+						<State Id="672587556" Name="Alley"/>
+						<State Id="748895195" Name="None"/>
+						<State Id="2192450996" Name="Hangar"/>
+						<State Id="4142189312" Name="Street"/>
+					</States>
+				</StateGroup>
+				<StateGroup Id="1304109583" Name="Unit">
+					<States>
+						<State Id="748895195" Name="None"/>
+						<State Id="3004848132" Name="Unit_B"/>
+						<State Id="3004848135" Name="Unit_A"/>
+					</States>
+				</StateGroup>
+				<StateGroup Id="3299963692" Name="ObjectiveStatus">
+					<States>
+						<State Id="94054856" Name="Completed"/>
+						<State Id="748895195" Name="None"/>
+						<State Id="1655200910" Name="Failed"/>
+					</States>
+				</StateGroup>
+				<StateGroup Id="3712907969" Name="Hostile">
+					<States>
+						<State Id="685704824" Name="Gang"/>
+						<State Id="714721627" Name="Bum"/>
+						<State Id="748895195" Name="None"/>
+					</States>
+				</StateGroup>
+				<StateGroup Id="4110439188" Name="WalkieTalkie">
+					<States>
+						<State Id="748895195" Name="None"/>
+						<State Id="1553720736" Name="Comm_Out"/>
+						<State Id="1856010785" Name="Comm_In"/>
+					</States>
+				</StateGroup>
+			</StateGroups>
+		</SoundBank>
+		<SoundBank Id="1265494800" Type="User" Language="SFX" Hash="{9C19232D-262C-5FF4-02E7-E54AEDFCF359}">
+			<ShortName>ThreeD_Audio_Demo</ShortName>
+			<Path>ThreeD_Audio_Demo.bnk</Path>
+			<Media>
+				<File Id="154378389" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>waves.wav</ShortName>
+					<CachePath>F0/{F0CC2359-D83E-1BC0-A7CF-632D404018CE}.wem</CachePath>
+				</File>
+				<File Id="180276440" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Footsteps\Dirt\FS_Dirt_02.wav</ShortName>
+					<CachePath>04/{047E11B1-3A6E-41B0-BCA6-E99248A775D2}.wem</CachePath>
+				</File>
+				<File Id="325907009" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>seagull1.wav</ShortName>
+					<CachePath>E6/{E62A42DC-1C48-DB2C-5CBC-55FCBBD71821}.wem</CachePath>
+				</File>
+				<File Id="380879024" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Footsteps\Dirt\FS_Dirt_04.wav</ShortName>
+					<CachePath>21/{211A9B90-0E8B-4310-D64C-8760BBC101DC}.wem</CachePath>
+				</File>
+				<File Id="443382262" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Footsteps\Dirt\FS_Dirt_01.wav</ShortName>
+					<CachePath>C3/{C3F31EB4-A6DD-747E-9FB0-F79DCD58476D}.wem</CachePath>
+				</File>
+				<File Id="520833791" Language="SFX" Streaming="true" Location="Loose">
+					<ShortName>piano_quad.wav</ShortName>
+					<Path>Media/520833791.wem</Path>
+					<CachePath>A4/{A4CC6E51-6CB6-1FA3-8433-6F5482AD076F}.wem</CachePath>
+				</File>
+				<File Id="757197798" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Footsteps\Dirt\FS_Dirt_03.wav</ShortName>
+					<CachePath>26/{26302096-5740-F6D3-AD69-169A4002185C}.wem</CachePath>
+				</File>
+				<File Id="992856116" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>seagull2.wav</ShortName>
+					<CachePath>7B/{7B5A35F8-7CEC-E4D3-5C58-78180A1A31F8}.wem</CachePath>
+				</File>
+				<File Id="1007342877" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>seagull3.wav</ShortName>
+					<CachePath>D6/{D651647D-B8CF-5D6F-F477-22449A41BE5B}.wem</CachePath>
+				</File>
+				<File Id="1069088662" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>seagull4.wav</ShortName>
+					<CachePath>E0/{E0B7D565-BC8F-B1BA-E2E3-B7F837BF5131}.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="4057320454" Name="Play_3D_Audio_Demo">
+					<MediaRefs>
+						<MediaRef Id="154378389"/>
+						<MediaRef Id="325907009"/>
+						<MediaRef Id="520833791"/>
+						<MediaRef Id="992856116"/>
+						<MediaRef Id="1007342877"/>
+						<MediaRef Id="1069088662"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2266299534" Name="Play_Sandstep">
+					<MediaRefs>
+						<MediaRef Id="180276440"/>
+						<MediaRef Id="380879024"/>
+						<MediaRef Id="443382262"/>
+						<MediaRef Id="757197798"/>
+					</MediaRefs>
+				</Event>
+			</Events>
+		</SoundBank>
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{D66524E6-671B-4328-8BE0-F558102C228D}">
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+			<Plugins>
+				<Custom>
+					<Plugin Id="204868897" Name="Wwise Stereo Delay (Custom)" LibName="Wwise Stereo Delay" LibId="8847363"/>
+					<Plugin Id="668148182" Name="_BigReverb (Define custom)" LibName="Wwise RoomVerb" LibId="7733251"/>
+				</Custom>
+				<ShareSets>
+					<Plugin Id="88356853" Name="Huge_Space_Garage" LibName="Wwise RoomVerb" LibId="7733251"/>
+					<Plugin Id="1159390747" Name="Room_Medium_Tiled" LibName="Wwise RoomVerb" LibId="7733251"/>
+					<Plugin Id="2077473410" Name="RouteToMainMix" LibName="Wwise System Output Settings" LibId="58982409"/>
+					<Plugin Id="2112490296" Name="Hangar_Env" LibName="Wwise RoomVerb" LibId="7733251"/>
+					<Plugin Id="2995775460" Name="Room_Small" LibName="Wwise RoomVerb" LibId="7733251"/>
+					<Plugin Id="3168378571" Name="Hangar_Env_Low" LibName="Wwise Matrix Reverb" LibId="7536643"/>
+					<Plugin Id="3399505373" Name="Reflect_Physically_Based" LibName="Wwise Reflect" LibId="11206659"/>
+					<Plugin Id="3752477165" Name="Bright_Small_Hall" LibName="Wwise RoomVerb" LibId="7733251"/>
+				</ShareSets>
+				<AudioDevices>
+					<Plugin Id="516477461" Name="System_No3D" LibName="System" LibId="11403271"/>
+					<Plugin Id="1105126780" Name="System_NoObjects" LibName="System" LibId="11403271"/>
+					<Plugin Id="2012559111" Name="Motion" LibName="Motion" LibId="33226759"/>
+					<Plugin Id="2317455096" Name="No_Output" LibName="No Output" LibId="11862023"/>
+					<Plugin Id="3859886410" Name="System" LibName="System" LibId="11403271"/>
+				</AudioDevices>
+			</Plugins>
+			<Busses>
+				<Bus Id="197057172" Name="Voices_Radio"/>
+				<Bus Id="412724365" Name="BGM"/>
+				<Bus Id="461496087" Name="Non Recordable Bus"/>
+				<Bus Id="838047381" Name="Non-World"/>
+				<Bus Id="1101487118" Name="3D-Submix_Bus"/>
+				<Bus Id="1359360203" Name="Rooms"/>
+				<Bus Id="1410202225" Name="Wet_Path_Omni"/>
+				<Bus Id="1492361653" Name="Sounds"/>
+				<Bus Id="1673180298" Name="Dry_Path"/>
+				<Bus Id="1949198961" Name="Muted for User Music"/>
+				<Bus Id="1955472259" Name="MotionBus"/>
+				<Bus Id="2021724762" Name="Spatial_Audio_Demo"/>
+				<Bus Id="2281484271" Name="Wet_Path_3D"/>
+				<Bus Id="2574649926" Name="Reflect Bus"/>
+				<Bus Id="2609808943" Name="World"/>
+				<Bus Id="3313685232" Name="Voices">
+					<PluginRefs>
+						<Custom>
+							<PluginRef Id="668148182"/>
+						</Custom>
+					</PluginRefs>
+				</Bus>
+				<Bus Id="3596053402" Name="Game Pad Bus"/>
+				<Bus Id="3600197733" Name="Environmental Bus"/>
+				<Bus Id="3742896575" Name="3D_Audio_Demo"/>
+				<Bus Id="3761286811" Name="Environments">
+					<PluginRefs>
+						<ShareSets>
+							<PluginRef Id="2077473410"/>
+						</ShareSets>
+					</PluginRefs>
+				</Bus>
+				<Bus Id="3803692087" Name="Master Audio Bus"/>
+				<Bus Id="3991942870" Name="Music"/>
+				<Bus Id="4083517055" Name="3D_Bus_Demo"/>
+			</Busses>
+			<AuxBusses>
+				<AuxBus Id="438105790" Name="Outside">
+					<PluginRefs>
+						<ShareSets>
+							<PluginRef Id="88356853"/>
+						</ShareSets>
+					</PluginRefs>
+				</AuxBus>
+				<AuxBus Id="924456902" Name="ListenerEnv">
+					<PluginRefs>
+						<Custom>
+							<PluginRef Id="204868897"/>
+						</Custom>
+					</PluginRefs>
+				</AuxBus>
+				<AuxBus Id="1359360137" Name="Room1">
+					<PluginRefs>
+						<ShareSets>
+							<PluginRef Id="3752477165"/>
+						</ShareSets>
+					</PluginRefs>
+				</AuxBus>
+				<AuxBus Id="1359360138" Name="Room2">
+					<PluginRefs>
+						<ShareSets>
+							<PluginRef Id="2112490296"/>
+						</ShareSets>
+					</PluginRefs>
+				</AuxBus>
+				<AuxBus Id="1819748220" Name="ER">
+					<PluginRefs>
+						<ShareSets>
+							<PluginRef Id="3399505373"/>
+						</ShareSets>
+					</PluginRefs>
+				</AuxBus>
+				<AuxBus Id="2077253480" Name="Room">
+					<PluginRefs>
+						<ShareSets>
+							<PluginRef Id="1159390747"/>
+						</ShareSets>
+					</PluginRefs>
+				</AuxBus>
+				<AuxBus Id="2112490296" Name="Hangar_Env">
+					<PluginRefs>
+						<ShareSets>
+							<PluginRef Id="3168378571"/>
+						</ShareSets>
+					</PluginRefs>
+				</AuxBus>
+				<AuxBus Id="2924664132" Name="Patio">
+					<PluginRefs>
+						<ShareSets>
+							<PluginRef Id="2995775460"/>
+						</ShareSets>
+					</PluginRefs>
+				</AuxBus>
+				<AuxBus Id="3616209736" Name="Master_Motion_Bus_Aux"/>
+			</AuxBusses>
+			<GameParameters>
+				<GameParameter Id="246300162" Name="Footstep_Weight"/>
+				<GameParameter Id="796049864" Name="RPM"/>
+				<GameParameter Id="2451442924" Name="Enable_Effect"/>
+				<GameParameter Id="3182548923" Name="Footstep_Speed"/>
+			</GameParameters>
+			<StateGroups>
+				<StateGroup Id="6899006" Name="Objective">
+					<States>
+						<State Id="141419130" Name="NeutralizeHostile"/>
+						<State Id="748895195" Name="None"/>
+						<State Id="3261872615" Name="DefuseBomb"/>
+						<State Id="3841112373" Name="RescueHostage"/>
+					</States>
+				</StateGroup>
+				<StateGroup Id="151362964" Name="PlayerHealth">
+					<States>
+						<State Id="748895195" Name="None"/>
+						<State Id="868398962" Name="Blasted"/>
+						<State Id="1160234136" Name="Normal"/>
+					</States>
+				</StateGroup>
+				<StateGroup Id="1176052424" Name="Location">
+					<States>
+						<State Id="672587556" Name="Alley"/>
+						<State Id="748895195" Name="None"/>
+						<State Id="2192450996" Name="Hangar"/>
+						<State Id="4142189312" Name="Street"/>
+					</States>
+				</StateGroup>
+				<StateGroup Id="1304109583" Name="Unit">
+					<States>
+						<State Id="748895195" Name="None"/>
+						<State Id="3004848132" Name="Unit_B"/>
+						<State Id="3004848135" Name="Unit_A"/>
+					</States>
+				</StateGroup>
+				<StateGroup Id="3299963692" Name="ObjectiveStatus">
+					<States>
+						<State Id="94054856" Name="Completed"/>
+						<State Id="748895195" Name="None"/>
+						<State Id="1655200910" Name="Failed"/>
+					</States>
+				</StateGroup>
+				<StateGroup Id="3712907969" Name="Hostile">
+					<States>
+						<State Id="685704824" Name="Gang"/>
+						<State Id="714721627" Name="Bum"/>
+						<State Id="748895195" Name="None"/>
+					</States>
+				</StateGroup>
+				<StateGroup Id="3991942870" Name="Music">
+					<States>
+						<State Id="514064485" Name="Fight"/>
+						<State Id="748895195" Name="None"/>
+						<State Id="886139701" Name="Fight_Damaged"/>
+						<State Id="1323211483" Name="Winning_TheFight"/>
+						<State Id="1420167880" Name="Fight_LowHealth"/>
+						<State Id="1823678183" Name="Exploring"/>
+						<State Id="1852808225" Name="Playing"/>
+						<State Id="4158285989" Name="GameOver"/>
+						<State Id="4222988787" Name="Fight_Dying"/>
+					</States>
+				</StateGroup>
+				<StateGroup Id="4110439188" Name="WalkieTalkie">
+					<States>
+						<State Id="748895195" Name="None"/>
+						<State Id="1553720736" Name="Comm_Out"/>
+						<State Id="1856010785" Name="Comm_In"/>
+					</States>
+				</StateGroup>
+			</StateGroups>
+			<SwitchGroups>
+				<SwitchGroup Id="246300162" Name="Footstep_Weight">
+					<GameParameterRef Id="246300162"/>
+					<Switches>
+						<Switch Id="1935470627" Name="Light"/>
+						<Switch Id="2732489590" Name="Heavy"/>
+					</Switches>
+				</SwitchGroup>
+				<SwitchGroup Id="1834394558" Name="Surface">
+					<Switches>
+						<Switch Id="2058049674" Name="Wood"/>
+						<Switch Id="2185786256" Name="Gravel"/>
+						<Switch Id="2195636714" Name="Dirt"/>
+						<Switch Id="2473969246" Name="Metal"/>
+					</Switches>
+				</SwitchGroup>
+				<SwitchGroup Id="4202554577" Name="Footstep_Gait">
+					<GameParameterRef Id="3182548923"/>
+					<Switches>
+						<Switch Id="712161704" Name="Run"/>
+						<Switch Id="2108779966" Name="Walk"/>
+					</Switches>
+				</SwitchGroup>
+			</SwitchGroups>
+			<AcousticTextures>
+				<AcousticTexture Id="504532776" Name="Brick">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="12"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="18"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="23"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="35"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+				<AcousticTexture Id="513139656" Name="Mountain">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="0"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="0"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="0"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="0"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+				<AcousticTexture Id="841620460" Name="Concrete">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="6"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="6"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="6"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="14"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+				<AcousticTexture Id="1755085759" Name="Wood_Deep">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="1"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="8"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="20"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="35"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+				<AcousticTexture Id="1873957695" Name="Anechoic">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="100"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="100"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="100"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="100"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+				<AcousticTexture Id="1970351858" Name="Fabric">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="3"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="13"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="48"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="72"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+				<AcousticTexture Id="2058049674" Name="Wood">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="32"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="25"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="20"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="35"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+				<AcousticTexture Id="2412606308" Name="Carpet">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="46"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="45"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="76"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="100"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+				<AcousticTexture Id="2637588553" Name="Tile">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="67"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="41"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="12"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="0"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+				<AcousticTexture Id="2928161104" Name="Curtains">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="7"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="60"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="0"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="84"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+				<AcousticTexture Id="3195498748" Name="Cork_Tiles">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="14"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="30"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="73"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="100"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+				<AcousticTexture Id="3670307564" Name="Drywall">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="2"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="2"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="2"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="2"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+				<AcousticTexture Id="4168643977" Name="Acoustic_Banner">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="37"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="100"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="100"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="100"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+				<AcousticTexture Id="4262522749" Name="Wood_Bright">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="32"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="25"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="10"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="9"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+			</AcousticTextures>
+		</SoundBank>
+		<SoundBank Id="1359360137" Type="Bus" Language="SFX" Hash="{47278AEA-6308-5025-1360-D61DFE9D462A}">
+			<ShortName>Room1</ShortName>
+			<Path>Bus/Room1.bnk</Path>
+			<Plugins>
+				<ShareSets>
+					<Plugin Id="3752477165" Name="Bright_Small_Hall" LibName="Wwise RoomVerb" LibId="7733251"/>
+				</ShareSets>
+			</Plugins>
+			<AuxBusses>
+				<AuxBus Id="1359360137" Name="Room1">
+					<PluginRefs>
+						<ShareSets>
+							<PluginRef Id="3752477165"/>
+						</ShareSets>
+					</PluginRefs>
+				</AuxBus>
+			</AuxBusses>
+		</SoundBank>
+		<SoundBank Id="1359360138" Type="Bus" Language="SFX" Hash="{9C34119E-E4F6-9C12-718C-4603C3C1D1BE}">
+			<ShortName>Room2</ShortName>
+			<Path>Bus/Room2.bnk</Path>
+			<Plugins>
+				<ShareSets>
+					<Plugin Id="2112490296" Name="Hangar_Env" LibName="Wwise RoomVerb" LibId="7733251"/>
+				</ShareSets>
+			</Plugins>
+			<AuxBusses>
+				<AuxBus Id="1359360138" Name="Room2">
+					<PluginRefs>
+						<ShareSets>
+							<PluginRef Id="2112490296"/>
+						</ShareSets>
+					</PluginRefs>
+				</AuxBus>
+			</AuxBusses>
+		</SoundBank>
+		<SoundBank Id="1819748220" Type="Bus" Language="SFX" Hash="{A1ECEED2-ACF0-A1A8-509D-E17A9AD492B1}">
+			<ShortName>ER</ShortName>
+			<Path>Bus/ER.bnk</Path>
+			<Plugins>
+				<ShareSets>
+					<Plugin Id="3399505373" Name="Reflect_Physically_Based" LibName="Wwise Reflect" LibId="11206659"/>
+				</ShareSets>
+			</Plugins>
+			<AuxBusses>
+				<AuxBus Id="1819748220" Name="ER">
+					<PluginRefs>
+						<ShareSets>
+							<PluginRef Id="3399505373"/>
+						</ShareSets>
+					</PluginRefs>
+				</AuxBus>
+			</AuxBusses>
+		</SoundBank>
+		<SoundBank Id="2012559111" Type="User" Language="SFX" Hash="{907FB22E-216D-D7E3-2D6B-EDFE3154F172}">
+			<ShortName>Motion</ShortName>
+			<Path>Motion.bnk</Path>
+			<Media>
+				<File Id="14638727" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Shotgun_Fire_01.wav</ShortName>
+					<CachePath>6A/{6A2CE334-FDE6-6DC5-C037-E1858A74EEDE}.wem</CachePath>
+				</File>
+				<File Id="783287276" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>SFX_DoorSliding_01_Open.wav</ShortName>
+					<CachePath>A0/{A0B890FB-AB5C-9A8B-AFF4-759690E03542}.wem</CachePath>
+				</File>
+			</Media>
+			<Plugins>
+				<Custom>
+					<Plugin Id="749369914" Name="Motion Source" LibName="Motion Source" LibId="26804226"/>
+				</Custom>
+			</Plugins>
+			<Events>
+				<Event Id="679837841" Name="DoorSliding">
+					<MediaRefs>
+						<MediaRef Id="783287276"/>
+					</MediaRefs>
+					<PluginRefs>
+						<Custom>
+							<PluginRef Id="749369914"/>
+						</Custom>
+					</PluginRefs>
+				</Event>
+				<Event Id="2975448509" Name="GunFire">
+					<MediaRefs>
+						<MediaRef Id="14638727"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="3616209736" Name="Master_Motion_Bus_Aux"/>
+					</AuxBusRefs>
+				</Event>
+				<Event Id="3864097025" Name="Pause_All"/>
+				<Event Id="3679762312" Name="Resume_All"/>
+				<Event Id="452547817" Name="Stop_All"/>
+			</Events>
+		</SoundBank>
+		<SoundBank Id="2021724762" Type="User" Language="SFX" Hash="{6EED763D-A1AE-8472-0B6C-B67140D1A787}">
+			<ShortName>Spatial_Audio_Demo</ShortName>
+			<Path>Spatial_Audio_Demo.bnk</Path>
+			<Media>
+				<File Id="45272899" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Footsteps\WoodSolid\Footstep_Walking_Hardwood_02.wav</ShortName>
+					<CachePath>B6/{B6AAF478-E8D7-645E-6324-AA7C4586C1B8}.wem</CachePath>
+				</File>
+				<File Id="194525097" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Speech_sample-23LUFS.wav</ShortName>
+					<CachePath>B2/{B28D3C92-4FC6-1A3E-042F-212CAF8B934B}.wem</CachePath>
+				</File>
+				<File Id="677704873" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Footsteps\WoodSolid\Footstep_Walking_Hardwood_05.wav</ShortName>
+					<CachePath>D0/{D0125617-6AA0-3F39-DF40-C13EC80121CC}.wem</CachePath>
+				</File>
+				<File Id="704323523" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Ambience_40.wav</ShortName>
+					<CachePath>2A/{2AAC495F-EBAB-E3EF-2651-0D421505DAA5}.wem</CachePath>
+				</File>
+			</Media>
+			<Plugins>
+				<Custom>
+					<Plugin Id="417454748" Name="Tone Generator" LibName="Wwise Tone Generator" LibId="6684674"/>
+				</Custom>
+			</Plugins>
+			<Events>
+				<Event Id="146788224" Name="Play_Ambience_Quad">
+					<MediaRefs>
+						<MediaRef Id="704323523"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1602358412" Name="Play_Footstep">
+					<MediaRefs>
+						<MediaRef Id="45272899"/>
+						<MediaRef Id="677704873"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2172342284" Name="Play_Room_Emitter">
+					<MediaRefs>
+						<MediaRef Id="194525097"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2359930133" Name="Play_Test_Noise">
+					<PluginRefs>
+						<Custom>
+							<PluginRef Id="417454748"/>
+						</Custom>
+					</PluginRefs>
+				</Event>
+			</Events>
+			<GameParameters>
+				<GameParameter Id="246300162" Name="Footstep_Weight"/>
+			</GameParameters>
+		</SoundBank>
+		<SoundBank Id="2058049674" Type="User" Language="SFX" Hash="{72517A27-3987-32DF-7251-1DAF83EE63FF}">
+			<ShortName>Wood</ShortName>
+			<Path>Wood.bnk</Path>
+			<Media>
+				<File Id="409943" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Footsteps\WoodSolid\Footstep_Walking_Hardwood_04.wav</ShortName>
+					<CachePath>B1/{B13D63BE-411B-1432-9D21-5AC534F5916B}.wem</CachePath>
+				</File>
+				<File Id="45272899" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Footsteps\WoodSolid\Footstep_Walking_Hardwood_02.wav</ShortName>
+					<CachePath>B6/{B6AAF478-E8D7-645E-6324-AA7C4586C1B8}.wem</CachePath>
+				</File>
+				<File Id="208992552" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Footsteps\WoodSolid\Footstep_Walking_Hardwood_01.wav</ShortName>
+					<CachePath>0E/{0E347602-AD5C-224A-E431-ADCF01C83E1C}.wem</CachePath>
+				</File>
+				<File Id="338845088" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Footsteps\WoodSolid\Footstep_Walking_Hardwood_03.wav</ShortName>
+					<CachePath>9E/{9E2E6925-1920-76B7-20E9-8D1E12687C42}.wem</CachePath>
+				</File>
+				<File Id="677704873" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Footsteps\WoodSolid\Footstep_Walking_Hardwood_05.wav</ShortName>
+					<CachePath>D0/{D0125617-6AA0-3F39-DF40-C13EC80121CC}.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="3854155799" Name="Play_Footsteps">
+					<SwitchContainers>
+						<SwitchContainer>
+							<SwitchValue GroupType="Switch" GroupId="1834394558" Id="2058049674"/>
+							<Children>
+								<SwitchContainer>
+									<SwitchValue GroupType="Switch" GroupId="4202554577" Id="712161704"/>
+									<MediaRefs>
+										<MediaRef Id="409943"/>
+										<MediaRef Id="45272899"/>
+										<MediaRef Id="208992552"/>
+										<MediaRef Id="338845088"/>
+										<MediaRef Id="677704873"/>
+									</MediaRefs>
+								</SwitchContainer>
+								<SwitchContainer>
+									<SwitchValue GroupType="Switch" GroupId="4202554577" Id="2108779966" Default="true"/>
+									<Children>
+										<SwitchContainer>
+											<SwitchValue GroupType="Switch" GroupId="246300162" Id="2732489590"/>
+											<MediaRefs>
+												<MediaRef Id="45272899"/>
+												<MediaRef Id="677704873"/>
+											</MediaRefs>
+										</SwitchContainer>
+										<SwitchContainer>
+											<SwitchValue GroupType="Switch" GroupId="246300162" Id="1935470627" Default="true"/>
+											<MediaRefs>
+												<MediaRef Id="409943"/>
+												<MediaRef Id="208992552"/>
+												<MediaRef Id="338845088"/>
+											</MediaRefs>
+										</SwitchContainer>
+									</Children>
+								</SwitchContainer>
+							</Children>
+						</SwitchContainer>
+					</SwitchContainers>
+				</Event>
+			</Events>
+			<GameParameters>
+				<GameParameter Id="246300162" Name="Footstep_Weight"/>
+				<GameParameter Id="3182548923" Name="Footstep_Speed"/>
+			</GameParameters>
+			<SwitchGroups>
+				<SwitchGroup Id="246300162" Name="Footstep_Weight">
+					<GameParameterRef Id="246300162"/>
+					<Switches>
+						<Switch Id="1935470627" Name="Light"/>
+						<Switch Id="2732489590" Name="Heavy"/>
+					</Switches>
+				</SwitchGroup>
+				<SwitchGroup Id="1834394558" Name="Surface">
+					<Switches>
+						<Switch Id="2058049674" Name="Wood"/>
+						<Switch Id="2185786256" Name="Gravel"/>
+						<Switch Id="2195636714" Name="Dirt"/>
+						<Switch Id="2473969246" Name="Metal"/>
+					</Switches>
+				</SwitchGroup>
+				<SwitchGroup Id="4202554577" Name="Footstep_Gait">
+					<GameParameterRef Id="3182548923"/>
+					<Switches>
+						<Switch Id="712161704" Name="Run"/>
+						<Switch Id="2108779966" Name="Walk"/>
+					</Switches>
+				</SwitchGroup>
+			</SwitchGroups>
+		</SoundBank>
+		<SoundBank Id="2077253480" Type="Bus" Language="SFX" Hash="{C5C93F3F-5696-C32E-738A-DB95C83079E8}">
+			<ShortName>Room</ShortName>
+			<Path>Bus/Room.bnk</Path>
+			<Plugins>
+				<ShareSets>
+					<Plugin Id="1159390747" Name="Room_Medium_Tiled" LibName="Wwise RoomVerb" LibId="7733251"/>
+				</ShareSets>
+			</Plugins>
+			<AuxBusses>
+				<AuxBus Id="2077253480" Name="Room">
+					<PluginRefs>
+						<ShareSets>
+							<PluginRef Id="1159390747"/>
+						</ShareSets>
+					</PluginRefs>
+				</AuxBus>
+			</AuxBusses>
+		</SoundBank>
+		<SoundBank Id="2112490296" Type="Bus" Language="SFX" Hash="{927BD772-2B40-CCE5-6240-CB3E66F11992}">
+			<ShortName>Hangar_Env</ShortName>
+			<Path>Bus/Hangar_Env.bnk</Path>
+			<Plugins>
+				<ShareSets>
+					<Plugin Id="3168378571" Name="Hangar_Env_Low" LibName="Wwise Matrix Reverb" LibId="7536643"/>
+				</ShareSets>
+			</Plugins>
+			<AuxBusses>
+				<AuxBus Id="2112490296" Name="Hangar_Env">
+					<PluginRefs>
+						<ShareSets>
+							<PluginRef Id="3168378571"/>
+						</ShareSets>
+					</PluginRefs>
+				</AuxBus>
+			</AuxBusses>
+		</SoundBank>
+		<SoundBank Id="2185786256" Type="User" Language="SFX" Hash="{F8525CDE-C637-ABDD-1248-0D5D482EBE4B}">
+			<ShortName>Gravel</ShortName>
+			<Path>Gravel.bnk</Path>
+			<Media>
+				<File Id="407913791" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>footsteps\Gravel\AK_FS_Run_Gravel_03.wav</ShortName>
+					<CachePath>10/{10D23F29-6EB1-0A84-F259-A3AAB6334230}.wem</CachePath>
+				</File>
+				<File Id="461944601" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>footsteps\Gravel\AK_FS_Run_Gravel_02.wav</ShortName>
+					<CachePath>C5/{C50099D7-958C-E4EA-33BB-197C54C23963}.wem</CachePath>
+				</File>
+				<File Id="996471891" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>footsteps\Gravel\AK_FS_Run_Gravel_01.wav</ShortName>
+					<CachePath>30/{30232C35-67C6-8819-AD69-E19C59E5FA52}.wem</CachePath>
+				</File>
+			</Media>
+			<Plugins>
+				<ShareSets>
+					<Plugin Id="1659519038" Name="GravelEQ" LibName="Wwise Parametric EQ" LibId="6881283"/>
+				</ShareSets>
+			</Plugins>
+			<Events>
+				<Event Id="3854155799" Name="Play_Footsteps">
+					<SwitchContainers>
+						<SwitchContainer>
+							<SwitchValue GroupType="Switch" GroupId="1834394558" Id="2185786256"/>
+							<MediaRefs>
+								<MediaRef Id="407913791"/>
+								<MediaRef Id="461944601"/>
+								<MediaRef Id="996471891"/>
+							</MediaRefs>
+							<PluginRefs>
+								<ShareSets>
+									<PluginRef Id="1659519038"/>
+								</ShareSets>
+							</PluginRefs>
+						</SwitchContainer>
+					</SwitchContainers>
+				</Event>
+			</Events>
+			<GameParameters>
+				<GameParameter Id="246300162" Name="Footstep_Weight"/>
+				<GameParameter Id="3182548923" Name="Footstep_Speed"/>
+			</GameParameters>
+			<SwitchGroups>
+				<SwitchGroup Id="246300162" Name="Footstep_Weight">
+					<GameParameterRef Id="246300162"/>
+					<Switches>
+						<Switch Id="1935470627" Name="Light"/>
+						<Switch Id="2732489590" Name="Heavy"/>
+					</Switches>
+				</SwitchGroup>
+				<SwitchGroup Id="1834394558" Name="Surface">
+					<Switches>
+						<Switch Id="2058049674" Name="Wood"/>
+						<Switch Id="2185786256" Name="Gravel"/>
+						<Switch Id="2195636714" Name="Dirt"/>
+						<Switch Id="2473969246" Name="Metal"/>
+					</Switches>
+				</SwitchGroup>
+				<SwitchGroup Id="4202554577" Name="Footstep_Gait">
+					<GameParameterRef Id="3182548923"/>
+					<Switches>
+						<Switch Id="712161704" Name="Run"/>
+						<Switch Id="2108779966" Name="Walk"/>
+					</Switches>
+				</SwitchGroup>
+			</SwitchGroups>
+		</SoundBank>
+		<SoundBank Id="2195636714" Type="User" Language="SFX" Hash="{DAC05E55-3A2D-29EE-C41F-C3E19B6EA183}">
+			<ShortName>Dirt</ShortName>
+			<Path>Dirt.bnk</Path>
+			<Media>
+				<File Id="180276440" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Footsteps\Dirt\FS_Dirt_02.wav</ShortName>
+					<CachePath>04/{047E11B1-3A6E-41B0-BCA6-E99248A775D2}.wem</CachePath>
+				</File>
+				<File Id="380879024" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Footsteps\Dirt\FS_Dirt_04.wav</ShortName>
+					<CachePath>21/{211A9B90-0E8B-4310-D64C-8760BBC101DC}.wem</CachePath>
+				</File>
+				<File Id="443382262" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Footsteps\Dirt\FS_Dirt_01.wav</ShortName>
+					<CachePath>C3/{C3F31EB4-A6DD-747E-9FB0-F79DCD58476D}.wem</CachePath>
+				</File>
+				<File Id="757197798" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Footsteps\Dirt\FS_Dirt_03.wav</ShortName>
+					<CachePath>26/{26302096-5740-F6D3-AD69-169A4002185C}.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="3854155799" Name="Play_Footsteps">
+					<SwitchContainers>
+						<SwitchContainer>
+							<SwitchValue GroupType="Switch" GroupId="1834394558" Id="2195636714"/>
+							<MediaRefs>
+								<MediaRef Id="180276440"/>
+								<MediaRef Id="380879024"/>
+								<MediaRef Id="443382262"/>
+								<MediaRef Id="757197798"/>
+							</MediaRefs>
+						</SwitchContainer>
+					</SwitchContainers>
+				</Event>
+			</Events>
+			<GameParameters>
+				<GameParameter Id="246300162" Name="Footstep_Weight"/>
+				<GameParameter Id="3182548923" Name="Footstep_Speed"/>
+			</GameParameters>
+			<SwitchGroups>
+				<SwitchGroup Id="246300162" Name="Footstep_Weight">
+					<GameParameterRef Id="246300162"/>
+					<Switches>
+						<Switch Id="1935470627" Name="Light"/>
+						<Switch Id="2732489590" Name="Heavy"/>
+					</Switches>
+				</SwitchGroup>
+				<SwitchGroup Id="1834394558" Name="Surface">
+					<Switches>
+						<Switch Id="2058049674" Name="Wood"/>
+						<Switch Id="2185786256" Name="Gravel"/>
+						<Switch Id="2195636714" Name="Dirt"/>
+						<Switch Id="2473969246" Name="Metal"/>
+					</Switches>
+				</SwitchGroup>
+				<SwitchGroup Id="4202554577" Name="Footstep_Gait">
+					<GameParameterRef Id="3182548923"/>
+					<Switches>
+						<Switch Id="712161704" Name="Run"/>
+						<Switch Id="2108779966" Name="Walk"/>
+					</Switches>
+				</SwitchGroup>
+			</SwitchGroups>
+		</SoundBank>
+		<SoundBank Id="2279279248" Type="User" Language="SFX" Hash="{CBA066C8-20FB-54E4-D37C-ACE098EF117F}">
+			<ShortName>InteractiveMusic</ShortName>
+			<Path>InteractiveMusic.bnk</Path>
+			<Media>
+				<File Id="1099684" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Keys.wav</ShortName>
+					<CachePath>FA/{FA8129D7-F52E-B840-5FA2-076B4E4D25F4}.wem</CachePath>
+				</File>
+				<File Id="1748691" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Bass.wav</ShortName>
+					<CachePath>DA/{DA2FC633-C462-7419-362B-697379692FB6}.wem</CachePath>
+				</File>
+				<File Id="130569707" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Voice2.wav</ShortName>
+					<CachePath>33/{338A1941-3034-8D14-1752-8DD4FEDA06F7}.wem</CachePath>
+				</File>
+				<File Id="145846593" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Voice.wav</ShortName>
+					<CachePath>B7/{B7754F38-2B52-A6C1-5C3C-2D68B9DA2C70}.wem</CachePath>
+				</File>
+				<File Id="235997884" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Drum.wav</ShortName>
+					<CachePath>8B/{8B2A89EA-CA65-8A98-D475-5046BC55DC3A}.wem</CachePath>
+				</File>
+				<File Id="245854401" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Bass160Fight.wav</ShortName>
+					<CachePath>D8/{D89531CA-9F1C-0BEC-D0D7-631749146C2B}.wem</CachePath>
+				</File>
+				<File Id="262485558" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Drum160Fight4.wav</ShortName>
+					<CachePath>C4/{C45B0364-96C4-1CC2-46B0-5A653BAAC3D7}.wem</CachePath>
+				</File>
+				<File Id="327383908" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Drum160Fight.wav</ShortName>
+					<CachePath>2A/{2A57CB06-DD80-299E-3BA4-CC5CCBC514CF}.wem</CachePath>
+				</File>
+				<File Id="439557409" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Drum160Fight3.wav</ShortName>
+					<CachePath>F6/{F69F1E41-4531-1016-CC3F-C24291DA63CD}.wem</CachePath>
+				</File>
+				<File Id="606985328" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>GameOverBoy.wav</ShortName>
+					<CachePath>28/{280E10FF-F490-AB9F-D585-43CA4487DD00}.wem</CachePath>
+				</File>
+				<File Id="614574385" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Guitar.wav</ShortName>
+					<CachePath>4A/{4A267719-AA93-DF73-00D5-783986AFEE44}.wem</CachePath>
+				</File>
+				<File Id="636342982" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>ISaidAreYaListening.wav</ShortName>
+					<CachePath>57/{57D49B91-3673-27D7-869D-8BC58B7B74F8}.wem</CachePath>
+				</File>
+				<File Id="657754793" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Drum160Fight2.wav</ShortName>
+					<CachePath>20/{20B7E345-58D5-97AC-6B3B-BE6C41989D45}.wem</CachePath>
+				</File>
+				<File Id="746738671" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>AreYouListening.wav</ShortName>
+					<CachePath>9E/{9EA2727B-E41F-7C4E-0755-24E716B8725F}.wem</CachePath>
+				</File>
+				<File Id="755384372" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Bass160Fight4.wav</ShortName>
+					<CachePath>C3/{C3F980C1-BB67-C04C-E68A-0B4D1B1A3D17}.wem</CachePath>
+				</File>
+				<File Id="849825588" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Bass160Fight3.wav</ShortName>
+					<CachePath>1E/{1E49C8AE-1B5F-1144-6324-46C8893244BC}.wem</CachePath>
+				</File>
+				<File Id="910161738" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Violins.wav</ShortName>
+					<CachePath>78/{7897CFA5-2892-50BA-BC2E-79EB5DDBAAE3}.wem</CachePath>
+				</File>
+				<File Id="1072570282" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Bass160Fight2.wav</ShortName>
+					<CachePath>74/{74E5410B-AD36-02B5-4A54-39CB2F1A092D}.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="2221704914" Name="IM_1_One_enemy_wants_to_fight">
+					<ActionSetState>
+						<ActionSetStateEntry GroupId="3991942870" Id="514064485" Name="Fight"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="3753105098" Name="IM_2_Two_enemies_want_to_fight">
+					<ActionSetState>
+						<ActionSetStateEntry GroupId="3991942870" Id="886139701" Name="Fight_Damaged"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="1350929071" Name="IM_3_Surronded_by_enemies">
+					<ActionSetState>
+						<ActionSetStateEntry GroupId="3991942870" Id="1420167880" Name="Fight_LowHealth"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="3175089270" Name="IM_4_Death_is_coming">
+					<ActionSetState>
+						<ActionSetStateEntry GroupId="3991942870" Id="4222988787" Name="Fight_Dying"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="2160840676" Name="IM_Communication_Begin">
+					<MediaRefs>
+						<MediaRef Id="746738671"/>
+					</MediaRefs>
+					<ActionSetState>
+						<ActionSetStateEntry GroupId="3991942870" Id="1852808225" Name="Playing"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="3280047539" Name="IM_Explore">
+					<ActionSetState>
+						<ActionSetStateEntry GroupId="3991942870" Id="1823678183" Name="Exploring"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="3455955770" Name="IM_GameOver">
+					<MediaRefs>
+						<MediaRef Id="636342982"/>
+					</MediaRefs>
+					<ActionSetState>
+						<ActionSetStateEntry GroupId="3991942870" Id="4158285989" Name="GameOver"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="3952084898" Name="IM_Start">
+					<MediaRefs>
+						<MediaRef Id="1099684"/>
+						<MediaRef Id="1748691"/>
+						<MediaRef Id="130569707"/>
+					</MediaRefs>
+					<SwitchContainers>
+						<SwitchContainer>
+							<SwitchValue GroupType="State" GroupId="3991942870" Id="4222988787"/>
+							<MediaRefs>
+								<MediaRef Id="262485558"/>
+								<MediaRef Id="755384372"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="State" GroupId="3991942870" Id="886139701"/>
+							<MediaRefs>
+								<MediaRef Id="657754793"/>
+								<MediaRef Id="1072570282"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="State" GroupId="3991942870" Id="514064485"/>
+							<MediaRefs>
+								<MediaRef Id="245854401"/>
+								<MediaRef Id="327383908"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="State" GroupId="3991942870" Id="1823678183"/>
+							<MediaRefs>
+								<MediaRef Id="1099684"/>
+								<MediaRef Id="1748691"/>
+								<MediaRef Id="235997884"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="State" GroupId="3991942870" Id="1323211483"/>
+							<MediaRefs>
+								<MediaRef Id="262485558"/>
+								<MediaRef Id="614574385"/>
+								<MediaRef Id="636342982"/>
+								<MediaRef Id="910161738"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="State" GroupId="3991942870" Id="1852808225"/>
+							<MediaRefs>
+								<MediaRef Id="1099684"/>
+								<MediaRef Id="1748691"/>
+								<MediaRef Id="145846593"/>
+								<MediaRef Id="235997884"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="State" GroupId="3991942870" Id="1420167880"/>
+							<MediaRefs>
+								<MediaRef Id="439557409"/>
+								<MediaRef Id="849825588"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="State" GroupId="3991942870" Id="4158285989"/>
+							<MediaRefs>
+								<MediaRef Id="606985328"/>
+							</MediaRefs>
+						</SwitchContainer>
+					</SwitchContainers>
+					<ActionSetState>
+						<ActionSetStateEntry GroupId="3991942870" Id="1823678183" Name="Exploring"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="2841817544" Name="IM_TheyAreHostile">
+					<MediaRefs>
+						<MediaRef Id="746738671"/>
+					</MediaRefs>
+					<ActionSetState>
+						<ActionSetStateEntry GroupId="3991942870" Id="514064485" Name="Fight"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="1133905385" Name="IM_WinTheFight">
+					<ActionSetState>
+						<ActionSetStateEntry GroupId="3991942870" Id="1323211483" Name="Winning_TheFight"/>
+					</ActionSetState>
+				</Event>
+			</Events>
+			<StateGroups>
+				<StateGroup Id="3991942870" Name="Music">
+					<States>
+						<State Id="514064485" Name="Fight"/>
+						<State Id="748895195" Name="None"/>
+						<State Id="886139701" Name="Fight_Damaged"/>
+						<State Id="1323211483" Name="Winning_TheFight"/>
+						<State Id="1420167880" Name="Fight_LowHealth"/>
+						<State Id="1823678183" Name="Exploring"/>
+						<State Id="1852808225" Name="Playing"/>
+						<State Id="4158285989" Name="GameOver"/>
+						<State Id="4222988787" Name="Fight_Dying"/>
+					</States>
+				</StateGroup>
+			</StateGroups>
+		</SoundBank>
+		<SoundBank Id="2309453583" Type="User" Language="SFX" Hash="{967388B7-776A-873A-D4EE-FF4F3AD4ABFE}">
+			<ShortName>MarkerTest</ShortName>
+			<Path>MarkerTest.bnk</Path>
+			<Media>
+				<File Id="544694784" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Marker_Test_001.wav</ShortName>
+					<CachePath>55/{553EF1FE-D63A-C0DD-B494-9ADA4F8488A5}.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="3368417626" Name="Play_Markers_Test">
+					<MediaRefs>
+						<MediaRef Id="544694784"/>
+					</MediaRefs>
+				</Event>
+			</Events>
+		</SoundBank>
+		<SoundBank Id="2473969246" Type="User" Language="SFX" Hash="{1A29A8DE-AF0A-2567-80AF-B82C52DE8E16}">
+			<ShortName>Metal</ShortName>
+			<Path>Metal.bnk</Path>
+			<Media>
+				<File Id="121114457" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Footsteps\MetalSheet\Footstep_Walking_Hardmetal_04.wav</ShortName>
+					<CachePath>3D/{3D04F28D-27B6-B5B3-8C9C-490B1471C6AE}.wem</CachePath>
+				</File>
+				<File Id="209481135" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Footsteps\MetalSheet\Footstep_Walking_Hardmetal_02.wav</ShortName>
+					<CachePath>CF/{CFD65F98-1A95-E34D-5DD5-E3F2745083C7}.wem</CachePath>
+				</File>
+				<File Id="241699658" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Footsteps\MetalSheet\Footstep_Walking_Hardmetal_02.wav</ShortName>
+					<CachePath>83/{831CD08A-7E77-9272-8374-C4D1490FD105}.wem</CachePath>
+				</File>
+				<File Id="269683302" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Footsteps\MetalSheet\Footstep_Walking_Hardmetal_01.wav</ShortName>
+					<CachePath>20/{201A89A8-AC23-5753-C673-F21153B9EDE8}.wem</CachePath>
+				</File>
+				<File Id="535268333" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Footsteps\MetalSheet\Footstep_Walking_Hardmetal_03.wav</ShortName>
+					<CachePath>17/{17146F9A-B10A-8EA6-FF5D-A2FD7A0A9F30}.wem</CachePath>
+				</File>
+				<File Id="664900215" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Footsteps\MetalSheet\Footstep_Walking_Hardmetal_01.wav</ShortName>
+					<CachePath>ED/{ED60C02B-2723-7123-DB50-57445D5AD776}.wem</CachePath>
+				</File>
+				<File Id="667657885" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Footsteps\MetalSheet\Footstep_Walking_Hardmetal_04.wav</ShortName>
+					<CachePath>62/{621575AB-A819-47AE-7D8D-ABC96CDE2340}.wem</CachePath>
+				</File>
+				<File Id="715100575" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Footsteps\MetalSheet\Footstep_Walking_Hardmetal_03.wav</ShortName>
+					<CachePath>80/{804D5931-C841-16EC-C821-1E602C3BDD1B}.wem</CachePath>
+				</File>
+				<File Id="753066208" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Footsteps\MetalSheet\Footstep_Walking_Hardmetal_05.wav</ShortName>
+					<CachePath>A5/{A566F52D-06FC-FD25-18D6-BBF1F503BEE3}.wem</CachePath>
+				</File>
+				<File Id="906530360" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Footsteps\MetalSheet\Footstep_Walking_Hardmetal_05.wav</ShortName>
+					<CachePath>0C/{0CAD940F-399D-EAE8-EEB0-CB2CC45231BE}.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="3854155799" Name="Play_Footsteps">
+					<SwitchContainers>
+						<SwitchContainer>
+							<SwitchValue GroupType="Switch" GroupId="1834394558" Id="2473969246"/>
+							<MediaRefs>
+								<MediaRef Id="121114457"/>
+								<MediaRef Id="209481135"/>
+								<MediaRef Id="241699658"/>
+								<MediaRef Id="269683302"/>
+								<MediaRef Id="535268333"/>
+								<MediaRef Id="664900215"/>
+								<MediaRef Id="667657885"/>
+								<MediaRef Id="715100575"/>
+								<MediaRef Id="753066208"/>
+								<MediaRef Id="906530360"/>
+							</MediaRefs>
+						</SwitchContainer>
+					</SwitchContainers>
+				</Event>
+			</Events>
+			<GameParameters>
+				<GameParameter Id="246300162" Name="Footstep_Weight"/>
+				<GameParameter Id="3182548923" Name="Footstep_Speed"/>
+			</GameParameters>
+			<SwitchGroups>
+				<SwitchGroup Id="246300162" Name="Footstep_Weight">
+					<GameParameterRef Id="246300162"/>
+					<Switches>
+						<Switch Id="1935470627" Name="Light"/>
+						<Switch Id="2732489590" Name="Heavy"/>
+					</Switches>
+				</SwitchGroup>
+				<SwitchGroup Id="1834394558" Name="Surface">
+					<Switches>
+						<Switch Id="2058049674" Name="Wood"/>
+						<Switch Id="2185786256" Name="Gravel"/>
+						<Switch Id="2195636714" Name="Dirt"/>
+						<Switch Id="2473969246" Name="Metal"/>
+					</Switches>
+				</SwitchGroup>
+				<SwitchGroup Id="4202554577" Name="Footstep_Gait">
+					<GameParameterRef Id="3182548923"/>
+					<Switches>
+						<Switch Id="712161704" Name="Run"/>
+						<Switch Id="2108779966" Name="Walk"/>
+					</Switches>
+				</SwitchGroup>
+			</SwitchGroups>
+		</SoundBank>
+		<SoundBank Id="2517646102" Type="User" Language="English(US)" Hash="{A448F06A-9017-8130-3C52-459D7C57D9C6}">
+			<ShortName>DLLDemo</ShortName>
+			<Path>English(US)/DLLDemo.bnk</Path>
+			<Media>
+				<File Id="399670944" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>Hello.wav</ShortName>
+					<CachePath>1A/{1A388602-92D8-7BC1-A4A9-17364C01B184}.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="2952797154" Name="Play_Hello">
+					<MediaRefs>
+						<MediaRef Id="399670944"/>
+					</MediaRefs>
+				</Event>
+			</Events>
+		</SoundBank>
+		<SoundBank Id="2517646102" Type="User" Language="French(Canada)" Hash="{A3ADAB8F-2D4B-C4DA-4541-9D722DEE2578}">
+			<ShortName>DLLDemo</ShortName>
+			<Path>French(Canada)/DLLDemo.bnk</Path>
+			<Media>
+				<File Id="306982885" Language="French(Canada)" Streaming="false" Location="Memory">
+					<ShortName>Hello.wav</ShortName>
+					<CachePath>A3/{A30093EE-C9A3-9C79-277F-06F8D95A34DF}.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="2952797154" Name="Play_Hello">
+					<MediaRefs>
+						<MediaRef Id="306982885"/>
+					</MediaRefs>
+				</Event>
+			</Events>
+		</SoundBank>
+		<SoundBank Id="2872041301" Type="User" Language="SFX" Hash="{478111EB-E10A-2305-A6FE-8A5CC1F5F52C}">
+			<ShortName>Microphone</ShortName>
+			<Path>Microphone.bnk</Path>
+			<Plugins>
+				<Custom>
+					<Plugin Id="340541280" Name="Audio Input" LibName="Wwise Audio Input" LibId="13107202"/>
+					<Plugin Id="656632019" Name="Default (Custom)" LibName="Wwise Peak Limiter" LibId="7208963"/>
+					<Plugin Id="748014606" Name="Echoes_Linear (Define custom)" LibName="Wwise Delay" LibId="6946819"/>
+				</Custom>
+			</Plugins>
+			<Events>
+				<Event Id="6251382" Name="Disable_Microphone_Delay"/>
+				<Event Id="3533161767" Name="Enable_Microphone_Delay"/>
+				<Event Id="1324678662" Name="Play_Microphone">
+					<PluginRefs>
+						<Custom>
+							<PluginRef Id="340541280"/>
+							<PluginRef Id="656632019"/>
+							<PluginRef Id="748014606"/>
+						</Custom>
+					</PluginRefs>
+				</Event>
+				<Event Id="3629954576" Name="Stop_Microphone"/>
+			</Events>
+		</SoundBank>
+		<SoundBank Id="2924664132" Type="Bus" Language="SFX" Hash="{C52E3B36-F0CB-98DB-28EA-9C3965335ADE}">
+			<ShortName>Patio</ShortName>
+			<Path>Bus/Patio.bnk</Path>
+			<Plugins>
+				<ShareSets>
+					<Plugin Id="2995775460" Name="Room_Small" LibName="Wwise RoomVerb" LibId="7733251"/>
+				</ShareSets>
+			</Plugins>
+			<AuxBusses>
+				<AuxBus Id="2924664132" Name="Patio">
+					<PluginRefs>
+						<ShareSets>
+							<PluginRef Id="2995775460"/>
+						</ShareSets>
+					</PluginRefs>
+				</AuxBus>
+			</AuxBusses>
+		</SoundBank>
+		<SoundBank Id="3353080015" Type="User" Language="SFX" Hash="{5176C8BB-BBC1-2123-B47C-7E1DB6F8DC29}">
+			<ShortName>PrepareDemo</ShortName>
+			<Path>PrepareDemo.bnk</Path>
+			<Media>
+				<File Id="124871431" Language="SFX" Streaming="false" Location="Loose">
+					<ShortName>Ambience_40.wav</ShortName>
+					<Path>Media/124871431.wem</Path>
+					<CachePath>3B/{3B15CAD9-FC5D-D383-5B7B-5CF934360A73}.wem</CachePath>
+				</File>
+				<File Id="546260782" Language="SFX" Streaming="false" Location="Loose">
+					<ShortName>waves.wav</ShortName>
+					<Path>Media/546260782.wem</Path>
+					<CachePath>E3/{E371AD49-2BAC-C418-01F1-FC92275226A0}.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="2507024135" Name="Enter_Area_1">
+					<MediaRefs>
+						<MediaRef Id="124871431"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2507024132" Name="Enter_Area_2">
+					<MediaRefs>
+						<MediaRef Id="546260782"/>
+					</MediaRefs>
+				</Event>
+			</Events>
+		</SoundBank>
+		<SoundBank Id="3537469747" Type="User" Language="SFX" Hash="{5ADEA45C-6337-FC61-83E9-39A35295267C}">
+			<ShortName>Metronome</ShortName>
+			<Path>Metronome.bnk</Path>
+			<Plugins>
+				<Custom>
+					<Plugin Id="301562456" Name="Wwise Synth One" LibName="Wwise Synth One" LibId="9699330"/>
+				</Custom>
+			</Plugins>
+			<Events>
+				<Event Id="2710399919" Name="Metronome_PostMIDI">
+					<PluginRefs>
+						<Custom>
+							<PluginRef Id="301562456"/>
+						</Custom>
+					</PluginRefs>
+				</Event>
+			</Events>
+		</SoundBank>
+		<SoundBank Id="3616209736" Type="Bus" Language="SFX" Hash="{107C3742-95E7-AF62-47A2-5587119BDB9D}">
+			<ShortName>Master_Motion_Bus_Aux</ShortName>
+			<Path>Bus/Master_Motion_Bus_Aux.bnk</Path>
+			<AuxBusses>
+				<AuxBus Id="3616209736" Name="Master_Motion_Bus_Aux"/>
+			</AuxBusses>
+		</SoundBank>
+		<SoundBank Id="3682547786" Type="User" Language="SFX" Hash="{5471ECDF-F81B-1658-8C7C-42B3957B1F60}">
+			<ShortName>Bus3d_Demo</ShortName>
+			<Path>Bus3d_Demo.bnk</Path>
+			<Plugins>
+				<Custom>
+					<Plugin Id="188032993" Name="Wwise Tone Generator" LibName="Wwise Tone Generator" LibId="6684674"/>
+					<Plugin Id="401344447" Name="Tone Generator" LibName="Wwise Tone Generator" LibId="6684674"/>
+					<Plugin Id="551354733" Name="Wwise Tone Generator" LibName="Wwise Tone Generator" LibId="6684674"/>
+					<Plugin Id="631603938" Name="Wwise Tone Generator" LibName="Wwise Tone Generator" LibId="6684674"/>
+					<Plugin Id="1052755919" Name="Wwise Tone Generator" LibName="Wwise Tone Generator" LibId="6684674"/>
+				</Custom>
+			</Plugins>
+			<Events>
+				<Event Id="834165051" Name="Play_3dBus_Demo">
+					<PluginRefs>
+						<Custom>
+							<PluginRef Id="401344447"/>
+						</Custom>
+					</PluginRefs>
+				</Event>
+				<Event Id="3187155090" Name="Play_Chirp">
+					<PluginRefs>
+						<Custom>
+							<PluginRef Id="188032993"/>
+						</Custom>
+					</PluginRefs>
+				</Event>
+				<Event Id="2148126352" Name="Play_Cluster">
+					<PluginRefs>
+						<Custom>
+							<PluginRef Id="551354733"/>
+							<PluginRef Id="631603938"/>
+							<PluginRef Id="1052755919"/>
+						</Custom>
+					</PluginRefs>
+				</Event>
+				<Event Id="246841725" Name="Stop_3dBus_Demo"/>
+				<Event Id="2775363470" Name="Stop_Cluster"/>
+			</Events>
+		</SoundBank>
+		<SoundBank Id="3699003020" Type="User" Language="SFX" Hash="{A3CB02A3-6EC5-704F-7BF8-F4AADC24F423}">
+			<ShortName>PauseResume</ShortName>
+			<Path>PauseResume.bnk</Path>
+			<Events>
+				<Event Id="3493516265" Name="Pause_All_Global"/>
+				<Event Id="1327221850" Name="Resume_All_Global"/>
+			</Events>
+		</SoundBank>
+		<SoundBank Id="3795249249" Type="Event" Language="English(US)" Hash="{6F334C8A-A1A1-48F9-535E-F3F87C5DE0A6}">
+			<ShortName>Play_Hello_Reverb</ShortName>
+			<Path>Event/English(US)/Play_Hello_Reverb.bnk</Path>
+			<Media>
+				<File Id="399670944" Language="English(US)" Streaming="false" Location="Loose">
+					<ShortName>Hello.wav</ShortName>
+					<Path>Media/English(US)/399670944.wem</Path>
+					<CachePath>1A/{1A388602-92D8-7BC1-A4A9-17364C01B184}.wem</CachePath>
+				</File>
+			</Media>
+			<Plugins>
+				<ShareSets>
+					<Plugin Id="1980001864" Name="Cathedral_Holy" LibName="Wwise RoomVerb" LibId="7733251"/>
+				</ShareSets>
+			</Plugins>
+			<Events>
+				<Event Id="3795249249" Name="Play_Hello_Reverb">
+					<MediaRefs>
+						<MediaRef Id="399670944"/>
+					</MediaRefs>
+					<PluginRefs>
+						<ShareSets>
+							<PluginRef Id="1980001864"/>
+						</ShareSets>
+					</PluginRefs>
+				</Event>
+			</Events>
+		</SoundBank>
+		<SoundBank Id="3795249249" Type="Event" Language="French(Canada)" Hash="{14B56359-C8AB-A4F6-D302-B7E4F692F4C5}">
+			<ShortName>Play_Hello_Reverb</ShortName>
+			<Path>Event/French(Canada)/Play_Hello_Reverb.bnk</Path>
+			<Media>
+				<File Id="306982885" Language="French(Canada)" Streaming="false" Location="Loose">
+					<ShortName>Hello.wav</ShortName>
+					<Path>Media/French(Canada)/306982885.wem</Path>
+					<CachePath>A3/{A30093EE-C9A3-9C79-277F-06F8D95A34DF}.wem</CachePath>
+				</File>
+			</Media>
+			<Plugins>
+				<ShareSets>
+					<Plugin Id="1980001864" Name="Cathedral_Holy" LibName="Wwise RoomVerb" LibId="7733251"/>
+				</ShareSets>
+			</Plugins>
+			<Events>
+				<Event Id="3795249249" Name="Play_Hello_Reverb">
+					<MediaRefs>
+						<MediaRef Id="306982885"/>
+					</MediaRefs>
+					<PluginRefs>
+						<ShareSets>
+							<PluginRef Id="1980001864"/>
+						</ShareSets>
+					</PluginRefs>
+				</Event>
+			</Events>
+		</SoundBank>
+		<SoundBank Id="3887404748" Type="User" Language="English(US)" Hash="{05A03853-1652-C12A-B5B4-73671C137433}">
+			<ShortName>Human</ShortName>
+			<Path>English(US)/Human.bnk</Path>
+			<Media>
+				<File Id="399670944" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>Hello.wav</ShortName>
+					<CachePath>1A/{1A388602-92D8-7BC1-A4A9-17364C01B184}.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="2952797154" Name="Play_Hello">
+					<MediaRefs>
+						<MediaRef Id="399670944"/>
+					</MediaRefs>
+				</Event>
+			</Events>
+		</SoundBank>
+		<SoundBank Id="3887404748" Type="User" Language="French(Canada)" Hash="{27262293-5169-92E4-EBC1-ECACDC0DD6DD}">
+			<ShortName>Human</ShortName>
+			<Path>French(Canada)/Human.bnk</Path>
+			<Media>
+				<File Id="306982885" Language="French(Canada)" Streaming="false" Location="Memory">
+					<ShortName>Hello.wav</ShortName>
+					<CachePath>A3/{A30093EE-C9A3-9C79-277F-06F8D95A34DF}.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="2952797154" Name="Play_Hello">
+					<MediaRefs>
+						<MediaRef Id="306982885"/>
+					</MediaRefs>
+				</Event>
+			</Events>
+		</SoundBank>
+		<SoundBank Id="4146461094" Type="User" Language="SFX" Hash="{F6843B18-94A9-BB79-D2E9-94E4104EF343}">
+			<ShortName>MusicCallbacks</ShortName>
+			<Path>MusicCallbacks.bnk</Path>
+			<Media>
+				<File Id="242467263" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>callback.mid</ShortName>
+					<CachePath>70/{702B8EFA-12F6-F56E-DF94-AB60E375D5AE}.wem</CachePath>
+				</File>
+				<File Id="329559453" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>C3 (128Hz).wav</ShortName>
+					<CachePath>61/{61A38DD1-A646-39AC-5491-72E0AFF51E18}.wem</CachePath>
+				</File>
+				<File Id="708003509" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>C6 (1024Hz).wav</ShortName>
+					<CachePath>D4/{D44A65CA-4B65-336E-5894-289E9767C023}.wem</CachePath>
+				</File>
+				<File Id="752036114" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>MarchingBand.wav</ShortName>
+					<CachePath>7A/{7A65B164-2073-C810-82FD-21F9DF937C08}.wem</CachePath>
+				</File>
+				<File Id="942304755" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>C4 (256Hz).wav</ShortName>
+					<CachePath>28/{28AF262B-D1EF-A683-D6E6-91DF544C9D5C}.wem</CachePath>
+				</File>
+				<File Id="1005470372" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>C5 (512Hz).wav</ShortName>
+					<CachePath>5A/{5ACDCA73-BCDA-E99B-04C5-DFA6E340977B}.wem</CachePath>
+				</File>
+			</Media>
+			<Plugins>
+				<Custom>
+					<Plugin Id="702118206" Name="Wwise Synth One" LibName="Wwise Synth One" LibId="9699330"/>
+				</Custom>
+			</Plugins>
+			<Events>
+				<Event Id="519773714" Name="PlayMusicDemo1">
+					<MediaRefs>
+						<MediaRef Id="752036114"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="519773713" Name="PlayMusicDemo2">
+					<MediaRefs>
+						<MediaRef Id="329559453"/>
+						<MediaRef Id="708003509"/>
+						<MediaRef Id="942304755"/>
+						<MediaRef Id="1005470372"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="519773712" Name="PlayMusicDemo3">
+					<MediaRefs>
+						<MediaRef Id="242467263"/>
+					</MediaRefs>
+					<PluginRefs>
+						<Custom>
+							<PluginRef Id="702118206"/>
+						</Custom>
+					</PluginRefs>
+				</Event>
+			</Events>
+			<GameParameters/>
+		</SoundBank>
+		<SoundBank Id="4231616173" Type="User" Language="SFX" Hash="{74FDB377-F94B-80C2-4F2E-1214AF8F970F}">
+			<ShortName>Channels</ShortName>
+			<Path>Channels.bnk</Path>
+			<Media>
+				<File Id="460788097" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>1_0.wav</ShortName>
+					<CachePath>26/{26C835DF-9914-BC85-D04D-16BAC5542A6E}.wem</CachePath>
+				</File>
+				<File Id="624951112" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>7_1_4.wav</ShortName>
+					<CachePath>0E/{0EF8647B-612C-93D3-EA5C-2641FE204F06}.wem</CachePath>
+				</File>
+				<File Id="636732928" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>5_1.wav</ShortName>
+					<CachePath>AA/{AA05D510-5C77-5AC4-1735-B7169AE4B218}.wem</CachePath>
+				</File>
+				<File Id="853023223" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>7_1.wav</ShortName>
+					<CachePath>CA/{CA8CF5B9-2EFE-0797-84E7-5937FD6DBD43}.wem</CachePath>
+				</File>
+				<File Id="1067988940" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>2_0.wav</ShortName>
+					<CachePath>C8/{C8FF37B7-9554-DB77-5436-8B833ACF5D98}.wem</CachePath>
+				</File>
+			</Media>
+			<Plugins>
+				<ShareSets>
+					<Plugin Id="2077473410" Name="RouteToMainMix" LibName="Wwise System Output Settings" LibId="58982409"/>
+				</ShareSets>
+			</Plugins>
+			<Events>
+				<Event Id="2195545438" Name="Play_1_0">
+					<MediaRefs>
+						<MediaRef Id="460788097"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2195104153" Name="Play_2_0">
+					<MediaRefs>
+						<MediaRef Id="1067988940"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3268621539" Name="Play_5_1">
+					<MediaRefs>
+						<MediaRef Id="636732928"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2194559701" Name="Play_7_1">
+					<MediaRefs>
+						<MediaRef Id="853023223"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="4274198532" Name="Play_7_1_4">
+					<MediaRefs>
+						<MediaRef Id="624951112"/>
+					</MediaRefs>
+				</Event>
+			</Events>
+		</SoundBank>
+	</SoundBanks>
+	<FileHash>{3EB5FE41-2716-5B03-7F04-25D7E407A84C}</FileHash>
+</SoundBanksInfo>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{BB503CD2-6180-41A1-A36C-6BE4D3CDEF98}" SchemaVersion="123">
+	<SoundBanks>
+		<WorkUnit Name="Default Work Unit" ID="{BB503CD2-6180-41A1-A36C-6BE4D3CDEF98}" PersistMode="Standalone">
+			<ChildrenList>
+				<SoundBank Name="BRS_Soundbank" ID="{F8011E67-8302-405A-B5C0-D4D5877C3B16}">
+					<ObjectInclusionList>
+						<ObjectRef Name="AmbientExt" ID="{084E3D51-4E55-4197-8C1D-9BB1A566F7D6}" WorkUnitID="{EE6AED1A-BB96-400A-9F23-941E6F03BA29}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Dash" ID="{69288CA0-22BA-4854-A433-83C8CC9BFEA7}" WorkUnitID="{EE6AED1A-BB96-400A-9F23-941E6F03BA29}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Move" ID="{94A1909F-D218-4D47-AAE6-BEF901B2A481}" WorkUnitID="{EE6AED1A-BB96-400A-9F23-941E6F03BA29}" Origin="Manual" Filter="7"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+			</ChildrenList>
+		</WorkUnit>
+	</SoundBanks>
+</WwiseDocument>
