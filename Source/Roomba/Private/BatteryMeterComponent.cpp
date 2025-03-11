@@ -98,11 +98,21 @@ void UBatteryMeterComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 	{
 		if (PlayerRef)
 		{
-			APlayerCameraManager * cameramanager = UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0);
-			cameramanager->StartCameraFade(0, 1, 1.5, FLinearColor::Black, true, true);
-			PlayerRef->CanPlayerLook = false;
+			//TODO: Check velocity is 0
+			const float VelocityLength = PlayerRef->GetRootComponent()->GetComponentVelocity().Length();
 
-			GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UBatteryMeterComponent::RespawnPlayer, 1.5f, false);
+			//TODO: Check if in the shadow, and then kill
+			const bool IsInShadow = !InAnyLight;
+
+			if (IsInShadow && FMath::IsNearlyEqual(VelocityLength, 0.0f, 0.01f))
+			{
+				APlayerCameraManager * cameramanager = UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0);
+				cameramanager->StartCameraFade(0, 1, 1.5, FLinearColor::Black, true, true);
+				PlayerRef->CanPlayerLook = false;
+				PlayerRef->CanPlayerMove = false;
+
+				GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UBatteryMeterComponent::RespawnPlayer, 1.5f, false);
+			}
 		}
 	}
 	
@@ -133,22 +143,10 @@ void UBatteryMeterComponent::IncreaseStamina2()
 void UBatteryMeterComponent::DecreaseStaminaInShadow() 
 {
 	BatteryLevel--;
-	
-	if (BatteryLevel <= 0)
-	{
-		PlayerRef->CanPlayerMove = false;
-		BatteryLevel = 0;
-	}
 }
 void UBatteryMeterComponent::NegateStamina( float Amount) 
 {
 	BatteryLevel += Amount;
-	
-	if (BatteryLevel <=  0)
-	{
-		PlayerRef->CanPlayerMove = false;
-		BatteryLevel = 0;
-	}
 }
 
 void UBatteryMeterComponent::RespawnPlayer() 

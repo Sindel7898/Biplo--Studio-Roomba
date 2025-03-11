@@ -93,6 +93,7 @@ public:
 
 	FTimerHandle TimerHandle;
 
+	float GetBattery() { return BatteryLevel; }
 	
 	UFUNCTION(BlueprintCallable)
 	float GetBatteryLevel() {return BatteryLevel  / MaxBatteryLevel;} 

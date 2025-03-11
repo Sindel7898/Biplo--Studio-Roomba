@@ -152,8 +152,10 @@ void ARoombaMovement::Move(const FInputActionValue& Value)
 	
 	if (AController* PlayerController = GetController())
 	{
-		if (CanPlayerMove)
+		if (CanPlayerMove && BatteryMeterComponent->GetBattery() > 0)
 		{
+			GEngine->AddOnScreenDebugMessage(30, 2.0f, FColor::Red, "cAN MOVE");
+
 			if (CanPlayerLook)
 			{
 				// Get the forward direction based on the controller's rotation
