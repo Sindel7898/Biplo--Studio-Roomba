@@ -19,7 +19,8 @@ ARoombaMovement::ARoombaMovement()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
+	HoverDownRaycastLength = 5000.0f;
+	
 	BoxCollider = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollider"));
 	RootComponent = BoxCollider;
 	
@@ -225,7 +226,7 @@ void ARoombaMovement::HoverPlayer()
 {
 	// Perform a raycast downward to check the ground distance
 	FVector Start = GetActorLocation();
-	FVector End = Start - FVector(0, 0, 1000); // Raycast down 1000 units
+	FVector End = Start - FVector(0, 0, HoverDownRaycastLength); // Raycast down 1000 units
 
 	// Hit result for the raycast
 	FHitResult HitResult;

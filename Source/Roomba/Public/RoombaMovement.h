@@ -138,6 +138,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	USkeletalMeshComponent* RoombaSkeletalMesh;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float HoverDownRaycastLength;
+
 	bool CanPlayerMove = true;
 
 	FORCEINLINE UInputMappingContext* GetMappingContext(){return DefaultMappingContext;}
