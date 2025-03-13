@@ -7,6 +7,7 @@
 #include "InputActionValue.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "RoombaMovement.h"
 #include "Components/BoxComponent.h"
 #include "ProximityPromptComponent.generated.h"
 
@@ -46,7 +47,10 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Config")
 	UTexture2D* Image;
-	
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Config")
+	float StaminaRequired;
+
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
@@ -73,6 +77,7 @@ public:
 
 private:
 
+	ARoombaMovement* RoombaMovement;
 
 	bool bIsCollidingWithBoxComponent;
 

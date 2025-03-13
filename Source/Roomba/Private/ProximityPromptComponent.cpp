@@ -3,6 +3,8 @@
 
 #include "ProximityPromptComponent.h"
 
+#include "BatteryMeterComponent.h"
+#include "RoombaMovement.h"
 #include "GameFramework/Character.h"
 #include "Kismet/GameplayStatics.h"
 
@@ -20,6 +22,8 @@ UProximityPromptComponent::UProximityPromptComponent()
 	bIsCollidingWithBoxComponent = false;
 
 	Image = nullptr;
+
+	StaminaRequired = 25.0f;
 }
 
 
@@ -45,6 +49,12 @@ void UProximityPromptComponent::BeginPlay()
 
 		BoxComponent->OnComponentBeginOverlap.AddDynamic(this, &UProximityPromptComponent::OnComponentBeginOverlap);
 		BoxComponent->OnComponentEndOverlap.AddDynamic(this, &UProximityPromptComponent::OnComponentEndOverlap);
+	}
+
+	APawn* PlayerPawn = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
+	if (PlayerPawn)
+	{
+		RoombaMovement = Cast<ARoombaMovement>(PlayerPawn);
 	}
 	
 }
@@ -86,8 +96,27 @@ void UProximityPromptComponent::Trigger()
 	}
 	
 	GEngine->AddOnScreenDebugMessage(5,1,FColor::Green, "Proximity prompt has been triggered!!");
+	
+	bool CanTrigger = true;
+	const bool DeductStamina = StaminaRequired > 0.0f && RoombaMovement != nullptr;
+	if (DeductStamina)
+	{
+		float CurrentStamina = RoombaMovement->BatteryMeterComponent->GetBattery();
+		if (CurrentStamina < StaminaRequired)
+		{
+			CanTrigger = false;
+		}
+	}
 
-	OnTriggered.Broadcast();
+	if (CanTrigger)
+	{
+		if (DeductStamina)
+		{
+			RoombaMovement->BatteryMeterComponent->NegateStamina(-StaminaRequired);
+		}
+		OnTriggered.Broadcast();
+	}
+	
 }
 
 // Called every frame
