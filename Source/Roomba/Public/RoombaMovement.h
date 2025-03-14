@@ -145,4 +145,5 @@ public:
 
 	FORCEINLINE UInputMappingContext* GetMappingContext(){return DefaultMappingContext;}
 
+	float CableCount = 0;
 };
