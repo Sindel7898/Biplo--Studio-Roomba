@@ -4,11 +4,14 @@
 #include "GeneratorSwitch.h"
 
 #include "Cable.h"
+#include "Generator.h"
 #include "ProximityPromptComponent.h"
 
 // Sets default values
 AGeneratorSwitch::AGeneratorSwitch()
 {
+	PrimaryActorTick.bCanEverTick = true;
+
 	SwitchMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("SwitchMesh"));
 	BoxCollider = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollider"));
 	BoxCollider->SetupAttachment(SwitchMesh);
@@ -24,18 +27,22 @@ void AGeneratorSwitch::BeginPlay()
 	
 }
 
-void AGeneratorSwitch::SwitchToEnabled()
+void AGeneratorSwitch::Tick(float DeltaTime)
 {
-	IsConnectedToRope = true;
-	SwitchMesh->SetMaterial(0,EnabledMaterial);
+	Super::Tick(DeltaTime);
 
+	if (SpecifiedCable->CableComponent->GetAttachedActor() !=this && RefToGenerator->IsMaster  == false)
+	{
+		RefToGenerator->SwitchToDisabled();
+	}
+
+	if (SpecifiedCable->CableComponent->GetAttachedActor() == this && MasterGenerator->IsConnectedToRope == true )
+	{
+		RefToGenerator->SwitchToEnabled();
+	}
+	
 }
 
-void AGeneratorSwitch::SwitchToDisabled()
-{
-	IsConnectedToRope = false;
-	SwitchMesh->SetMaterial(0,DisabledMaterial);
-}
 
 void AGeneratorSwitch::OverlapBegins(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
 								   UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
@@ -44,9 +51,10 @@ void AGeneratorSwitch::OverlapBegins(UPrimitiveComponent* OverlappedComponent, A
 	if (OtherActor == SpecifiedCable->CableComponent->GetAttachedActor())
 	{
 		SpecifiedCable->CableComponent->SetAttachEndTo(this,FName("SwitchMesh"));
-		SwitchToEnabled();
+
+		if (SpecifiedCable->CableComponent->GetAttachedActor() == this && IsMasterSwitch)
+		{
+			RefToGenerator->SwitchToEnabled();
+		}
 	}
-	
-	
-	
 }

@@ -35,6 +35,9 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	AGeneratorSwitch* GeneratorSwitch;
+
+	UPROPERTY(EditAnywhere)
+	AGenerator* MasterGenerator;
 	
 	virtual void Tick(float DeltaTime) override;
 
@@ -42,8 +45,13 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+public:
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	bool IsConnectedToRope = false;
+
+	UPROPERTY(EditAnywhere)
+	bool IsMaster = false;
 
 	void SwitchToEnabled();
 	void SwitchToDisabled();

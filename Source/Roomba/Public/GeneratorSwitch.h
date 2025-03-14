@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "GeneratorSwitch.generated.h"
 
+class AGenerator;
 class ACable;
 class UProximityPromptComponent;
 class UStaticMeshComponent;
@@ -27,21 +28,24 @@ public:
 	UBoxComponent* BoxCollider;
 	
 	UPROPERTY(EditAnywhere)
-	UMaterial*  EnabledMaterial;
-	UPROPERTY(EditAnywhere)
-	UMaterial*  DisabledMaterial;
+	ACable* SpecifiedCable;
 
 	UPROPERTY(EditAnywhere)
-	ACable* SpecifiedCable;
+	AGenerator* RefToGenerator;
+
+	UPROPERTY(EditAnywhere)
+	AGenerator* MasterGenerator;
+
+	UPROPERTY(EditAnywhere)
+	bool IsMasterSwitch = false;
+	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	virtual void Tick(float DeltaTime) override;
 
 public:	
 	bool IsConnectedToRope = false;
-
-	void SwitchToEnabled();
-	void SwitchToDisabled();
 	UFUNCTION()
 	void OverlapBegins(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult);
 };

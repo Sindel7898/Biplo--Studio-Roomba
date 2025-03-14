@@ -26,22 +26,6 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	UBoxComponent* BoxCollider;
-	
-	/*
-	virtual bool IsAttachedTo(const AActor* Other) const override;
-	*/
-	
-	/*UPROPERTY(EditAnywhere)
-    AActor* GeneratorSwitch1;
-
-	UPROPERTY(EditAnywhere)
-	AActor* GeneratorSwitch2;
-
-	UPROPERTY(EditAnywhere)
-	AActor* GeneratorSwitch3;
-
-	UPROPERTY(EditAnywhere)
-	AActor* GeneratorSwitch4;*/
 
 	UFUNCTION()
 	void OverlapBegins(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult);
