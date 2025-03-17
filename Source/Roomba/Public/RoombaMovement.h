@@ -92,7 +92,7 @@ protected:
 	void Look(const FInputActionValue& Value);
 
 
-	void HoverPlayer();
+	void HoverPlayer(float DeltaTime);
 	void ChangePlayerCamera();
 
 	UFUNCTION(BlueprintCallable)

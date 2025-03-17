@@ -216,14 +216,18 @@ void ARoombaMovement::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	HoverPlayer();
+	HoverPlayer(DeltaTime);
 	ChangePlayerCamera();
+
 	SceneComponent->SetWorldLocation(GetActorLocation());
 }
 
 
-void ARoombaMovement::HoverPlayer()
+
+void ARoombaMovement::HoverPlayer(float DeltaTime)
 {
+	const float GravityStrength = 9.81f; // Gravity strength (m/s^2)
+	
 	// Perform a raycast downward to check the ground distance
 	FVector Start = GetActorLocation();
 	FVector End = Start - FVector(0, 0, HoverDownRaycastLength); // Raycast down 1000 units
@@ -245,14 +249,23 @@ void ARoombaMovement::HoverPlayer()
 		
 		FVector CurrentLocation = GetActorLocation();
 
-		CurrentLocation.Z = FMath::FInterpTo(CurrentLocation.Z, TargetHeight, GetWorld()->GetDeltaSeconds(), HoverInterpulationSpeed); 
+		CurrentLocation.Z -= GravityStrength * DeltaTime;
+		
+		if (CurrentLocation.Z > TargetHeight)
+		{
+			CurrentLocation.Z = FMath::FInterpTo(CurrentLocation.Z, TargetHeight, DeltaTime, HoverInterpulationSpeed);
+		}
+		// If the actor is below the target height, snap to the target height
+		else
+		{
+			CurrentLocation.Z = TargetHeight;
+		}
+
 		SetActorLocation(CurrentLocation);
 
 		FString InterpolationText = FString::Printf(TEXT("InterpolationSpeed: %f"), HoverInterpulationSpeed);
 		GEngine->AddOnScreenDebugMessage(6, 2.0f, FColor::Red, InterpolationText);
-
 	}
-
 }
 
 void ARoombaMovement::ChangePlayerCamera()

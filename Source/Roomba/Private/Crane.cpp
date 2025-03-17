@@ -34,17 +34,14 @@ void ACrane::Tick(float DeltaTime)
 void ACrane::RotateCraneLeft(float RotationAmount)
 {
 	FRotator NewRotation = CraneRotator->GetRelativeRotation();
-	NewRotation.Yaw += RotationAmount;
-	//NewRotation.Yaw = FMath::Clamp(NewRotation.Yaw, -180.0f, 180.0f);
+	NewRotation.Yaw = FMath::FInterpTo(NewRotation.Yaw , NewRotation.Yaw + RotationAmount, GetWorld()->GetDeltaSeconds(), RotationalSpeed);
 	CraneRotator->SetRelativeRotation(NewRotation);
-
 }
 
 void ACrane::RotateCraneRight(float RotationAmount)
 {
 	FRotator NewRotation = CraneRotator->GetRelativeRotation();
-	NewRotation.Yaw -= RotationAmount;
-	//NewRotation.Yaw = FMath::Clamp(NewRotation.Yaw, -180.0f, 180.0f);
+	NewRotation.Yaw = FMath::FInterpTo(NewRotation.Yaw , NewRotation.Yaw - RotationAmount, GetWorld()->GetDeltaSeconds(), RotationalSpeed);
 	CraneRotator->SetRelativeRotation(NewRotation);
 
 }
@@ -52,17 +49,18 @@ void ACrane::RotateCraneRight(float RotationAmount)
 void ACrane::MoveCraneUp(float MoveAmount)
 {
 	FVector NewLocation = 	CraneGrabber->GetRelativeLocation();
-	NewLocation.X  += MoveAmount;
-	NewLocation.X  = FMath::Clamp(NewLocation.X,-430.0f,-60.0f);
-	CraneGrabber->SetRelativeLocation(NewLocation);
+	NewLocation.X = FMath::FInterpTo(NewLocation.X , NewLocation.X +  MoveAmount, GetWorld()->GetDeltaSeconds(), HorizontalSpeed);
+	NewLocation.X  = FMath::Clamp(NewLocation.X,-460.0f,-60.0f);
 	
+	CraneGrabber->SetRelativeLocation(NewLocation);
 }
 
 
 void ACrane::MoveCraneDown(float MoveAmount)
 {
 	FVector NewLocation = 	CraneGrabber->GetRelativeLocation();
-	NewLocation.X  -= MoveAmount;
-	NewLocation.X  = FMath::Clamp(NewLocation.X,-430.0f,-60.0f);
+	NewLocation.X = FMath::FInterpTo(NewLocation.X , NewLocation.X  -   MoveAmount, GetWorld()->GetDeltaSeconds(), HorizontalSpeed);
+	NewLocation.X  = FMath::Clamp(NewLocation.X,-460.0f,-60.0f);
+	
 	CraneGrabber->SetRelativeLocation(NewLocation);
 }

@@ -23,8 +23,11 @@ public:
 	UPROPERTY(EditAnywhere)
 	UStaticMeshComponent* CraneGrabber;
 
-	/*UPROPERTY(EditAnywhere)
-	USceneComponent* SceneComponent;*/
+	UPROPERTY(EditAnywhere)
+	float RotationalSpeed = 1;
+	
+	UPROPERTY(EditAnywhere)
+	float HorizontalSpeed = 1;
 	
 protected:
 	// Called when the game starts or when spawned
