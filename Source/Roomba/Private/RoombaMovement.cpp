@@ -256,11 +256,11 @@ void ARoombaMovement::HoverPlayer(float DeltaTime)
 			CurrentLocation.Z = FMath::FInterpTo(CurrentLocation.Z, TargetHeight, DeltaTime, HoverInterpulationSpeed);
 		}
 		// If the actor is below the target height, snap to the target height
-		else
+		else if (CurrentLocation.Z < TargetHeight)
 		{
-			CurrentLocation.Z = TargetHeight;
+			CurrentLocation.Z = FMath::FInterpTo(CurrentLocation.Z, TargetHeight, DeltaTime, HoverInterpulationSpeed);
 		}
-
+		
 		SetActorLocation(CurrentLocation);
 
 		FString InterpolationText = FString::Printf(TEXT("InterpolationSpeed: %f"), HoverInterpulationSpeed);
