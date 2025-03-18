@@ -26,20 +26,6 @@ ACable::ACable()
 
 }
 
-
-
-/*bool ACable::IsAttachedTo(const AActor* Other) const
-{
-	/*if (Other == GeneratorSwitch1 || Other == GeneratorSwitch2 || Other == GeneratorSwitch3 || Other == GeneratorSwitch4 )
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}#1#
-}*/
-
 // Called when the game starts or when spawned
 void ACable::BeginPlay()
 {

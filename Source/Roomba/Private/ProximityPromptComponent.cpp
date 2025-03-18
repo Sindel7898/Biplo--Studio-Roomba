@@ -45,10 +45,15 @@ void UProximityPromptComponent::BeginPlay()
 	// ...
 	if (IsValid(BoxComponent))
 	{
-		GEngine->AddOnScreenDebugMessage(15,1,FColor::Green, "Added box component");
+		//GEngine->AddOnScreenDebugMessage(15,1,FColor::Green, "Added box component");
 
 		BoxComponent->OnComponentBeginOverlap.AddDynamic(this, &UProximityPromptComponent::OnComponentBeginOverlap);
 		BoxComponent->OnComponentEndOverlap.AddDynamic(this, &UProximityPromptComponent::OnComponentEndOverlap);
+	}
+	else
+	{
+		//GEngine->AddOnScreenDebugMessage(15,1,FColor::Green, "No box component");
+
 	}
 
 	APawn* PlayerPawn = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
@@ -56,7 +61,6 @@ void UProximityPromptComponent::BeginPlay()
 	{
 		RoombaMovement = Cast<ARoombaMovement>(PlayerPawn);
 	}
-	
 }
 
 void UProximityPromptComponent::SetVisibility(bool NewVisible)
@@ -75,16 +79,26 @@ void UProximityPromptComponent::SetVisibility(bool NewVisible)
 void UProximityPromptComponent::OnComponentBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	GEngine->AddOnScreenDebugMessage(5,1,FColor::Green, "Overlap begin");
-
+	const APawn* PlayerPawn = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
+	if (PlayerPawn == nullptr || OtherActor != PlayerPawn)
+	{
+		return; // Did not overlap with the player
+	}
+	
+	GEngine->AddOnScreenDebugMessage(11,1,FColor::Green, "Overlap begin");
 	bIsCollidingWithBoxComponent = true;
 }
 
 void UProximityPromptComponent::OnComponentEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	GEngine->AddOnScreenDebugMessage(5,1,FColor::Green, "Overlap end");
-
+	const APawn* PlayerPawn = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
+	if (PlayerPawn == nullptr || OtherActor != PlayerPawn)
+	{
+		return; // Did not overlap with the player
+	}
+	
+	GEngine->AddOnScreenDebugMessage(12,1,FColor::Green, "Overlap end");
 	bIsCollidingWithBoxComponent = false;
 }
 
@@ -129,6 +143,10 @@ void UProximityPromptComponent::TickComponent(float DeltaTime, ELevelTick TickTy
 	if (BoxComponent)
 	{
 		IsNearToInteraction = bIsCollidingWithBoxComponent;
+		if (bIsCollidingWithBoxComponent)
+		{
+			GEngine->AddOnScreenDebugMessage(5,1,FColor::Green, "Colliding with box component?");
+		}
 	}
 	else
 	{
