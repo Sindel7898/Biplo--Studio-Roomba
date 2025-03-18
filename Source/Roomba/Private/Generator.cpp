@@ -22,14 +22,6 @@ AGenerator::AGenerator()
 void AGenerator::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
-	/*if (MasterGenerator)
-	{
-		if (MasterGenerator->IsConnectedToRope == true && this->IsConnectedToRope == true )
-		{
-			SwitchToEnabled();
-		}
-	}*/
 	
 }
 
@@ -37,11 +29,7 @@ void AGenerator::Tick(float DeltaTime)
 void AGenerator::BeginPlay()
 {
 	Super::BeginPlay();
-
-	/*if (IsMaster)
-	{
-		SwitchToEnabled();
-	}*/
+	
 }
 
 void AGenerator::SwitchToEnabled()
