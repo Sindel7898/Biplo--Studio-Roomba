@@ -65,7 +65,6 @@ void ACameraSwitcher::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* 
 	{
 		RoombaCharacter->CameraState = PlayerCameraState::AttachedToPlayer;
 		RoombaCharacter-> CanPlayerLook = true;
-
 	}
 }
 
