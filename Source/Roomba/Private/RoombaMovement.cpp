@@ -6,6 +6,7 @@
 #include "BatteryMeterComponent.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "PlayerSpline.h"
 #include "ProximityPromptComponent.h"
 #include "Camera/CameraComponent.h"
 #include "Components/BoxComponent.h"
@@ -13,6 +14,7 @@
 #include "GameFramework/FloatingPawnMovement.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "Kismet/KismetMathLibrary.h"
 
 // Sets default values
 ARoombaMovement::ARoombaMovement()
@@ -59,6 +61,17 @@ void ARoombaMovement::BeginPlay()
 	StoreMaxSpeed = FloatingPawnMovement->MaxSpeed;
 	StoreDeceleration = FloatingPawnMovement->Deceleration;
 
+	for (int i = 0; i < LevelsThatUseSpline.Num(); i++)
+	{
+		if (LevelsThatUseSpline[i] == UGameplayStatics::GetCurrentLevelName(GetWorld()))
+		{
+			DoesLevelUseSpline = true;
+			CanPlayerLook = false;
+			PlayerSplineRef  = Cast<APlayerSpline>(UGameplayStatics::GetActorOfClass(GetWorld(),SplineActorClass));
+			break;
+		}
+	}
+	
 }
 
 
@@ -90,10 +103,7 @@ void ARoombaMovement::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 		EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Triggered, this, &ARoombaMovement::OnInteract);
 
 	}
-	
 }
-
-
 
 
 void ARoombaMovement::OnDashInputChanged(const FInputActionValue& InputActionValue)
@@ -134,7 +144,7 @@ void ARoombaMovement::Look(const FInputActionValue& Value)
 	// input is a Vector2D
 	FVector2D LookAxisVector = Value.Get<FVector2D>();
 
-	if (GetController()!= nullptr)
+	if (GetController()!= nullptr && CanPlayerLook)
 	{
 		// add yaw and pitch input to controller
 		AddControllerYawInput(LookAxisVector.X);
@@ -155,7 +165,6 @@ void ARoombaMovement::Move(const FInputActionValue& Value)
 	{
 		if (CanPlayerMove && BatteryMeterComponent->GetBattery() > 0)
 		{
-			GEngine->AddOnScreenDebugMessage(30, 2.0f, FColor::Red, "cAN MOVE");
 
 			if (CanPlayerLook)
 			{
@@ -163,7 +172,7 @@ void ARoombaMovement::Move(const FInputActionValue& Value)
 				FRotator ControllerRotation = PlayerController->GetControlRotation();
 				ForwardDirection = FRotationMatrix(ControllerRotation).GetUnitAxis(EAxis::X);
 				RightDirection = FRotationMatrix(ControllerRotation).GetUnitAxis(EAxis::Y);
-			
+
 			}
 			else
 			{
@@ -220,6 +229,29 @@ void ARoombaMovement::Tick(float DeltaTime)
 	ChangePlayerCamera();
 
 	SceneComponent->SetWorldLocation(GetActorLocation());
+
+	if (DoesLevelUseSpline)
+	{
+		if (PlayerSplineRef && CanPlayerLook)
+		{
+			CameraBoom->bInheritYaw = false;
+			CameraBoom->bInheritPitch = false;
+			
+			FVector CameraLocation = FollowCamera->GetComponentLocation();
+			FRotator CameraRotation= FollowCamera->GetComponentRotation();
+
+			FVector SplineLocation = PlayerSplineRef->SplineComponent->FindLocationClosestToWorldLocation(GetActorLocation(),ESplineCoordinateSpace::World);
+			
+			FVector NewLocation =  FMath::VInterpTo(CameraLocation,SplineLocation,DeltaTime,CameraSplineInterSpeed);
+			
+			FRotator CalculatedLookat = UKismetMathLibrary::FindLookAtRotation(NewLocation,RoombaSkeletalMesh->GetComponentLocation());
+			
+			FRotator NewCameraRotation =  FMath::RInterpTo(CameraRotation,CalculatedLookat,DeltaTime,CameraSplineInterSpeed);
+			
+			FollowCamera->SetWorldRotation(NewCameraRotation);
+			FollowCamera->SetWorldLocation(NewLocation);		
+		}
+	}
 }
 
 
@@ -276,7 +308,6 @@ void ARoombaMovement::ChangePlayerCamera()
 		CanPlayerLook = true;
 
 		FollowCamera->AttachToComponent(CameraBoom, FAttachmentTransformRules::SnapToTargetIncludingScale);
-	
 	}
 
 	if (CameraState == PlayerCameraState::AtSpecifiedPosition)

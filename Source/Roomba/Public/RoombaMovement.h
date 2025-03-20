@@ -6,6 +6,7 @@
 #include "GameFramework/Pawn.h"
 #include "RoombaMovement.generated.h"
 
+class APlayerSpline;
 class UCapsuleComponent;
 class USphereComponent;
 class UBoxComponent;
@@ -144,6 +145,20 @@ public:
 	bool CanPlayerMove = true;
 
 	FORCEINLINE UInputMappingContext* GetMappingContext(){return DefaultMappingContext;}
-
+	
 	float CableCount = 0;
+
+	UPROPERTY(EditAnywhere)
+	TArray<FString> LevelsThatUseSpline;
+
+	UPROPERTY(EditAnywhere)
+    TSubclassOf<AActor> SplineActorClass;
+
+	UPROPERTY()
+	APlayerSpline* PlayerSplineRef;
+	
+	UPROPERTY(EditAnywhere)
+	float CameraSplineInterSpeed = 2;
+	
+	bool DoesLevelUseSpline = false;
 };
