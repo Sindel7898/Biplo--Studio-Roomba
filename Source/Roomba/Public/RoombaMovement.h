@@ -20,11 +20,13 @@ class USkeletalMeshComponent;
 class USceneComponent;
 class UWidgetComponent;
 
-UENUM()
-enum PlayerCameraState 
+UENUM(BlueprintType)
+enum class  PlayerCameraState : uint8
 {
 	AtSpecifiedPosition UMETA(DisplayName = "AtSpecifiedPosition"),
 	AttachedToPlayer UMETA(DisplayName = "AttachedToPlayer"),
+	AttachedToSpline UMETA(DisplayName = "AttachedToSpline"),
+
 };
 
 
@@ -134,6 +136,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool CanPlayerLook = true;
 
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	PlayerCameraState CameraState = PlayerCameraState::AttachedToPlayer;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)

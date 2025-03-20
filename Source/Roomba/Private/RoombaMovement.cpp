@@ -3,6 +3,7 @@
 
 #include "RoombaMovement.h"
 
+#include "AsyncTreeDifferences.h"
 #include "BatteryMeterComponent.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
@@ -65,6 +66,7 @@ void ARoombaMovement::BeginPlay()
 	{
 		if (LevelsThatUseSpline[i] == UGameplayStatics::GetCurrentLevelName(GetWorld()))
 		{
+			CameraState = PlayerCameraState::AttachedToSpline;
 			DoesLevelUseSpline = true;
 			CanPlayerLook = false;
 			PlayerSplineRef  = Cast<APlayerSpline>(UGameplayStatics::GetActorOfClass(GetWorld(),SplineActorClass));
@@ -172,7 +174,6 @@ void ARoombaMovement::Move(const FInputActionValue& Value)
 				FRotator ControllerRotation = PlayerController->GetControlRotation();
 				ForwardDirection = FRotationMatrix(ControllerRotation).GetUnitAxis(EAxis::X);
 				RightDirection = FRotationMatrix(ControllerRotation).GetUnitAxis(EAxis::Y);
-
 			}
 			else
 			{
@@ -226,19 +227,31 @@ void ARoombaMovement::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	HoverPlayer(DeltaTime);
-	ChangePlayerCamera();
-
+	
 	SceneComponent->SetWorldLocation(GetActorLocation());
 
 	if (DoesLevelUseSpline)
 	{
-		if (PlayerSplineRef && CanPlayerLook)
+		if (PlayerSplineRef && CameraState == PlayerCameraState::AttachedToSpline)
 		{
+
 			CameraBoom->bInheritYaw = false;
 			CameraBoom->bInheritPitch = false;
 			
 			FVector CameraLocation = FollowCamera->GetComponentLocation();
 			FRotator CameraRotation= FollowCamera->GetComponentRotation();
+			
+			float SplineKey = PlayerSplineRef->SplineComponent->FindInputKeyClosestToWorldLocation(CameraLocation);
+			float SplineLength = PlayerSplineRef->SplineComponent->GetNumberOfSplinePoints() - 1;
+			
+			bool bAtEndOfSpline = (SplineKey >= SplineLength - 0.1f);
+
+			if (bAtEndOfSpline)
+			{
+				CameraState = PlayerCameraState::AttachedToPlayer;
+				return;
+			}
+			
 
 			FVector SplineLocation = PlayerSplineRef->SplineComponent->FindLocationClosestToWorldLocation(GetActorLocation(),ESplineCoordinateSpace::World);
 			
@@ -247,11 +260,18 @@ void ARoombaMovement::Tick(float DeltaTime)
 			FRotator CalculatedLookat = UKismetMathLibrary::FindLookAtRotation(NewLocation,RoombaSkeletalMesh->GetComponentLocation());
 			
 			FRotator NewCameraRotation =  FMath::RInterpTo(CameraRotation,CalculatedLookat,DeltaTime,CameraSplineInterSpeed);
-			
+
+			 StaticForwardDirection = PlayerSplineRef->StaticForwardDirection;
+		 	 StaticRightDirection = PlayerSplineRef->StaticRightDirection;
+			 
 			FollowCamera->SetWorldRotation(NewCameraRotation);
 			FollowCamera->SetWorldLocation(NewLocation);		
 		}
 	}
+
+
+	ChangePlayerCamera();
+
 }
 
 
