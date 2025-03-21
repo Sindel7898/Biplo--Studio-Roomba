@@ -237,6 +237,7 @@ void ARoombaMovement::Tick(float DeltaTime)
 
 			CameraBoom->bInheritYaw = false;
 			CameraBoom->bInheritPitch = false;
+			CameraBoom->bDoCollisionTest = false;
 			
 			FVector CameraLocation = FollowCamera->GetComponentLocation();
 			FRotator CameraRotation= FollowCamera->GetComponentRotation();
@@ -325,6 +326,10 @@ void ARoombaMovement::ChangePlayerCamera()
 
 	if (CameraState == PlayerCameraState::AttachedToPlayer)
 	{
+		CameraBoom->bInheritYaw = true;
+		CameraBoom->bInheritPitch = true;
+		CameraBoom->bDoCollisionTest = true;
+		
 		CanPlayerLook = true;
 
 		FollowCamera->AttachToComponent(CameraBoom, FAttachmentTransformRules::SnapToTargetIncludingScale);
