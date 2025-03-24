@@ -294,6 +294,22 @@ void ARoombaMovement::ChangePlayerCamera()
 	}
 }
 
+void ARoombaMovement::MoveCameraTo(FVector Location, FRotator Rotation)
+{
+
+	CameraState = PlayerCameraState::AtSpecifiedPosition;
+	TargetPosition = Location;
+	TargetRotation = Rotation;
+	
+	ChangePlayerCamera();
+}
+
+void ARoombaMovement::ResetCamera()
+{
+	CameraState = PlayerCameraState::AttachedToPlayer;
+	ChangePlayerCamera();
+}
+
 float ARoombaMovement::GetCurrentSpeed() 
 {
 	return FloatingPawnMovement->Velocity.Size();

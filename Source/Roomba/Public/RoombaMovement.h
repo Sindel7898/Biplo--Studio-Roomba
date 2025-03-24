@@ -96,6 +96,12 @@ protected:
 	void ChangePlayerCamera();
 
 	UFUNCTION(BlueprintCallable)
+	void MoveCameraTo(FVector Location, FRotator Rotation);
+	
+	UFUNCTION(BlueprintCallable)
+	void ResetCamera();
+
+	UFUNCTION(BlueprintCallable)
 	float GetCurrentSpeed();
 
 public:	
