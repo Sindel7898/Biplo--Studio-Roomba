@@ -269,7 +269,7 @@ void ARoombaMovement::HoverPlayer(float DeltaTime)
 }
 
 void ARoombaMovement::ChangePlayerCamera()
-{
+ {
 
 	if (CameraState == PlayerCameraState::AttachedToPlayer)
 	{
