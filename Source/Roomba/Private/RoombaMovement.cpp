@@ -3,6 +3,8 @@
 
 #include "RoombaMovement.h"
 
+#include <ThirdParty/ShaderConductor/ShaderConductor/External/DirectXShaderCompiler/include/dxc/Support/WinAdapter.h>
+
 #include "BatteryMeterComponent.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
@@ -294,20 +296,38 @@ void ARoombaMovement::ChangePlayerCamera()
 	}
 }
 
-void ARoombaMovement::MoveCameraTo(FVector Location, FRotator Rotation)
+void ARoombaMovement::MoveCameraTo(FVector Location, FRotator Rotation, float Length)
 {
 
-	CameraState = PlayerCameraState::AtSpecifiedPosition;
+	FVector LastTargetPosition = TargetPosition;
+	FRotator LastTargetRotation = TargetRotation;
+	PlayerCameraState LastCameraState = CameraState;
+
+	InterpolationSpeed = 6;
 	TargetPosition = Location;
 	TargetRotation = Rotation;
+	CameraState = PlayerCameraState::AtSpecifiedPosition;
+	BatteryMeterComponent->SetInActivationCamera(true);
+
+	FTimerHandle Handle;
+
+	GetWorld()->GetTimerManager().SetTimer(Handle, FTimerDelegate::CreateLambda(
+		[this, LastTargetPosition, LastTargetRotation, LastCameraState]
+	{
+		ResetCamera(LastTargetPosition, LastTargetRotation, LastCameraState);
+		
+	}), Length, false);
 	
-	ChangePlayerCamera();
+
+	//ChangePlayerCamera();
 }
 
-void ARoombaMovement::ResetCamera()
+void ARoombaMovement::ResetCamera(FVector LastTargetPosition, FRotator LastTargetRotation, PlayerCameraState LastCameraState)
 {
-	CameraState = PlayerCameraState::AttachedToPlayer;
-	ChangePlayerCamera();
+	TargetPosition = LastTargetPosition;
+	TargetRotation = LastTargetRotation;
+	CameraState = LastCameraState;
+	BatteryMeterComponent->SetInActivationCamera(false);
 }
 
 float ARoombaMovement::GetCurrentSpeed() 

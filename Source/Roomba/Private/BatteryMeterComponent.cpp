@@ -58,6 +58,10 @@ void UBatteryMeterComponent::BeginPlay()
 }
 
 
+void UBatteryMeterComponent::SetInActivationCamera(bool bValue)
+{
+	bInCameraActivation = bValue;
+}
 
 // Called every frame
 void UBatteryMeterComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
@@ -142,6 +146,10 @@ void UBatteryMeterComponent::IncreaseStamina2()
 
 void UBatteryMeterComponent::DecreaseStaminaInShadow() 
 {
+	if (bInCameraActivation)
+	{
+		return; // In camera activation, do not decrease
+	}
 	BatteryLevel--;
 }
 void UBatteryMeterComponent::NegateStamina( float Amount) 
