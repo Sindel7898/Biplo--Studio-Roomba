@@ -296,14 +296,14 @@ void ARoombaMovement::ChangePlayerCamera()
 	}
 }
 
-void ARoombaMovement::MoveCameraTo(FVector Location, FRotator Rotation, float Length)
+void ARoombaMovement::MoveCameraTo(FVector Location, FRotator Rotation, float Length, float InInterpSpeed)
 {
 
 	FVector LastTargetPosition = TargetPosition;
 	FRotator LastTargetRotation = TargetRotation;
 	PlayerCameraState LastCameraState = CameraState;
 
-	InterpolationSpeed = 6;
+	InterpolationSpeed = InInterpSpeed;
 	TargetPosition = Location;
 	TargetRotation = Rotation;
 	CameraState = PlayerCameraState::AtSpecifiedPosition;

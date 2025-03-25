@@ -96,7 +96,7 @@ protected:
 	void ChangePlayerCamera();
 
 	UFUNCTION(BlueprintCallable)
-	void MoveCameraTo(FVector Location, FRotator Rotation, float Length);
+	void MoveCameraTo(FVector Location, FRotator Rotation, float Length, float InInterpSpeed);
 	
 	void ResetCamera(FVector LastTargetPosition, FRotator LastTargetRotation, PlayerCameraState LastCameraState);
 
