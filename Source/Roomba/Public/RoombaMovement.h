@@ -96,10 +96,9 @@ protected:
 	void ChangePlayerCamera();
 
 	UFUNCTION(BlueprintCallable)
-	void MoveCameraTo(FVector Location, FRotator Rotation);
+	void MoveCameraTo(FVector Location, FRotator Rotation, float Length, float InInterpSpeed);
 	
-	UFUNCTION(BlueprintCallable)
-	void ResetCamera();
+	void ResetCamera(FVector LastTargetPosition, FRotator LastTargetRotation, PlayerCameraState LastCameraState);
 
 	UFUNCTION(BlueprintCallable)
 	float GetCurrentSpeed();
