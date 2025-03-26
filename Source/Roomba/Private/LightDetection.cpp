@@ -51,7 +51,7 @@ void ALightDetection::Tick(float DeltaTime)
 		GEngine->AddOnScreenDebugMessage(5,1,FColor::Red,BrightnessBoolString);
 		///////////////////////////////////////////////////////////////////////////////////////////
 		
-		if (TotalBrightness > 90.0f)
+		if (TotalBrightness > 80.0f)
 		{
 			IsPlayerInLight = true;
 		}
