@@ -5,6 +5,7 @@
 #include "GameFramework/Actor.h"
 #include "Generator.generated.h"
 
+class ATerminal;
 class ACable;
 class UBoxComponent;
 class UStaticMeshComponent;
@@ -55,4 +56,7 @@ public:
 
 	void SwitchToEnabled();
 	void SwitchToDisabled();
+	
+	UPROPERTY(EditAnywhere)
+	ATerminal* TerminalRef;
 };
