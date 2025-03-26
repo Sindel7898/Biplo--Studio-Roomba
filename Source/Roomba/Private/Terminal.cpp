@@ -3,6 +3,7 @@
 
 #include "Terminal.h"
 #include "GeneratorSwitch.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 ATerminal::ATerminal()
@@ -30,5 +31,9 @@ void ATerminal::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if (GeneratorSwitch1->IsConnectedToRope && GeneratorSwitch2->IsConnectedToRope && GeneratorSwitch3->IsConnectedToRope && GeneratorSwitch4->IsConnectedToRope)
+	{
+		UGameplayStatics::OpenLevel(GetWorld(), "End");
+	}
 }
 

@@ -63,7 +63,6 @@ void ALevelSwitcher::LoadNextLevel()
 {
 	// Switching level was changed to blueprints becausing the save system in blueprints will yield
 	NewLevelReached.Broadcast(LevelToLoad);
-	//UGameplayStatics::OpenLevel(this, LevelToLoad);
 }
 
 
