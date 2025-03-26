@@ -37,6 +37,8 @@ public:
 	UPROPERTY(EditAnywhere)
 	AGeneratorSwitch* GeneratorSwitch4;
 	
+
+	int CountOfConnectedSwitches = 0;
 	
 	UPROPERTY()
 	TArray<AGeneratorSwitch*> GeneratorSwitches;
