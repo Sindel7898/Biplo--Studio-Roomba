@@ -6,6 +6,7 @@
 #include "GameFramework/Pawn.h"
 #include "RoombaMovement.generated.h"
 
+class APlayerSpline;
 class UCapsuleComponent;
 class USphereComponent;
 class UBoxComponent;
@@ -19,11 +20,13 @@ class USkeletalMeshComponent;
 class USceneComponent;
 class UWidgetComponent;
 
-UENUM()
-enum PlayerCameraState 
+UENUM(BlueprintType)
+enum class  PlayerCameraState : uint8
 {
 	AtSpecifiedPosition UMETA(DisplayName = "AtSpecifiedPosition"),
 	AttachedToPlayer UMETA(DisplayName = "AttachedToPlayer"),
+	AttachedToSpline UMETA(DisplayName = "AttachedToSpline"),
+
 };
 
 
@@ -96,10 +99,9 @@ protected:
 	void ChangePlayerCamera();
 
 	UFUNCTION(BlueprintCallable)
-	void MoveCameraTo(FVector Location, FRotator Rotation);
+	void MoveCameraTo(FVector Location, FRotator Rotation, float Length, float InInterpSpeed);
 	
-	UFUNCTION(BlueprintCallable)
-	void ResetCamera();
+	void ResetCamera(FVector LastTargetPosition, FRotator LastTargetRotation, PlayerCameraState LastCameraState);
 
 	UFUNCTION(BlueprintCallable)
 	float GetCurrentSpeed();
@@ -139,6 +141,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool CanPlayerLook = true;
 
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	PlayerCameraState CameraState = PlayerCameraState::AttachedToPlayer;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -150,6 +153,20 @@ public:
 	bool CanPlayerMove = true;
 
 	FORCEINLINE UInputMappingContext* GetMappingContext(){return DefaultMappingContext;}
-
+	
 	float CableCount = 0;
+
+	UPROPERTY(EditAnywhere)
+	TArray<FString> LevelsThatUseSpline;
+
+	UPROPERTY(EditAnywhere)
+    TSubclassOf<AActor> SplineActorClass;
+
+	UPROPERTY()
+	APlayerSpline* PlayerSplineRef;
+	
+	UPROPERTY(EditAnywhere)
+	float CameraSplineInterSpeed = 2;
+	
+	bool DoesLevelUseSpline = false;
 };

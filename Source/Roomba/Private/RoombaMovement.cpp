@@ -3,9 +3,12 @@
 
 #include "RoombaMovement.h"
 
+#include <ThirdParty/ShaderConductor/ShaderConductor/External/DirectXShaderCompiler/include/dxc/Support/WinAdapter.h>
+
 #include "BatteryMeterComponent.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "PlayerSpline.h"
 #include "ProximityPromptComponent.h"
 #include "Camera/CameraComponent.h"
 #include "Components/BoxComponent.h"
@@ -13,6 +16,7 @@
 #include "GameFramework/FloatingPawnMovement.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "Kismet/KismetMathLibrary.h"
 
 // Sets default values
 ARoombaMovement::ARoombaMovement()
@@ -59,6 +63,18 @@ void ARoombaMovement::BeginPlay()
 	StoreMaxSpeed = FloatingPawnMovement->MaxSpeed;
 	StoreDeceleration = FloatingPawnMovement->Deceleration;
 
+	for (int i = 0; i < LevelsThatUseSpline.Num(); i++)
+	{
+		if (LevelsThatUseSpline[i] == UGameplayStatics::GetCurrentLevelName(GetWorld()))
+		{
+			CameraState = PlayerCameraState::AttachedToSpline;
+			DoesLevelUseSpline = true;
+			CanPlayerLook = false;
+			PlayerSplineRef  = Cast<APlayerSpline>(UGameplayStatics::GetActorOfClass(GetWorld(),SplineActorClass));
+			break;
+		}
+	}
+	
 }
 
 
@@ -134,7 +150,7 @@ void ARoombaMovement::Look(const FInputActionValue& Value)
 	// input is a Vector2D
 	FVector2D LookAxisVector = Value.Get<FVector2D>();
 
-	if (GetController()!= nullptr)
+	if (GetController()!= nullptr && CanPlayerLook)
 	{
 		// add yaw and pitch input to controller
 		AddControllerYawInput(LookAxisVector.X);
@@ -155,7 +171,6 @@ void ARoombaMovement::Move(const FInputActionValue& Value)
 	{
 		if (CanPlayerMove && BatteryMeterComponent->GetBattery() > 0)
 		{
-			GEngine->AddOnScreenDebugMessage(30, 2.0f, FColor::Red, "cAN MOVE");
 
 			if (CanPlayerLook)
 			{
@@ -163,7 +178,6 @@ void ARoombaMovement::Move(const FInputActionValue& Value)
 				FRotator ControllerRotation = PlayerController->GetControlRotation();
 				ForwardDirection = FRotationMatrix(ControllerRotation).GetUnitAxis(EAxis::X);
 				RightDirection = FRotationMatrix(ControllerRotation).GetUnitAxis(EAxis::Y);
-			
 			}
 			else
 			{
@@ -220,6 +234,50 @@ void ARoombaMovement::Tick(float DeltaTime)
 	ChangePlayerCamera();
 
 	SceneComponent->SetWorldLocation(GetActorLocation());
+
+	if (DoesLevelUseSpline)
+	{
+		if (PlayerSplineRef && CameraState == PlayerCameraState::AttachedToSpline)
+		{
+
+			CameraBoom->bInheritYaw = false;
+			CameraBoom->bInheritPitch = false;
+			CameraBoom->bDoCollisionTest = false;
+			
+			FVector CameraLocation = FollowCamera->GetComponentLocation();
+			FRotator CameraRotation= FollowCamera->GetComponentRotation();
+			
+			float SplineKey = PlayerSplineRef->SplineComponent->FindInputKeyClosestToWorldLocation(CameraLocation);
+			float SplineLength = PlayerSplineRef->SplineComponent->GetNumberOfSplinePoints() - 1;
+			
+			bool bAtEndOfSpline = (SplineKey >= SplineLength - 0.1f);
+
+			if (bAtEndOfSpline)
+			{
+				CameraState = PlayerCameraState::AttachedToPlayer;
+				return;
+			}
+			
+
+			FVector SplineLocation = PlayerSplineRef->SplineComponent->FindLocationClosestToWorldLocation(GetActorLocation(),ESplineCoordinateSpace::World);
+			
+			FVector NewLocation =  FMath::VInterpTo(CameraLocation,SplineLocation,DeltaTime,CameraSplineInterSpeed);
+			
+			FRotator CalculatedLookat = UKismetMathLibrary::FindLookAtRotation(NewLocation,RoombaSkeletalMesh->GetComponentLocation());
+			
+			FRotator NewCameraRotation =  FMath::RInterpTo(CameraRotation,CalculatedLookat,DeltaTime,CameraSplineInterSpeed);
+
+			 StaticForwardDirection = PlayerSplineRef->StaticForwardDirection;
+		 	 StaticRightDirection = PlayerSplineRef->StaticRightDirection;
+			 
+			FollowCamera->SetWorldRotation(NewCameraRotation);
+			FollowCamera->SetWorldLocation(NewLocation);		
+		}
+	}
+
+
+	ChangePlayerCamera();
+
 }
 
 
@@ -273,6 +331,10 @@ void ARoombaMovement::ChangePlayerCamera()
 
 	if (CameraState == PlayerCameraState::AttachedToPlayer)
 	{
+		CameraBoom->bInheritYaw = true;
+		CameraBoom->bInheritPitch = true;
+		CameraBoom->bDoCollisionTest = true;
+		
 		CanPlayerLook = true;
 
 		FollowCamera->AttachToComponent(CameraBoom, FAttachmentTransformRules::SnapToTargetIncludingScale);
@@ -294,20 +356,38 @@ void ARoombaMovement::ChangePlayerCamera()
 	}
 }
 
-void ARoombaMovement::MoveCameraTo(FVector Location, FRotator Rotation)
+void ARoombaMovement::MoveCameraTo(FVector Location, FRotator Rotation, float Length, float InInterpSpeed)
 {
 
-	CameraState = PlayerCameraState::AtSpecifiedPosition;
+	FVector LastTargetPosition = TargetPosition;
+	FRotator LastTargetRotation = TargetRotation;
+	PlayerCameraState LastCameraState = CameraState;
+
+	InterpolationSpeed = InInterpSpeed;
 	TargetPosition = Location;
 	TargetRotation = Rotation;
+	CameraState = PlayerCameraState::AtSpecifiedPosition;
+	BatteryMeterComponent->SetInActivationCamera(true);
+
+	FTimerHandle Handle;
+
+	GetWorld()->GetTimerManager().SetTimer(Handle, FTimerDelegate::CreateLambda(
+		[this, LastTargetPosition, LastTargetRotation, LastCameraState]
+	{
+		ResetCamera(LastTargetPosition, LastTargetRotation, LastCameraState);
+		
+	}), Length, false);
 	
-	ChangePlayerCamera();
+
+	//ChangePlayerCamera();
 }
 
-void ARoombaMovement::ResetCamera()
+void ARoombaMovement::ResetCamera(FVector LastTargetPosition, FRotator LastTargetRotation, PlayerCameraState LastCameraState)
 {
-	CameraState = PlayerCameraState::AttachedToPlayer;
-	ChangePlayerCamera();
+	TargetPosition = LastTargetPosition;
+	TargetRotation = LastTargetRotation;
+	CameraState = LastCameraState;
+	BatteryMeterComponent->SetInActivationCamera(false);
 }
 
 float ARoombaMovement::GetCurrentSpeed() 

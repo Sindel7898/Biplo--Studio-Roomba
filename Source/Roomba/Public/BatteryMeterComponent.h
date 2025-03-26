@@ -28,6 +28,8 @@ private:
 	void SetInLight(const bool bNewInLight);
 
 	bool bInLight;
+
+	bool bInCameraActivation;
 	
 protected:
 	// Called when the game starts
@@ -45,7 +47,6 @@ protected:
 	
 	UPROPERTY()
 	ALightDetection* LightDetectionRef;
-
 
 	UPROPERTY()
 	ARoombaMovement* PlayerRef;
@@ -96,7 +97,9 @@ public:
 	float GetBattery() { return BatteryLevel; }
 	
 	UFUNCTION(BlueprintCallable)
-	float GetBatteryLevel() {return BatteryLevel  / MaxBatteryLevel;} 
+	float GetBatteryLevel() {return BatteryLevel  / MaxBatteryLevel;}
+
+	void SetInActivationCamera(bool bValue);
 
 	FVector SpawnPosition;
 };
