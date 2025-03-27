@@ -40,6 +40,8 @@ void AGeneratorSwitch::Tick(float DeltaTime)
 	{
 		RefToGenerator->SwitchToEnabled();
 	}
+
+	IsConnectedToRope = RefToGenerator->IsConnectedToRope;
 	
 }
 

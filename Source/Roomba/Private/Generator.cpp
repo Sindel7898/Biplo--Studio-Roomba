@@ -27,7 +27,7 @@ void AGenerator::Tick(float DeltaTime)
 
 	if (GEngine)
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("CountOfConnectedSwitches: %d"), TerminalRef->CountOfConnectedSwitches));
+		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("CountOfConnectedSwitches: %d"), TerminalRef->CountOfConnectedSwitches));
 	}
 }
 
