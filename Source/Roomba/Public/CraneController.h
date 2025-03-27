@@ -56,7 +56,9 @@ public:
 	void RotateLeft();
 	void RotateRight();
 	//void SwitchToPlayer();
-	
+
+	UFUNCTION(BlueprintCallable)
+	void ClearInput();
 
 	UPROPERTY(EditAnywhere)
 	ACrane* CraneRef;

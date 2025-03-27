@@ -5,6 +5,7 @@
 #include "GameFramework/Actor.h"
 #include "Generator.generated.h"
 
+class ATerminal;
 class ACable;
 class UBoxComponent;
 class UStaticMeshComponent;
@@ -38,6 +39,9 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	AGenerator* MasterGenerator;
+
+	UPROPERTY(EditAnywhere)
+	AActor* SwitchActor;
 	
 	virtual void Tick(float DeltaTime) override;
 
@@ -55,4 +59,10 @@ public:
 
 	void SwitchToEnabled();
 	void SwitchToDisabled();
+
+	void SwitchLightOn();
+	void SwitchLightOff();
+	
+	UPROPERTY(EditAnywhere)
+	ATerminal* TerminalRef;
 };

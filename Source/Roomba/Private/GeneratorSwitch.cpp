@@ -34,12 +34,22 @@ void AGeneratorSwitch::Tick(float DeltaTime)
 	if (SpecifiedCable->CableComponent->GetAttachedActor() !=this && RefToGenerator->IsMaster  == false)
 	{
 		RefToGenerator->SwitchToDisabled();
+		if (RefToGenerator->SwitchActor == nullptr || !RefToGenerator->SwitchActor->ActorHasTag("Activated"))
+		{
+			RefToGenerator->SwitchLightOff();
+		}
 	}
 
 	if (SpecifiedCable->CableComponent->GetAttachedActor() == this && MasterGenerator->IsConnectedToRope == true )
 	{
 		RefToGenerator->SwitchToEnabled();
+		if (RefToGenerator->SwitchActor == nullptr || RefToGenerator->SwitchActor->ActorHasTag("Activated"))
+		{
+			RefToGenerator->SwitchLightOn();
+		}
 	}
+
+	IsConnectedToRope = RefToGenerator->IsConnectedToRope;
 	
 }
 
