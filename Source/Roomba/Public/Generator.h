@@ -39,6 +39,9 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	AGenerator* MasterGenerator;
+
+	UPROPERTY(EditAnywhere)
+	AActor* SwitchActor;
 	
 	virtual void Tick(float DeltaTime) override;
 
@@ -56,6 +59,9 @@ public:
 
 	void SwitchToEnabled();
 	void SwitchToDisabled();
+
+	void SwitchLightOn();
+	void SwitchLightOff();
 	
 	UPROPERTY(EditAnywhere)
 	ATerminal* TerminalRef;

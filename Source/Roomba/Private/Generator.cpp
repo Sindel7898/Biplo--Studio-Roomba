@@ -41,11 +41,19 @@ void AGenerator::BeginPlay()
 void AGenerator::SwitchToEnabled()
 {
 	IsConnectedToRope = true;
-	GeneratorMesh->SetMaterial(0,EnabledMaterial);
 }
 
 void AGenerator::SwitchToDisabled()
 {
 	IsConnectedToRope = false;
+}
+
+void AGenerator::SwitchLightOn()
+{
+	GeneratorMesh->SetMaterial(0,EnabledMaterial);
+}
+
+void AGenerator::SwitchLightOff()
+{
 	GeneratorMesh->SetMaterial(0,DisabledMaterial);
 }
