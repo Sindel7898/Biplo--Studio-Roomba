@@ -83,33 +83,7 @@ void ACraneController::RotateRight()
 	CraneRef->RotateCraneRight(1.0f);
 }
 
-void ACraneController::ClearInput()
-{
-	TSubclassOf<ARoombaMovement> PlayerClass = ARoombaMovement::StaticClass();
-	TArray<AActor*> FoundPlayerActor;
-	
-	//find other character
-	UGameplayStatics::GetAllActorsOfClass(GetWorld(),PlayerClass,FoundPlayerActor);
 
-	for (AActor* actors : FoundPlayerActor)
-	{
-		ARoombaMovement* PlayerRef = Cast<ARoombaMovement>(actors);
-		
-		if (PlayerRef)
-			if (APlayerController* PlayerController = Cast<APlayerController>(GetController()))
-			{
-				if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
-				{
-					Subsystem->ClearAllMappings(); 
-					Subsystem->AddMappingContext(PlayerRef->GetMappingContext(), 0);
-					GetController()->Possess(PlayerRef);
-				}
-			}
-		
-	}
-
-				
-}
 
 
 /*
