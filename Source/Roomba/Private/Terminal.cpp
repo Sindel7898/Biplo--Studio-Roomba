@@ -23,6 +23,8 @@ void ATerminal::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	APlayerCameraManager * cameramanager = UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0);
+	cameramanager->StartCameraFade(1, 0, 2.5, FLinearColor::Black, false, true);
 }
 
 
@@ -33,7 +35,15 @@ void ATerminal::Tick(float DeltaTime)
 
 	if (GeneratorSwitch1->IsConnectedToRope && GeneratorSwitch2->IsConnectedToRope && GeneratorSwitch3->IsConnectedToRope && GeneratorSwitch4->IsConnectedToRope)
 	{
-		UGameplayStatics::OpenLevel(GetWorld(), "End");
+		APlayerCameraManager * cameramanager = UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0);
+		cameramanager->StartCameraFade(0, 1, 1.5, FLinearColor::Black, false, true);
+
+		FTimerHandle FadeTimerHandle;
+		GetWorld()->GetTimerManager().SetTimer(FadeTimerHandle, this, &ATerminal::OnFadeComplete, 1.5f, false);
 	}
 }
 
+void ATerminal::OnFadeComplete()
+{
+	UGameplayStatics::OpenLevel(GetWorld(), "End");
+}
