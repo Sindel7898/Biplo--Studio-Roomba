@@ -2,6 +2,8 @@
 
 
 #include "Terminal.h"
+
+#include "Generator.h"
 #include "GeneratorSwitch.h"
 #include "Kismet/GameplayStatics.h"
 
@@ -23,6 +25,8 @@ void ATerminal::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	APlayerCameraManager * cameramanager = UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0);
+	cameramanager->StartCameraFade(1, 0, 2.5, FLinearColor::Black, false, true);
 }
 
 
@@ -31,9 +35,31 @@ void ATerminal::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if (GeneratorSwitch1->IsConnectedToRope && GeneratorSwitch2->IsConnectedToRope && GeneratorSwitch3->IsConnectedToRope && GeneratorSwitch4->IsConnectedToRope)
+	const AActor* SwitchActor1 = GeneratorSwitch1->RefToGenerator->SwitchActor;
+	const AActor* SwitchActor2 = GeneratorSwitch2->RefToGenerator->SwitchActor;
+	const AActor* SwitchActor3 = GeneratorSwitch3->RefToGenerator->SwitchActor;
+	const AActor* SwitchActor4 = GeneratorSwitch4->RefToGenerator->SwitchActor;
+	
+	if (GeneratorSwitch1->IsConnectedToRope && GeneratorSwitch2->IsConnectedToRope
+		&& GeneratorSwitch3->IsConnectedToRope && GeneratorSwitch4->IsConnectedToRope)
 	{
-		UGameplayStatics::OpenLevel(GetWorld(), "End");
+	
+		if (SwitchActor1->ActorHasTag("Activated") && SwitchActor2->ActorHasTag("Activated")
+			&& SwitchActor3->ActorHasTag("Activated") && SwitchActor4->ActorHasTag("Activated"))
+		{
+			// All connected to the ropes now check that they have been switched on
+		
+			APlayerCameraManager * cameramanager = UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0);
+			cameramanager->StartCameraFade(0, 1, 1.5, FLinearColor::Black, false, true);
+
+			FTimerHandle FadeTimerHandle;
+			GetWorld()->GetTimerManager().SetTimer(FadeTimerHandle, this, &ATerminal::OnFadeComplete, 1.5f, false);
+		}
+	
 	}
 }
 
+void ATerminal::OnFadeComplete()
+{
+	UGameplayStatics::OpenLevel(GetWorld(), "End");
+}
