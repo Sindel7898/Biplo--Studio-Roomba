@@ -118,7 +118,7 @@ public:
 
 	// Call this when you update the simple inventory
 	void UpdateCarryingObject(UMaterialInterface* CarryingMaterial);
-
+	
 	float CarryingCableCount = 0;
 
 	UPROPERTY(EditAnywhere)

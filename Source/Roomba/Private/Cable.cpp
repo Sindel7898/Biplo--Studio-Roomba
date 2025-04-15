@@ -70,6 +70,14 @@ void ACable::OverlapBegins(UPrimitiveComponent* OverlappedComponent, AActor* Oth
 		{
 			if(Player->CarryingCableCount > 0)
 			{
+
+				UMaterialInterface* MainMaterial = CableComponent->GetMaterial(0);
+				if (MainMaterial != Player->CarryingMesh->GetMaterial(0))
+				{
+					// Not the right cable
+					return;
+				}
+				
 				CableComponent->SetHiddenInGame(false);
 				CableComponent->bAttachEnd = true;
 				CableComponent->SetAttachEndTo(OtherActor,FName("CableConnectionPoint"));
