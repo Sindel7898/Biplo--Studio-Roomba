@@ -46,8 +46,8 @@ void ACable::OverlapBegins(UPrimitiveComponent* OverlappedComponent, AActor* Oth
 {
 	if (OtherActor == UGameplayStatics::GetPlayerPawn(GetWorld(),0) && IsCableOnFloor == false && CableComponent->bHiddenInGame == false)
 	{
-		CableComponent->bAttachEnd = true;
-		CableComponent->SetAttachEndTo(OtherActor,FName("CableConnectionPoint"));
+		//CableComponent->bAttachEnd = true;
+		//CableComponent->SetAttachEndTo(OtherActor,FName("CableConnectionPoint"));
 	}
 	
 	if (OtherActor == UGameplayStatics::GetPlayerPawn(GetWorld(),0) && IsCableOnFloor)
