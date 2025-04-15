@@ -129,6 +129,11 @@ public:
 	float  StoreMaxSpeed;
 	float  StoreDeceleration;
 
+	float NewFOV;
+	UPROPERTY(EditAnywhere)
+	float DashMaxFOV = 120;
+	float DefaultFOV;
+
 	bool bIsCurrentlyDashing = false;
 	UPROPERTY(EditAnywhere)
 	float DashDuration = 0.6;

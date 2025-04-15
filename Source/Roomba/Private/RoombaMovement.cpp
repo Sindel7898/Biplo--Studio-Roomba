@@ -77,7 +77,10 @@ void ARoombaMovement::BeginPlay()
 			break;
 		}
 	}
+
 	
+	DefaultFOV = FollowCamera->FieldOfView;
+	NewFOV = DefaultFOV;
 }
 
 
@@ -297,6 +300,29 @@ void ARoombaMovement::Tick(float DeltaTime)
 
 
 	ChangePlayerCamera();
+	
+	
+    	const float FOVInterpSpeed = 0.9; 
+    	const float FOVTolerance = 0.1f;  
+    
+    	if (bIsCurrentlyDashing)
+    	{
+    		if (!FMath::IsNearlyEqual(NewFOV, DashMaxFOV, FOVTolerance))
+    		{
+    			NewFOV = FMath::FInterpTo(NewFOV, DashMaxFOV, DeltaTime, FOVInterpSpeed);
+    			FollowCamera->SetFieldOfView(NewFOV);
+    
+    			NewFOV = FMath::Clamp(NewFOV,0,120);
+    		}
+    	}
+    	else
+    	{
+    		if (!FMath::IsNearlyEqual(NewFOV, DefaultFOV, FOVTolerance))
+    		{
+    			NewFOV = FMath::FInterpTo(NewFOV, DefaultFOV, DeltaTime, FOVInterpSpeed);
+    			FollowCamera->SetFieldOfView(NewFOV);
+    		}
+    	}
 
 }
 
