@@ -53,7 +53,14 @@ void ACable::OverlapBegins(UPrimitiveComponent* OverlappedComponent, AActor* Oth
 	if (OtherActor == UGameplayStatics::GetPlayerPawn(GetWorld(),0) && IsCableOnFloor)
 	{
 		ARoombaMovement* Player = Cast<ARoombaMovement>(OtherActor);
-		Player->CableCount++;
+		if (Player->CarryingCableCount > 0)
+		{
+			return; // Already carrying a cable
+		}
+		
+		UMaterialInterface* MainMaterial = CableComponent->GetMaterial(0);
+		Player->CarryingCableCount++;
+		Player->UpdateCarryingObject(MainMaterial);
 		Destroy();
 	}
 
@@ -61,12 +68,21 @@ void ACable::OverlapBegins(UPrimitiveComponent* OverlappedComponent, AActor* Oth
 	{
 		if (ARoombaMovement* Player = Cast<ARoombaMovement>(OtherActor))
 		{
-			if(Player->CableCount > 0)
+			if(Player->CarryingCableCount > 0)
 			{
+
+				UMaterialInterface* MainMaterial = CableComponent->GetMaterial(0);
+				if (MainMaterial != Player->CarryingMesh->GetMaterial(0))
+				{
+					// Not the right cable
+					return;
+				}
+				
 				CableComponent->SetHiddenInGame(false);
 				CableComponent->bAttachEnd = true;
 				CableComponent->SetAttachEndTo(OtherActor,FName("CableConnectionPoint"));
-				Player->CableCount--;
+				Player->CarryingCableCount--;
+				Player->UpdateCarryingObject(nullptr);
 			}
 		}
 		

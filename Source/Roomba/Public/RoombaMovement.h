@@ -105,6 +105,7 @@ protected:
 
 	UFUNCTION(BlueprintCallable)
 	float GetCurrentSpeed();
+	
 
 public:	
 	// Called every frame
@@ -114,6 +115,11 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	void OnDashInputChanged(const FInputActionValue& InputActionValue);
 	void EndDash();
+
+	// Call this when you update the simple inventory
+	void UpdateCarryingObject(UMaterialInterface* CarryingMaterial);
+	
+	float CarryingCableCount = 0;
 
 	UPROPERTY(EditAnywhere)
 	float  HoverHeight = 100;
@@ -148,14 +154,15 @@ public:
 	USkeletalMeshComponent* RoombaSkeletalMesh;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UStaticMeshComponent* CarryingMesh;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float HoverDownRaycastLength;
 
 	bool CanPlayerMove = true;
 
 	FORCEINLINE UInputMappingContext* GetMappingContext(){return DefaultMappingContext;}
 	
-	float CableCount = 0;
-
 	UPROPERTY(EditAnywhere)
 	TArray<FString> LevelsThatUseSpline;
 
