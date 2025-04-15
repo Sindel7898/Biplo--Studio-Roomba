@@ -30,7 +30,10 @@ ARoombaMovement::ARoombaMovement()
 	
 	RoombaSkeletalMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("RoombaSkeletalMesh"));
 	RoombaSkeletalMesh->SetupAttachment(RootComponent);
-	
+
+	CarryingMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("CarryingMesh"));
+	CarryingMesh->SetupAttachment(RoombaSkeletalMesh);
+	CarryingMesh->SetVisibility(false);
 	
 	// Create a camera boom (pulls in towards the player if there is a collision)
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
@@ -142,6 +145,23 @@ void ARoombaMovement::EndDash()
 		FloatingPawnMovement->Deceleration = StoreDeceleration;
 		bIsCurrentlyDashing = false;
 	}
+}
+
+
+void ARoombaMovement::UpdateCarryingObject(UMaterialInterface* CarryingMaterial)
+{
+	// Realistically we're not going to have anything other than cables but if we are
+	// such as in DARE then we might want to change this inventory to be an array of
+	// generic items
+	const bool IsHolding = CarryingCableCount > 0;
+
+	if (CarryingMaterial != nullptr)
+	{
+		CarryingMesh->SetMaterial(0, CarryingMaterial);
+	}
+	
+	CarryingMesh->SetVisibility(IsHolding);
+	
 }
 
 
