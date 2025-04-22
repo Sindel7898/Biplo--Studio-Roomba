@@ -22,6 +22,10 @@ UProximityPromptComponent::UProximityPromptComponent()
 	bIsCollidingWithBoxComponent = false;
 
 	Image = nullptr;
+	
+	BoxComponent = nullptr;
+	ActivationEffectLocationSceneComponent = nullptr;
+	ActivationParticleEffect = nullptr;
 
 	StaminaRequired = 25.0f;
 }
@@ -102,11 +106,11 @@ void UProximityPromptComponent::OnComponentEndOverlap(UPrimitiveComponent* Overl
 	bIsCollidingWithBoxComponent = false;
 }
 
-void UProximityPromptComponent::Trigger()
+bool UProximityPromptComponent::Trigger()
 {
 	if (!Visible)
 	{
-		return;
+		return false;
 	}
 	
 	GEngine->AddOnScreenDebugMessage(5,1,FColor::Green, "Proximity prompt has been triggered!!");
@@ -129,8 +133,10 @@ void UProximityPromptComponent::Trigger()
 			RoombaMovement->BatteryMeterComponent->NegateStamina(-StaminaRequired);
 		}
 		OnTriggered.Broadcast();
+		return true;
 	}
-	
+
+	return false;
 }
 
 // Called every frame

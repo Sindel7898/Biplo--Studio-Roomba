@@ -20,12 +20,15 @@ class USkeletalMeshComponent;
 class USceneComponent;
 class UWidgetComponent;
 
+UDELEGATE(BlueprintAuthorityOnly)
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnPromptTriggered, AActor*, Actor);
+
 UENUM(BlueprintType)
 enum class  PlayerCameraState : uint8
 {
 	AtSpecifiedPosition UMETA(DisplayName = "AtSpecifiedPosition"),
-	AttachedToPlayer UMETA(DisplayName = "AttachedToPlayer"),
-	AttachedToSpline UMETA(DisplayName = "AttachedToSpline"),
+	AttachedToPlayer    UMETA(DisplayName = "AttachedToPlayer"),
+	AttachedToSpline    UMETA(DisplayName = "AttachedToSpline"),
 
 };
 
@@ -80,6 +83,10 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UFloatingPawnMovement* FloatingPawnMovement;
+
+	// Broadcast when the proximity prompt is triggered
+	UPROPERTY(BlueprintAssignable, Category="Events")
+	FOnPromptTriggered OnPromptTriggered;
 	
 protected:
 	// Called when the game starts or when spawned
@@ -117,11 +124,13 @@ public:
 	void EndDash();
 
 	// Call this when you update the simple inventory
+	UFUNCTION(BlueprintCallable)
 	void UpdateCarryingObject(UMaterialInterface* CarryingMaterial);
-	
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float CarryingCableCount = 0;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float  HoverHeight = 100;
 	
 	UPROPERTY(EditAnywhere)

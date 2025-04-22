@@ -4,6 +4,7 @@
 #include "Roomba/Public/BatteryMeterComponent.h"
 
 #include "RoombaMovement.h"
+#include "GameFramework/FloatingPawnMovement.h"
 #include "Kismet/GameplayStatics.h"
 #include "Roomba/Public/LightDetection.h"
 
@@ -167,7 +168,7 @@ void UBatteryMeterComponent::RespawnPlayer()
 		BatteryLevel = 100;
 		cameramanager->StartCameraFade(1, 0, 1.5, FLinearColor::Black, true, true);
 		PlayerRef->CanPlayerMove = true;
-
+		PlayerRef->FloatingPawnMovement->MaxSpeed = PlayerRef->StoreMaxSpeed;
 		GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
 	}
 }

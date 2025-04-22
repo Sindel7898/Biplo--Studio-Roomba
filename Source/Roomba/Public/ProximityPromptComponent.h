@@ -69,11 +69,16 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-	void Trigger();
+	bool Trigger();
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Components")
 	UBoxComponent* BoxComponent;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Components")
+	USceneComponent* ActivationEffectLocationSceneComponent;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Components")
+	UParticleSystem* ActivationParticleEffect;
 
 private:
 

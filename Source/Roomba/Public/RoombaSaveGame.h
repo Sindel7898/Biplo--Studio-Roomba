@@ -27,5 +27,7 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UEnhancedInputComponent* CurrentEnhancedInput;
-	
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool LumenEnabled;
 };

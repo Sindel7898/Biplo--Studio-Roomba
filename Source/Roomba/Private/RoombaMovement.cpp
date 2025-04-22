@@ -122,7 +122,7 @@ void ARoombaMovement::OnDashInputChanged(const FInputActionValue& InputActionVal
 {
 	bool bIsDashing  = InputActionValue.Get<bool>();
 	
-	if (bIsDashing && !bIsCurrentlyDashing && CanPlayerMove)
+	if (bIsDashing && !bIsCurrentlyDashing && CanPlayerMove && BatteryMeterComponent->GetBattery() >=4)
 	{
 		bIsCurrentlyDashing = true;
 		
@@ -243,7 +243,11 @@ void ARoombaMovement::OnInteract(const FInputActionValue& InputActionValue)
 		UProximityPromptComponent* Comp = Cast<UProximityPromptComponent>(FoundActor->GetComponentByClass(UProximityPromptComponent::StaticClass()));
 		if (Comp)
 		{
-			Comp->Trigger();
+			const bool Success = Comp->Trigger();
+			if (Success)
+			{
+				OnPromptTriggered.Broadcast(FoundActor);
+			}
 		}
 	}
 }
@@ -303,27 +307,29 @@ void ARoombaMovement::Tick(float DeltaTime)
 	
 	
     	const float FOVInterpSpeed = 0.9; 
-    	const float FOVTolerance = 0.1f;  
-    
-    	if (bIsCurrentlyDashing)
-    	{
-    		if (!FMath::IsNearlyEqual(NewFOV, DashMaxFOV, FOVTolerance))
-    		{
-    			NewFOV = FMath::FInterpTo(NewFOV, DashMaxFOV, DeltaTime, FOVInterpSpeed);
-    			FollowCamera->SetFieldOfView(NewFOV);
-    
-    			NewFOV = FMath::Clamp(NewFOV,0,120);
-    		}
-    	}
-    	else
-    	{
-    		if (!FMath::IsNearlyEqual(NewFOV, DefaultFOV, FOVTolerance))
-    		{
-    			NewFOV = FMath::FInterpTo(NewFOV, DefaultFOV, DeltaTime, FOVInterpSpeed);
-    			FollowCamera->SetFieldOfView(NewFOV);
-    		}
-    	}
+    	const float FOVTolerance = 0.1f;
 
+	if (CameraState == PlayerCameraState::AttachedToPlayer)
+	{
+		if (bIsCurrentlyDashing)
+		{
+			if (!FMath::IsNearlyEqual(NewFOV, DashMaxFOV, FOVTolerance))
+			{
+				NewFOV = FMath::FInterpTo(NewFOV, DashMaxFOV, DeltaTime, FOVInterpSpeed);
+				FollowCamera->SetFieldOfView(NewFOV);
+    
+				NewFOV = FMath::Clamp(NewFOV,0,120);
+			}
+		}
+		else
+		{
+			if (!FMath::IsNearlyEqual(NewFOV, DefaultFOV, FOVTolerance))
+			{
+				NewFOV = FMath::FInterpTo(NewFOV, DefaultFOV, DeltaTime, FOVInterpSpeed);
+				FollowCamera->SetFieldOfView(NewFOV);
+			}
+		}
+	}
 }
 
 
@@ -389,7 +395,7 @@ void ARoombaMovement::ChangePlayerCamera()
 
 	if (CameraState == PlayerCameraState::AtSpecifiedPosition)
 	{
-		GEngine->AddOnScreenDebugMessage(6, 2.0f, FColor::Red, TEXT("Switching Camera POsitrion!"));
+		GEngine->AddOnScreenDebugMessage(30, 2.0f, FColor::Red, TEXT("Switching Camera!"));
 		CanPlayerLook = false;
 		FollowCamera->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform);
 		FVector CurrentLocation = FollowCamera->GetComponentLocation();
